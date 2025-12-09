@@ -8,13 +8,14 @@
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
-% TODO: TEMP
-
-
 
 \documentclass[journal,letterpaper,english,final]{IEEEtran}[2015/08/26]
 \input{preamble}
+
+% TODO: TEMP placeholders
 \usepackage{mwe}
+\usepackage{lipsum}
+
 \begin{document}
 % Enable following command if you need to typeset "IEEEpubid".
 % See https://bytefreaks.net/tag/ieeeoverridecommandlockouts for details.
@@ -62,9 +63,7 @@
 
 \begin{abstract}
 \pdfbookmark[1]{Abstract}{Abstract} 
-For instructional purposes, a lab manual has been provided
-outlining the modeling, characterization, and construction of a wireless Class-D resonant converter. 
-This report presents the extracted device parameters, LTSpice simulations, and experimental measurements of the converter.
+\lipsum[1-2]
 \end{abstract}
 
 % For peer review papers, you can put extra information on the cover
@@ -96,6 +95,8 @@ Experimental measurements are performed over a range of switching frequencies an
     \caption{Theoretical circuit of the converter}
     \label{fig:classd}
 \end{figure}
+
+\section{Specifications}
 
 
 \section{Resonant Tank Characterization}
