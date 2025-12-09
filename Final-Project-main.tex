@@ -8,6 +8,9 @@
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 
+% TODO: TEMP
+\usepackage{mwe}
+
 
 \documentclass[journal,letterpaper,english,final]{IEEEtran}[2015/08/26]
 \input{preamble}
@@ -89,7 +92,7 @@ Experimental measurements are performed over a range of switching frequencies an
         width=\linewidth,               
         trim={30pt 450pt 30pt 150pt},           
         clip                               
-    ]{Script/plottings/lab2schematic.eps}
+    ]{example-image-a}
     \caption{Theoretical circuit of the converter}
     \label{fig:classd}
 \end{figure}
@@ -124,9 +127,9 @@ By comparing the curves in \cref{fig:resonantbode}, it is observed that both the
 
 \begin{figure}[h]
 	\centering
-    \subfloat[Experimental]{\includegraphics[width=0.48\columnwidth]{Script/plottings/resonantbodemeas.eps}\label{fig:resonantbodemeas}}
+    \subfloat[Experimental]{\includegraphics[width=0.48\columnwidth]{example-image-a}}
 	\hfil
-	\subfloat[Simulation]{\includegraphics[width=0.48\columnwidth]{Script/plottings/resonantbodespice.eps}\label{fig:resonantbodespice}}
+	\subfloat[Simulation]{\includegraphics[width=0.48\columnwidth]{example-image-a}\label{fig:resonantbodespice}}
     \caption{Input impedance of the resonant tank}
 	\label{fig:resonantbode}
 \end{figure}
@@ -153,11 +156,11 @@ Two Keysight 1147B current probes were used to capture both the primary-side cur
 A Python script was used to automate sweeping of the gate-drive frequency and electronic-load settings during measurement.
 \begin{figure}
     \centering
-    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{FLIR/FLIR1000024}
+    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
     \hfil
-    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{FLIR/FLIR1000029}
+    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
     \hfil
-    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{FLIR/FLIR1000023}
+    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
     \caption{Rectifier thermal; coil thermal; board thermal}
 \end{figure}
 
@@ -166,15 +169,15 @@ A Python script was used to automate sweeping of the gate-drive frequency and el
 
 \begin{figure*}[!t]
     \centering
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{Script/plottings/IpPP_vs_fs_scope.eps}\label{fig:ip-fs}}
+    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ip-fs}}
     \hfil
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{Script/plottings/Vo_vs_fs_meter.eps}\label{fig:vo-fs}}
+    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:vo-fs}}
     \hfil
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{Script/plottings/VoVi_vs_fs_meter.eps}\label{fig:ratio-fs}}
+    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ratio-fs}}
     \vspace{6pt} 
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{Script/plottings/Pout_vs_fs_meter.eps}\label{fig:pout-fs}}
+    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:pout-fs}}
     \hfil
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{Script/plottings/eta_vs_fs_meter.eps}\label{fig:eta-fs}}
+    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:eta-fs}}
     \caption{
         \centering
         Experimental Results vs. Frequency $f_s$.\\
