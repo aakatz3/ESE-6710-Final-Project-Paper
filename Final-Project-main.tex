@@ -110,98 +110,120 @@
 \end{table}
 
 \section {Design Process}
-\blindtext
-\section{Resonant Tank Characterization}
-In this converter, energy is transferred through a loosely coupled coil pair, whose cantilever‐model parameters—including magnetizing inductance $L_{\mu}$, leakage inductances $L_{\text{leak}}$, and coupling ratios $n$—vary with coil alignment and separation distance. 
-These variations strongly influence the resonant frequency, the impedance seen by the inverter, and the achievable power-transfer efficiency. 
-To characterize the coil pair, a VNA 2180 impedance analyzer is used to extract the parameters of the cantilever transformer model under aligned conditions and across different separation distances.
-The coils were first fixed in place, after which short-circuit and open-circuit tests were performed: the secondary coil was alternately shorted and opened while measuring inductances from the primary side, followed by the primary coil being shorted and opened while measuring from the secondary side.
-The resulting measurements, after calculation, are summarized are summarized in \cref{tab:cantilever_params}.\\
-
-\begin{table}[!ht]
-    \centering
-    \caption{Measured cantilever-model parameters at different coil separations}
-    \begin{tabular}{lcc}
-        \toprule
-        \textbf{Parameter} & \textbf{3 mm} & \textbf{6 mm} \\
-        \midrule
-            Magnetizing inductance $L_{\mu}$ (µH)   & --- & --- \\
-            Leakage inductance $L_{\text{leak}}$ (µH) & --- & --- \\
-            Coupling ratio $n$                      & --- & --- \\
-        \bottomrule
-    \end{tabular}
-    \label{tab:cantilever_params}
-\end{table}
-
-To emulate the equivalent resistance of the full-bridge rectifier, a $4Ω$ resistor is then connected to the secondary coil.
-With the primary coil connected to the resonance capacitor $C{res}$, the input impedance of the resonant tank is measured using the VNA 2180 under a coil separation of 3 mm. The resulting Bode plot is shown in \cref{fig:resonantbodemeas}.\\
-
-By comparing the curves in \cref{fig:resonantbode}, it is observed that both the measured and simulated responses indicate a resonant frequency of approximately 130 kHz.\\
-
-\begin{figure}[h]
-	\centering
-    \subfloat[Experimental]{\includegraphics[width=0.48\columnwidth]{example-image-a}}
-	\hfil
-	\subfloat[Simulation]{\includegraphics[width=0.48\columnwidth]{example-image-a}\label{fig:resonantbodespice}}
-    \caption{Input impedance of the resonant tank}
-	\label{fig:resonantbode}
-\end{figure}
-
-\section{LTSpice Simulation}
-In the simulation , the wireless receiver and transmitter coils are represented using the cantilever transformer model. 
-To ensure consistency with the hardware evaluation, the model parameters are set to match those measured at a coil separation of 3 mm, as listed in \cref{tab:cantilever_params}. 
-An ideal transformer is implemented using a controlled current source to emulate the coupling behavior prescribed by the cantilever model. 
-The corresponding simulation results are presented in \cref{sec:results}.
-
-\section {Experimental Setup and Procedure}
-The primary-side PCB was assembled using solder paste, a stencil, and a reflow oven, followed by hand-soldering of through-hole components and inspection for shorts. 
-After assembly, the test setup followed the prescribed procedure: a DMM continuity check was performed, DC terminals were connected with correct polarity, and a 200 kHz gate-drive square wave was applied with the function generator set to high-impedance mode. 
-With only the +5 V rail enabled, the gate-to-source voltages of the half-bridge MOSFETs were verified to be complementary 5 V signals with a sufficient dead time of approximately 40 ns. 
-Enabling the +24 V supply, the switched node waveform was confirmed to toggle between 0 V and 24 V. 
-Finally, proper operation was verified over a switching-frequency range of 100–500 kHz.\\
-\indent
-The secondary-side rectifier was assembled on a bare FR4 board using discrete diodes, capacitors, and copper tape. 
-The TX/RX coils were mounted and aligned using a 3D-printed fixture. Finally, the inverter, coils, and rectifier were assembled together to form the complete wireless power converter.\\
-\indent
-A Keysight EL34143A electronic load was used to provide the output load while measuring output voltage, current, and power. 
-The 24V input supply was monitored with a digital multimeter to obtain the input voltage and current. 
-Two Keysight 1147B current probes were used to capture both the primary-side current and the input current waveforms, while two Keysight 10073D passive probes measured the output voltage and the switched-node voltage of the bottom MOSFET. 
-A Python script was used to automate sweeping of the gate-drive frequency and electronic-load settings during measurement.
-\begin{figure}
-    \centering
-    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
-    \hfil
-    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
-    \hfil
-    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
-    \caption{Rectifier thermal; coil thermal; board thermal}
-\end{figure}
-
+\lipsum[5]
+\subsection{Coil Design}
+\lipsum[6-7]
+\subsection{Circuit Topology}
+\lipsum[8-10]
+\subsection{Coil Compensation}
+\lipsum[9-10]
+\subsection{Mechanical Design}
+\lipsum[11-12]
+\subsection{PCB Layout}
+\section{Simulation}
+\lipsum[13]
+\subsection[SPICE Simulations]
+\lipsum[14-18]
+\section{Experimental Verification}
+\lipsum[19]
+\subsection{Setup and Procedure}
+\lipsum[20-25]
 \section{Results}
-\label{sec:results}
+\lipsum[26-29]
+\section{Conclusion}
+\lipsum[30-31]
 
-\begin{figure*}[!t]
-    \centering
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ip-fs}}
-    \hfil
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:vo-fs}}
-    \hfil
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ratio-fs}}
-    \vspace{6pt} 
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:pout-fs}}
-    \hfil
-    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:eta-fs}}
-    \caption{
-        \centering
-        Experimental Results vs. Frequency $f_s$.\\
-        (a) $I_p$  vs. $f_s$\quad
-        (b) $V_o$ vs. $f_s$\quad
-        (c) $\sfrac{V_o}{V_i}$ vs. $f_s$\\
-        (d) $P_{out}$ vs. $f_s$\quad
-        (e) $\eta$ vs. $f_s$
-    }
-    \label{fig:experiment_results}
-\end{figure*}
+%\section{Resonant Tank Characterization}
+%In this converter, energy is transferred through a loosely coupled coil pair, whose cantilever‐model parameters—including magnetizing inductance $L_{\mu}$, leakage inductances $L_{\text{leak}}$, and coupling ratios $n$—vary with coil alignment and separation distance. 
+%These variations strongly influence the resonant frequency, the impedance seen by the inverter, and the achievable power-transfer efficiency. 
+%To characterize the coil pair, a VNA 2180 impedance analyzer is used to extract the parameters of the cantilever transformer model under aligned conditions and across different separation distances.
+%The coils were first fixed in place, after which short-circuit and open-circuit tests were performed: the secondary coil was alternately shorted and opened while measuring inductances from the primary side, followed by the primary coil being shorted and opened while measuring from the secondary side.
+%The resulting measurements, after calculation, are summarized are summarized in \cref{tab:cantilever_params}.\\
+%
+%\begin{table}[!ht]
+%    \centering
+%    \caption{Measured cantilever-model parameters at different coil separations}
+%    \begin{tabular}{lcc}
+%        \toprule
+%        \textbf{Parameter} & \textbf{3 mm} & \textbf{6 mm} \\
+%        \midrule
+%            Magnetizing inductance $L_{\mu}$ (µH)   & --- & --- \\
+%            Leakage inductance $L_{\text{leak}}$ (µH) & --- & --- \\
+%            Coupling ratio $n$                      & --- & --- \\
+%        \bottomrule
+%    \end{tabular}
+%    \label{tab:cantilever_params}
+%\end{table}
+%
+%To emulate the equivalent resistance of the full-bridge rectifier, a $4Ω$ resistor is then connected to the secondary coil.
+%With the primary coil connected to the resonance capacitor $C{res}$, the input impedance of the resonant tank is measured using the VNA 2180 under a coil separation of 3 mm. The resulting Bode plot is shown in \cref{fig:resonantbodemeas}.\\
+%
+%By comparing the curves in \cref{fig:resonantbode}, it is observed that both the measured and simulated responses indicate a resonant frequency of approximately 130 kHz.\\
+%
+%\begin{figure}[h]
+%	\centering
+%    \subfloat[Experimental]{\includegraphics[width=0.48\columnwidth]{example-image-a}}
+%	\hfil
+%	\subfloat[Simulation]{\includegraphics[width=0.48\columnwidth]{example-image-a}\label{fig:resonantbodespice}}
+%    \caption{Input impedance of the resonant tank}
+%	\label{fig:resonantbode}
+%\end{figure}
+%
+%\section{LTSpice Simulation}
+%In the simulation , the wireless receiver and transmitter coils are represented using the cantilever transformer model. 
+%To ensure consistency with the hardware evaluation, the model parameters are set to match those measured at a coil separation of 3 mm, as listed in \cref{tab:cantilever_params}. 
+%An ideal transformer is implemented using a controlled current source to emulate the coupling behavior prescribed by the cantilever model. 
+%The corresponding simulation results are presented in \cref{sec:results}.
+%
+%\section {Experimental Setup and Procedure}
+%The primary-side PCB was assembled using solder paste, a stencil, and a reflow oven, followed by hand-soldering of through-hole components and inspection for shorts. 
+%After assembly, the test setup followed the prescribed procedure: a DMM continuity check was performed, DC terminals were connected with correct polarity, and a 200 kHz gate-drive square wave was applied with the function generator set to high-impedance mode. 
+%With only the +5 V rail enabled, the gate-to-source voltages of the half-bridge MOSFETs were verified to be complementary 5 V signals with a sufficient dead time of approximately 40 ns. 
+%Enabling the +24 V supply, the switched node waveform was confirmed to toggle between 0 V and 24 V. 
+%Finally, proper operation was verified over a switching-frequency range of 100–500 kHz.\\
+%\indent
+%The secondary-side rectifier was assembled on a bare FR4 board using discrete diodes, capacitors, and copper tape. 
+%The TX/RX coils were mounted and aligned using a 3D-printed fixture. Finally, the inverter, coils, and rectifier were assembled together to form the complete wireless power converter.\\
+%\indent
+%A Keysight EL34143A electronic load was used to provide the output load while measuring output voltage, current, and power. 
+%The 24V input supply was monitored with a digital multimeter to obtain the input voltage and current. 
+%Two Keysight 1147B current probes were used to capture both the primary-side current and the input current waveforms, while two Keysight 10073D passive probes measured the output voltage and the switched-node voltage of the bottom MOSFET. 
+%A Python script was used to automate sweeping of the gate-drive frequency and electronic-load settings during measurement.
+%\begin{figure}
+%    \centering
+%    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
+%    \hfil
+%    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
+%    \hfil
+%    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
+%    \caption{Rectifier thermal; coil thermal; board thermal}
+%\end{figure}
+%
+%\section{Results}
+%\label{sec:results}
+%
+%\begin{figure*}[!t]
+%    \centering
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ip-fs}}
+%    \hfil
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:vo-fs}}
+%    \hfil
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ratio-fs}}
+%    \vspace{6pt} 
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:pout-fs}}
+%    \hfil
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:eta-fs}}
+%    \caption{
+%        \centering
+%        Experimental Results vs. Frequency $f_s$.\\
+%        (a) $I_p$  vs. $f_s$\quad
+%        (b) $V_o$ vs. $f_s$\quad
+%        (c) $\sfrac{V_o}{V_i}$ vs. $f_s$\\
+%        (d) $P_{out}$ vs. $f_s$\quad
+%        (e) $\eta$ vs. $f_s$
+%    }
+%    \label{fig:experiment_results}
+%\end{figure*}
 
 \section{Conclusion and Outlook}
 \subsection{Conclusion}
