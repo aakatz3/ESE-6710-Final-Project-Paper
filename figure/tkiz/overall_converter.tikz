@@ -2,8 +2,8 @@
 % LTeX: language=en-US
 % !TeX encoding = utf8
 % !TeX program = luatex
-\documentclass{subfiles}
-\usepackage{tikz}
+\documentclass{standalone}
+%\usepackage{tikz}
 \usepackage{circuitikz}
 \begin{document}
     \begin{figure}
