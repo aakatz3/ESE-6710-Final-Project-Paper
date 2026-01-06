@@ -6,12 +6,11 @@
 %\usepackage{tikz}
 \usepackage{circuitikz}
 \begin{document}
-    \begin{figure}
+
 \begin{tikzpicture}
-    % Paths, nodes and wires:
-  
-    \draw (8.135, 2.54) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm] (9.405, 3.81);
+   
     
+    \draw (-7.62, 4.064) to[american voltage source] (-7.62, 1.016);
 \end{tikzpicture}
     \end{figure}
     
