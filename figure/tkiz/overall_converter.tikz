@@ -9,7 +9,8 @@
     \begin{figure}
 \begin{tikzpicture}
     % Paths, nodes and wires:
-    \node[GaN hemt, xscale=0.99, yscale=0.99](N1) at (1.524, 3.302){} node[anchor=west] at (N1.text){$\small{Q_1}$};
+  
+    \draw (8.135, 2.54) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm] (9.405, 3.81);
     
 \end{tikzpicture}
     \end{figure}
