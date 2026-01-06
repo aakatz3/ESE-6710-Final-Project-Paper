@@ -1,3 +1,7 @@
+% !TeX spellcheck = en-US
+% LTeX: language=en-US
+% !TeX encoding = utf8
+% !TeX program = luatex
 \documentclass{subfiles}
 \usepackage{tikz}
 \usepackage{circuitikz}
