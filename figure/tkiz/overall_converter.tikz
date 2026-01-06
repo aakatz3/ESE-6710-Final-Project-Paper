@@ -2,10 +2,10 @@
 % LTeX: language=en-US
 % !TeX encoding = utf8
 % !TeX program = luatex
+
+\documentclass{standalone}
 %\usepackage{tikz}
 \usepackage{circuitikz}
-\documentclass{standalone}
-
 \begin{document}
 \begin{tikzpicture}
     \draw (-7.62, 4.064) to[american voltage source] (-7.62, 1.016);
