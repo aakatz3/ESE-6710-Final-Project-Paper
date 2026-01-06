@@ -1,4 +1,4 @@
-\documentclass{standalone}
+\documentclass{subfiles}
 \usepackage{tikz}
 \usepackage{circuitikz}
 \begin{document}
