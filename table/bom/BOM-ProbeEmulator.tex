@@ -1,13 +1,13 @@
+% !TeX program = luatex
 \documentclass{standalone}
-\usepackage[l3]{csvsimple}
+\usepackage{csvsimple}
+\usepackage{booktabs}
+\usepackage{colortbl}
 \begin{document}
-    \csvreader[
-    head to column names,
-    tabular = |l|l|l|l|,
-    table head = \hline\bfseries \# & \bfseries Name & \bfseries Grade\\\hline,
-    table foot = \hline
-    ]{grade.csv}{}{%
-        \ifcsvoddrow{\slshape\thecsvrow & \slshape\name, \givenname & \slshape\grade}%
-        {\bfseries\thecsvrow & \bfseries\name, \givenname & \bfseries\grade}
-    }
+    \begin{tabular}{lc}\toprule
+        \bfseries Person & \bfseries Matr.~No.\\
+        \midrule
+        \csvreader[head to column names]{./grade.csv}{}{\\\givenname\ \name & \matriculation}
+        \\\bottomrule
+    \end{tabular}
 \end{document}
