@@ -1,0 +1,2 @@
+# Ignore PDFs in this folder as they will be auto-generated
+*.pdf

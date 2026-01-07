@@ -2,12 +2,12 @@
 \documentclass{standalone}
 \usepackage{csvsimple}
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{colortbl}
 \begin{document}
-    \begin{tabular}{lc}\toprule
-        \bfseries Person & \bfseries Matr.~No.\\
-        \midrule
-        \csvreader[head to column names]{./grade.csv}{}{\\\givenname\ \name & \matriculation}
-        \\\bottomrule
-    \end{tabular}
+ 
+        \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
+        {./BOM-ProbeEmulator.csv}{}%
+        {\Designator & \Value & \Manufacturer & \ManufacturerPartNumber}
+
 \end{document}
