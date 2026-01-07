@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{csvsimple}
+\begin{document}
+    \csvreader[
+    head to column names,
+    tabular = |l|l|l|l|,
+    table head = \hline\bfseries \# & \bfseries Name & \bfseries Grade\\\hline,
+    table foot = \hline
+    ]{grade.csv}{}{%
+        \ifcsvoddrow{\slshape\thecsvrow & \slshape\name, \givenname & \slshape\grade}%
+        {\bfseries\thecsvrow & \bfseries\name, \givenname & \bfseries\grade}
+    }
+\end{document}
