@@ -16,7 +16,7 @@
 	\draw (7.905, 1.009) -| (9.405, 1.016) -| (9.405, 1.27);
 	\draw (7.639, 1.274) |- (7.627, 2.54) -- (8.135, 2.54);
 	\draw (7.373, 4.064) -- (9.405, 4.064) -| (9.405, 3.81);
-	\node[vcc](N4) at (13.716, 4.064){} node[anchor=south] at (N4.text){${V_\textrm{out}}$};
+%	\node[vcc](N4) at (13.716, 4.064){} node[anchor=south] at (N4.text){${V_\textrm{out}}$};
 	\draw (10.675, 2.54) -- (11.183, 2.54) -| (11.183, 3.81) -| (11.183, 4.064) -- (11.945, 4.064);
 	\node[sground] at (11.945, 1.016){};
 	\draw (13.723, 4.064) to[american resistor, /tikz/circuitikz/bipoles/length=1.05cm, l={${R_\textrm{load}}$}] (13.723, 1.016);
