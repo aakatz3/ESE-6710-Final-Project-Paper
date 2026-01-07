@@ -7,7 +7,7 @@
 	\draw (9.405, 3.81) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm] (10.675, 2.54);
 	\draw (8.135, 2.54) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm] (9.405, 1.27);
 	\draw (9.405, 1.27) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm] (10.675, 2.54);
-	\draw (9.405, 1.27) to[cute inductor, l_={${L_\textrm{comp}}$}] (9.405, 3.81);
+%	\draw (9.405, 1.27) to[cute inductor, l_={${L_\textrm{comp}}$}] (9.405, 3.81);
 	\node[GaN hemt, xscale=0.99, yscale=-0.99](N3) at (1.524, 1.778){} node[anchor=west] at (N3.text){${Q_2}$};
 	\draw (2.54, 2.54) to[full Schottky diode, mirror, /tikz/circuitikz/bipoles/length=0.700cm, l={${D_2}$}] (2.54, 1.016);
 	\node[ground] at (4.572, 2.54){};
