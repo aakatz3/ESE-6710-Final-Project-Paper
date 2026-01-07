@@ -82,7 +82,7 @@ The push--pull $\phi_2$ structure enables soft switching at MHz frequencies, red
     \centering
     \includestandalone[width=0.9\linewidth]{figure/tkiz/overall_converter}
     \caption{Theoretical circuit of the converter}
-    \label{fig:converter-overall}
+    \label{fig:converter-overall-sch}
 \end{figure*}
 This final project presents the design and implementation of a 6.78~MHz push--pull $\phi_2$ wireless power transfer system operating from a 25~V dc input and delivering 39~W to the load.
 The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
@@ -123,11 +123,12 @@ The requiree
 
 
 \section {Design Process}
+
 %\lipsum[5]
 \subsection{Coil Design}
 %\lipsum[6-7]
 \subsection{Circuit Topology}
-The overall schematic of the wireless power transfer is shown in \todofix{eps schematic}. 
+The overall schematic of the wireless power transfer is shown in \cref{fig:converter-overall-sch}. 
 It consists of three main parts: a push--pull $\phi_2$ converter, a wireless power transfer link, and a rectifier. 
 The push--pull $\phi_2$ stage shapes the input voltage applied to the resonant tank, while the wireless link enables contactless power transfer, and the rectifier converts the received ac power into dc to supply the load.
 
