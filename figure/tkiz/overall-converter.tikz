@@ -1,4 +1,4 @@
-\begin{tikzpicture}[width=textwidth]
+\begin{tikzpicture}
     % Paths, nodes and wires:
     \node[GaN hemt, xscale=0.99, yscale=0.99](N1) at (9.144, 2.286){} node[anchor=west] at (N1.text){${Q_1}$};
     \node[transformer, cute, xscale=1.455, yscale=1.455](N2) at (13.466, 1.52){} node[anchor=south] at (N2.text){$T_{coils}$};
