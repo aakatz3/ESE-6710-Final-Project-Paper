@@ -294,7 +294,10 @@ All links were last followed on October 17, 2025.
 
 \begin{figure}
     \centering
-    \includestandalone{table/bom/BOM-ProbeEmulator}
+    \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
+    {table/bom/BOM-ProbeEmulator.csv}{}%
+    {\Designator & \Value & \Manufacturer & \ManufacturerPartNumber}
+    
     
     \caption{Drawing of probe capacitance emulator to emulate the effect of a Keysight 10073D passive probe, Cal Test Electronics CT2708, and a Mini-Circuits SM-BF50+}
     \label{tab:bom:probe-capacitance-emulator}
