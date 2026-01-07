@@ -5,8 +5,10 @@
 \usepackage{tikz}
 \usepackage{tikzducks}
 %\usepackage{circuitikz}
+\begin{document}
 \begin{tikzpicture}
     \duck[crazyhair=brown!60!black, glasses, eyebrow,
    signpost=TikZ, speech=Use it!, laughing,
    jacket=orange, lapel, buttons, water]
 \end{tikzpicture}
+\end{document}
