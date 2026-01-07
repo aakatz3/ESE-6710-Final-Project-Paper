@@ -123,11 +123,101 @@ The requiree
 
 
 \section {Design Process}
-\lipsum[5]
+%\lipsum[5]
 \subsection{Coil Design}
-\lipsum[6-7]
+%\lipsum[6-7]
 \subsection{Circuit Topology}
-\lipsum[8-10]
+The overall schematic of the wireless power transfer is shown in \todofix{eps schematic}. 
+It consists of three main parts: a push--pull $\phi_2$ converter, a wireless power transfer link, and a rectifier. 
+The push--pull $\phi_2$ stage shapes the input voltage applied to the resonant tank, while the wireless link enables contactless power transfer, and the rectifier converts the received ac power into dc to supply the load.
+
+In the push--pull $\phi_2$ topology, an auxiliary branch that presents an approximate short circuit to the second harmonic effectively suppresses the second-harmonic component of the drain--source voltage, significantly reducing MOSFET voltage stress. 
+The combined action of the resonant components allows the drain--source voltage to naturally resonate to zero, achieving zero-voltage switching and zero-derivative voltage switching. 
+Based on the closed-form design methodology of the push--pull $\phi_2$ topology presented in~\cite{gu_pushpull_2020}, the key resonant component values can be directly calculated as
+\begin{subequations}
+    \begin{align}
+        L_{\mathrm{MR}} &= 0.94\,\frac{R_L}{\omega_s} \label{eq:LMR} \\
+        C_{\mathrm{MR}} &= \frac{1}{4\omega_s^2 L_{\mathrm{MR}}} \label{eq:CMR} \\
+        C_p &= \frac{0.61}{\omega_s R_L}. \label{eq:Cp}
+    \end{align}
+\end{subequations}
+
+Here, $R_L$ is modeled as the equivalent ac-side resistance of the rectifier and is set to 50~$\Omega$ to facilitate circuit tuning and experimental adjustment. 
+$L_F$ is a design parameter and is chosen as $L_F = 5L_{\mathrm{MR}}$ in this design.
+
+Wireless energy transfer is realized using a pair of magnetically coupled inductors with identical self-inductance values. 
+A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link. 
+To achieve maximum efficiency, the compensation capacitors $C_1$ and $C_2$ for the coupled coils are calculated using the expressions given in~\cite{gu_design_2025}:
+\begin{equation}
+    C_1 = \frac{1}{\omega_s^2 L_1} \qquad
+    C_2 = \frac{1}{\omega_s^2 L_2}
+\end{equation}
+where $\omega_s$ denotes the angular switching frequency.
+For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{gu_design_2025}:
+\begin{equation}
+    L_2 \approx \frac{R_{L}}{k\omega_s}
+    \label{eq:L2_coupled}
+\end{equation}
+where $k$ denotes the magnetic coupling coefficient between the transmitter and receiver coils.
+Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
+Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of 1~inch must be greater than the target value $k$. 
+This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies~\cref{eq:L2_coupled}, thereby minimizing conduction and resonant losses in the wireless power transfer system.
+In the practical implementation, two identical coupled inductors with an inductance of $4.15~\mu\mathrm{H}$ were fabricated and used as the transmitting and receiving coils. 
+For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
+
+The junction capacitance of rectifier diodes causes the rectifier to exhibit a capacitive input impedance when viewed from the AC side, particularly under high-frequency operation. This behavior degrades the input power factor and can be compensated using inductive or reactive elements \cite{gu_design_2025}.
+Using a rectifier implemented with the Schottky diode STPS360AF, a simulation-based experiment was conducted to examine the phase relationship between the rectifier input voltage and current. With a parallel inductance of $L_{\mathrm{LP}} = 2.43~\mu\mathrm{H}$, the rectifier input is observed to be approximately resistive.
+Following the design process outlined above, the component values employed in the circuit are summarized in \cref{tab:bom}.
+\begin{table}[t]
+    \centering
+    \caption{Bill of Materials, PPT $\Phi_2$ WPT DC--DC Converter}
+    \label{tab:bom}
+    \renewcommand{\arraystretch}{1.1}
+    \footnotesize
+    \begin{tabular}{p{0.25\columnwidth} p{0.7\columnwidth}}
+        \hline
+        \textbf{Devices} & \textbf{Component Description} \\
+        \hline
+        \multicolumn{2}{l}{\textbf{(a) Inverter}} \\
+        
+        $S_{1,2}$ &
+        Infineon IGB110S101XTMA1, 100~V GaN FET\\
+        
+        Gate driver &
+        Texas Instruments LM5114\\
+        
+        $L_{Fa},\,L_{Fb}$ &
+        2.75~$\mu$H, TDK RM6 K1 ferrite core
+        \\
+        
+        $L_{MRa},\,L_{MRb}$ &
+        0.551~$\mu$H, AWG 18, 12 turns \\
+        
+        $C_{MR}$ &
+        250~pF \\
+        
+        $C_{Pa},\,C_{Pb}$ &
+        $S_{1a,1b}\; C_{\mathrm{oss}} + \mathrm{RB168LAM100TFTR}\; C_j + 273$~pF\\
+        \hline
+        \multicolumn{2}{l}{\textbf{(b) Rectifier}} \\
+        
+        $D_{1-4}$ &
+        STPS360AF , 60~V Diode Schottky \\
+        
+        $L_{\mathrm{LP}}$ &
+        2.43~$\mu$H, AWG 18, 32 turns \\
+        \hline
+        \multicolumn{2}{l}{\textbf{(c) Coils}} \\
+        
+        $L_1,\,L_2$ &
+        4.15~$\mu$H, AWG 14  \\
+        
+        $C_1,\,C_2$ &
+        132~pF, C0G, 500~V \\
+        \hline
+    \end{tabular}
+\end{table}
+\FloatBarrier
 \subsection{Coil Compensation}
 \lipsum[9-10]
 \subsection{Mechanical Design}
