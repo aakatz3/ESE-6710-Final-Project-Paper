@@ -155,13 +155,13 @@ $L_F$ is a design parameter and is chosen as $L_F = 5L_{\mathrm{MR}}$ in this de
 
 Wireless energy transfer is realized using a pair of magnetically coupled inductors with identical self-inductance values. 
 A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link. 
-To achieve maximum efficiency, the compensation capacitors $C_1$ and $C_2$ for the coupled coils are calculated using the expressions given in~\cite{gu_design_2025}:
+To achieve maximum efficiency, the compensation capacitors $C_1$ and $C_2$ for the coupled coils are calculated using the expressions given in~\cite{10833657}:
 \begin{equation}
     C_1 = \frac{1}{\omega_s^2 L_1} \qquad
     C_2 = \frac{1}{\omega_s^2 L_2}
 \end{equation}
 where $\omega_s$ denotes the angular switching frequency.
-For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{gu_design_2025}:
+For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{10833657}:
 \begin{equation}
     L_2 \approx \frac{R_{L}}{k\omega_s}
     \label{eq:L2_coupled}
@@ -173,7 +173,7 @@ This design margin allows the effective coupling coefficient to be adjusted duri
 In the practical implementation, two identical coupled inductors with an inductance of $4.15~\mu\mathrm{H}$ were fabricated and used as the transmitting and receiving coils. 
 For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
 
-The junction capacitance of rectifier diodes causes the rectifier to exhibit a capacitive input impedance when viewed from the AC side, particularly under high-frequency operation. This behavior degrades the input power factor and can be compensated using inductive or reactive elements \cite{gu_design_2025}.
+The junction capacitance of rectifier diodes causes the rectifier to exhibit a capacitive input impedance when viewed from the AC side, particularly under high-frequency operation. This behavior degrades the input power factor and can be compensated using inductive or reactive elements \cite{10833657}.
 Using a rectifier implemented with the Schottky diode STPS360AF, a simulation-based experiment was conducted to examine the phase relationship between the rectifier input voltage and current. With a parallel inductance of $L_{\mathrm{LP}} = 2.43~\mu\mathrm{H}$, the rectifier input is observed to be approximately resistive.
 Following the design process outlined above, the component values employed in the circuit are summarized in \cref{tab:bom}.
 \begin{table}[t]
