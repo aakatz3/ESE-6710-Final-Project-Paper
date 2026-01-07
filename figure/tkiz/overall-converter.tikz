@@ -27,7 +27,7 @@
     \node[ground, xscale=0.5, yscale=0.5] at (6.904, 0.914){};
     \node[ground, xscale=0.5, yscale=0.5] at (6.904, 2.133){};
     \draw (11.176, 3.048) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={${C_\mathrm{comp_1}}$}] (11.176, 1.524);
-    \draw (11.176, 1.524) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={${C_\mathrm{comp_2}}$}] (11.191, -0.001);
+    \draw (11.176, 1.524) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={${C_\mathrm{comp_2}}$}] (11.191, -0 .001);
     \draw (19.565, 3.048) to[curved capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={${C_\mathrm{out}}$}] (19.565, -0);
     \draw (9.144, -0.001) -| (10.16, -0) -| (11.191, -0.001) -| (11.938, -0.007);
     \draw (9.144, 1.523) -| (10.16, 1.524) -- (11.176, 1.524) -- (12.192, 1.524);
