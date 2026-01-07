@@ -4,10 +4,8 @@
 % !TeX program = luatex
 
 \documentclass{standalone}
-%\usepackage{tikz}
-\usepackage{circuitikz}
+\usepackage{tikz}
+%\usepackage{circuitikz}
 \begin{document}
-\begin{tikzpicture}
-    \draw (-7.62, 4.064) to[american voltage source] (-7.62, 1.016);
-\end{tikzpicture}
+test
 \end{document}
