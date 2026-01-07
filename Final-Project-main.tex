@@ -1,0 +1,795 @@
+% This template has been tested with IEEEtran of 2015.
+
+% !TeX spellcheck = en-US
+% LTeX: language=en-US
+% !TeX encoding = utf8
+% !TeX program = luatex
+% !BIB program = bibtex
+% -*- coding:utf-8 mod:LaTeX -*-
+
+
+\documentclass[journal,letterpaper,english,final]{IEEEtran}[2015/08/26]
+\input{preamble}
+
+% TODO: TEMP placeholders
+\usepackage{mwe}
+\usepackage{lipsum}
+
+\begin{document}
+% Enable following command if you need to typeset "IEEEpubid".
+% See https://bytefreaks.net/tag/ieeeoverridecommandlockouts for details.
+%\IEEEoverridecommandlockouts
+
+% TODO: Make sure final correct power is here
+\title{\qty{25}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
+
+\author{%
+  \IEEEauthorblockN{Andrew Katz, Yiyu Lu}
+  \IEEEauthorblockA{University of Pennsylvania\\
+    \href{mailto:aakatz@seas.upenn.edu}{aakatz@seas.upenn.edu}, \href{mailto:yilulu@seas.upenn.edu}{yiyulu@seas.upenn.edu}}
+%  \and
+%  \IEEEauthorblockN{Third Author}\\
+%  \IEEEauthorblockA{School of Electrical and\\Computer Examples\\
+%    Georgia Institute of Examples\\
+%    Atlanta, Georgia 30332--0250\\
+%    \url{http://www.example.org}}
+}
+
+% use for special paper notices
+\IEEEspecialpapernotice{(ESE 6710 Final Project)}
+
+% make the title area
+\maketitle
+
+% In case you want to add a copyright statement.
+% Works only in the compsoc conference mode.
+%
+% Source: https://tex.stackexchange.com/a/325013/9075
+%
+% All possible solutions:
+%  - https://tex.stackexchange.com/a/325013/9075
+%  - https://tex.stackexchange.com/a/279134/9075
+%  - https://tex.stackexchange.com/q/279789/9075 (TikZ)
+%  - https://tex.stackexchange.com/a/200330/9075 - for non-compsocc papers
+\iffalse
+  \IEEEoverridecommandlockouts
+  \IEEEpubid{\begin{minipage}{\textwidth}\ \\[12pt] \centering
+      1551-3203 \copyright 2015 IEEE.
+      Personal use is permitted, but republication/redistribution requires IEEE permission.
+      \\
+      See \url{https://www.ieee.org/publications_standards/publications/rights/index.html} for more information.
+    \end{minipage}}
+\fi
+\begin{abstract}
+\pdfbookmark[1]{Abstract}{Abstract} 
+This project implements a 6.78-MHz wireless power transfer based on a push--pull $\phi_2$ topology. 
+The wireless power transfer operates from a 25~V dc input and delivers 39~W output power with high efficiency.
+The push--pull $\phi_2$ structure enables soft switching at MHz frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
+\end{abstract}
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+\section{Introduction}
+\label{sec:introduction}
+\begin{figure*}[b]
+    \centering
+    \includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
+    \caption{Theoretical circuit of the converter}
+    \label{fig:converter-overall-sch}
+\end{figure*}
+This final project presents the design and implementation of a 6.78~MHz push--pull $\phi_2$ wireless power transfer system operating from a 25~V dc input and delivering 39~W to the load.
+The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
+The push--pull $\phi_2$ topology is chosen for its suitability for MHz-frequency operation. The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at 6.78~MHz. 
+The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a 25~V input. Furthermore, the $\phi_2$ topology allows component values to be calculated using closed-form equations, simplifying the design and ensuring reliable MHz-frequency operation.
+In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
+Simulation and experimental results validate the design methodology and confirm that the implemented converter achieves efficient and reliable wireless power delivery at the specified operating conditions.
+This project demonstrates that the push--pull $\phi_2$ topology is an effective solution for medium-power, MHz-frequency wireless power transfer applications.
+
+
+
+
+
+\section{Specifications}
+%\lipsum[2-3]
+The required specifications (which were relaxed since the project started and was due) and the achieved specifications are summarized in \cref{tab:specifications}
+
+\begin{table}[!ht]
+    \centering
+    \tiny
+    \begin{tabular}{ccccc}
+        \toprule
+        \textbf{Specification} & \textbf{Required} & \textbf{Nominal} & \textbf{Minimum} & \textbf{Maximum} \\
+        \midrule
+        Input Voltage $V_\textrm{DC}$   & $\qty{>20}{\volt}$& \qty{25}{\volt} & \qty{18}{\volt} & \qty{28}{\volt}\\
+        Switching Frequency $f_\textrm{s}$ 
+        \footnote{Originally, \qty{6}{\mega\hertz}-\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur}
+        & \qty{6.78}{\mega\hertz} & \qty{6.78}{\mega\hertz} & \qty{6.7}{\mega\hertz} & \qty{6.9}{\mega\hertz}\\
+        Output Power $P_\textrm{o}$   & $\qty{>25}{\watt}$ & --- & --- & ---\\
+        Coil Separation $d$ & $\qty{\ge1}{\inch}$ \footnote{Coil plane to coil plane (center of wire to center of wire, see \todo{insert figure somewhere with the measurement drawing})} & \qty{1.503}{\inch} & --- & ---  \\
+        \bottomrule& 
+    \end{tabular}
+    \caption{Specifications}
+    \label{tab:specifications}
+\end{table}
+
+
+
+
+\section {Design Process}
+The converter is designed in multiple separate modules to facilitate bring-up, testing, and allow for easy variation of components and sub-systems.
+These sub-modules are shown in \cref{fig:converter-block}.
+\begin{figure*}[]
+    \centering
+    \includestandalone[width=0.9\linewidth]{figure/tikz/block_diagram}
+    \caption{Theoretical circuit of the converter}
+    \label{fig:converter-block}
+\end{figure*}
+%\lipsum[5]
+\subsection{Coil Design}
+%\lipsum[6-7]
+\subsection{Circuit Topology}
+The overall schematic of the wireless power transfer is shown in \cref{fig:converter-overall-sch}. 
+It consists of three main parts: a push--pull $\phi_2$ converter, a wireless power transfer link, and a rectifier. 
+The push--pull $\phi_2$ stage shapes the input voltage applied to the resonant tank, while the wireless link enables contactless power transfer, and the rectifier converts the received ac power into dc to supply the load.
+
+In the push--pull $\phi_2$ topology, an auxiliary branch that presents an approximate short circuit to the second harmonic effectively suppresses the second-harmonic component of the drain--source voltage, significantly reducing MOSFET voltage stress. 
+The combined action of the resonant components allows the drain--source voltage to naturally resonate to zero, achieving zero-voltage switching and zero-derivative voltage switching. 
+Based on the closed-form design methodology of the push--pull $\phi_2$ topology presented in~\cite{9039741}, the key resonant component values can be directly calculated as
+\begin{subequations}
+    \begin{align}
+        L_{\mathrm{MR}} &= 0.94\,\frac{R_L}{\omega_s} \label{eq:LMR} \\
+        C_{\mathrm{MR}} &= \frac{1}{4\omega_s^2 L_{\mathrm{MR}}} \label{eq:CMR} \\
+        C_p &= \frac{0.61}{\omega_s R_L}. \label{eq:Cp}
+    \end{align}
+\end{subequations}
+
+Here, $R_L$ is modeled as the equivalent ac-side resistance of the rectifier and is set to \qty{50}{\ohm} to facilitate circuit tuning, experimental adjustment, data collection, and integration with any pre-existing RF components.
+$L_F$ is a design parameter and is chosen as $L_F = 5L_{\mathrm{MR}}$ in this design.
+
+Wireless energy transfer is realized using a pair of magnetically coupled inductors with identical self-inductance values. 
+A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link. 
+To achieve maximum efficiency, the compensation capacitors $C_1$ and $C_2$ for the coupled coils are calculated using the expressions given in~\cite{10833657}:
+\begin{equation}
+    C_1 = \frac{1}{\omega_s^2 L_1} \qquad
+    C_2 = \frac{1}{\omega_s^2 L_2}
+\end{equation}
+where $\omega_s$ denotes the angular switching frequency.
+For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{10833657}:
+\begin{equation}
+    L_2 \approx \frac{R_{L}}{k\omega_s}
+    \label{eq:L2_coupled}
+\end{equation}
+where $k$ denotes the magnetic coupling coefficient between the transmitter and receiver coils.
+Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
+Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of 1~inch must be greater than the target value $k$. 
+This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies~\cref{eq:L2_coupled}, thereby minimizing conduction and resonant losses in the wireless power transfer system.
+In the practical implementation, two identical coupled inductors with an inductance of $4.15~\mu\mathrm{H}$ were fabricated and used as the transmitting and receiving coils. 
+For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
+
+The junction capacitance of rectifier diodes causes the rectifier to exhibit a capacitive input impedance when viewed from the AC side, particularly under high-frequency operation. This behavior degrades the input power factor and can be compensated using inductive or reactive elements \cite{10833657}.
+Using a rectifier implemented with the Schottky diode STPS360AF, a simulation-based experiment was conducted to examine the phase relationship between the rectifier input voltage and current. With a parallel inductance of $L_{\mathrm{LP}} = 2.43~\mu\mathrm{H}$, the rectifier input is observed to be approximately resistive.
+Following the design process outlined above, the component values employed in the circuit are summarized in \cref{tab:bom}.
+\begin{table}[t]
+    \centering
+    \caption{Bill of Materials, PPT $\Phi_2$ WPT DC--DC Converter}
+    \label{tab:bom}
+    \renewcommand{\arraystretch}{1.1}
+    \footnotesize
+    \begin{tabular}{p{0.25\columnwidth} p{0.7\columnwidth}}
+        \hline
+        \textbf{Devices} & \textbf{Component Description} \\
+        \hline
+        \multicolumn{2}{l}{\textbf{(a) Inverter}} \\
+        
+        $S_{1,2}$ &
+        Infineon IGB110S101XTMA1, 100~V GaN FET\\
+        
+        Gate driver &
+        Texas Instruments LM5114\\
+        
+        $L_{Fa},\,L_{Fb}$ &
+        2.75~$\mu$H, TDK RM6 K1 ferrite core
+        \\
+        
+        $L_{MRa},\,L_{MRb}$ &
+        0.551~$\mu$H, AWG 18, 12 turns \\
+        
+        $C_{MR}$ &
+        250~pF \\
+        
+        $C_{Pa},\,C_{Pb}$ &
+        $S_{1a,1b}\; C_{\mathrm{oss}} + \mathrm{RB168LAM100TFTR}\; C_j + 273$~pF\\
+        \hline
+        \multicolumn{2}{l}{\textbf{(b) Rectifier}} \\
+        
+        $D_{1-4}$ &
+        STPS360AF , 60~V Diode Schottky \\
+        
+        $L_{\mathrm{LP}}$ &
+        2.43~$\mu$H, AWG 18, 32 turns \\
+        \hline
+        \multicolumn{2}{l}{\textbf{(c) Coils}} \\
+        
+        $L_1,\,L_2$ &
+        4.15~$\mu$H, AWG 14  \\
+        
+        $C_1,\,C_2$ &
+        132~pF, C0G, 500~V \\
+        \hline
+    \end{tabular}
+    
+\end{table}
+\FloatBarrier
+\subsection{Coil Compensation}
+\lipsum[9-10]
+\subsection{Mechanical Design}
+\lipsum[11-12]
+\subsection{PCB Layout}
+\lipsum[13-15]
+\section{Simulation}
+\lipsum[16-18]
+\subsection{SPICE Simulations}
+LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
+With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
+Moreover, due to the suppression of the second-harmonic component, the voltage peak is limited to approximately $2V_{\mathrm{in}}$, which alleviates the voltage stress on the GaN FETs and reduces switching losses.
+From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
+After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
+In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicating that, with compensation provided by $L_{\mathrm{LP}}$, the rectifier can be effectively modeled as a resistive load, thereby mitigating the impact of its capacitive behavior on the resonant operation.
+\begin{figure}[!ht]
+    \centering
+    
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{plottings/SIMWAVEFORM/Fig_a_voltages.eps}
+        \label{fig:wave_voltages}
+    \end{subfigure}\vspace{-1mm}
+    
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{plottings/SIMWAVEFORM/Fig_b_Vs.eps}
+        \label{fig:wave_vs}
+    \end{subfigure}\vspace{-1mm}
+    
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{plottings/SIMWAVEFORM/Fig_c_Is.eps}
+        \label{fig:wave_is}
+    \end{subfigure}\vspace{-1mm}
+    
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{plottings/SIMWAVEFORM/Fig_d_Vr.eps}
+        \label{fig:wave_vr}
+    \end{subfigure}\vspace{-1mm}
+    
+    \begin{subfigure}{\columnwidth}
+        \centering
+        \includegraphics[width=\columnwidth]{plottings/SIMWAVEFORM/Fig_e_Ir.eps}
+        \label{fig:wave_ir}
+    \end{subfigure}
+    
+    \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
+    \label{fig:sim_waveforms}
+\end{figure}
+
+\section{Experimental Verification}
+\lipsum[21-22]
+\subsection{Setup and Procedure}
+\begin{figure*}[!t]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalvdsvg.png}
+        \caption{Drain--source voltages $v_{ds1}(t)$, $v_{ds2}(t)$ and gate-drive voltages $v_{g1}(t)$, $v_{g2}(t)$ of the GaN FETs.}
+        \label{fig:vds_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominaltank.png}
+        \caption{Input and output voltages and currents of the resonant tank.}
+        \label{fig:resonant_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalripple.png}
+        \caption{Input and Output Voltage and Current Ripples}
+        \label{fig:ripple_operating_point}
+    \end{subfigure}
+    
+    \caption{Measured waveforms at the nominal operating point.}
+    \label{fig:waveforms_operating_point}
+\end{figure*}
+\todofix{PCB details}
+After the front-end push--pull $\Phi2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a Keysight 33500B waveform generator. 
+Circuit voltages and currents were monitored using Keysight 10073D and N2809A passive probes, Keysight 1147B current probes, and a Keysight MSO7034B oscilloscope. 
+Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions. Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.
+
+To achieve a high coupling coefficient and quality factor, planar spiral coils were selected as the geometric structure for the coupled inductors. Preliminary coil design was conducted using FEMM to ensure that, at the designed self-inductance values, a matched coupling coefficient $k$ can be achieved when the coil separation distance exceeds 1~inch. 
+In the hardware implementation, a Keysight E5063A network analyzer was used to measure the impedance of individual components and branches for circuit tuning. 
+The coils were mounted on acrylic fixtures to maintain mechanical stability, and identical geometries and turn counts were employed for the transmitter and receiver coils to ensure closely matched self-inductances. Fine adjustment of the number of turns was performed to bring the measured inductance values close to the design targets.
+
+After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of 1~inch. Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance, the compensation capacitor values were calculated based on the measured inductances. 
+To maintain circuit symmetry, each compensation capacitor was implemented as two series capacitors connected to the two terminals of each coil. 
+With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at 6.78~MHz, indicating proper resonance.
+When the two coils have identical inductance values and a coupling coefficient $k$, connecting a $50~\Omega$ RF load to the secondary results in an equivalent $50~\Omega$ impedance measured from the primary side. This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \todofix{photo of the coils}.
+
+With the $50~\Omega$ RF load was maintained on the secondary-side coil, the output of the push--pull $\phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the $50~\Omega$ RF load was replaced with an inductively compensated rectifier, with a Keysight 34143A electronic load used as the resistive load, and a series of experiments was conducted.
+
+\FloatBarrier
+\section{Results}
+\label{sec:results}
+Under a switching frequency of $f_s = 6.78~\mathrm{MHz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = 25~\mathrm{V}$, and a load resistance of $R_o = 61.685~\Omega$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
+In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
+An efficiency of 91.2\% is achieved at the nominal operating point.
+\begin{figure*}[!t]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Vin/18.0V_MSO7034B.png}
+        \caption{$V_{\mathrm{in}} = 18\,\mathrm{V}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Vin/25.0V_MSO7034B.png}
+        \caption{$V_{\mathrm{in}} = 25\,\mathrm{V}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Vin/28.0V_MSO7034B.png}
+        \caption{$V_{\mathrm{in}} = 28\,\mathrm{V}$}
+    \end{subfigure}
+    
+    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different input voltages.}
+    \label{fig:vinsweepwave}
+\end{figure*}
+\begin{figure*}[!t]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/DUTY/0.3_MSO7034B.png}
+        \caption{$D = 0.3$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/DUTY/0.32_MSO7034B.png}
+        \caption{$D = 0.32$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/DUTY/0.4000000000000001_MSO7034B.png}
+        \caption{$D = 0.4$}
+    \end{subfigure}
+    
+    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different duty cycles.}
+    \label{fig:Dsweepwaveform}
+\end{figure*}
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Vout.eps}
+        \caption{$V_{\mathrm{out}}$ vs. $V_{\mathrm{in}}$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Pout.eps}
+        \caption{$P_{\mathrm{out}}$ vs. $V_{\mathrm{in}}$}
+    \end{subfigure}
+    
+    \vspace{1mm}
+    
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Eff.eps}
+        \caption{$\eta$ vs. $V_{\mathrm{in}}$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Vdsmax.eps}
+        \caption{$V_{\mathrm{ds,max}}$ vs. $V_{\mathrm{in}}$}
+    \end{subfigure}
+    
+    \caption{Measured and simulated results versus input voltages $V_{\mathrm{in}}$.}
+    \label{fig:vinsweepcomparison}
+\end{figure}
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vout.eps}
+        \caption{$V_{\mathrm{out}}$ vs. $D$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Pout.eps}
+        \caption{$P_{\mathrm{out}}$ vs. $D$}
+    \end{subfigure}
+    
+    \vspace{1mm}
+    
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Eff.eps}
+        \caption{$\eta$ vs. $D$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vdsmax.eps}
+        \caption{$V_{\mathrm{ds,max}}$ vs. $D$}
+    \end{subfigure}
+    
+    \caption{Measured and simulated results versus duty cycles $D$.}
+    \label{fig:Dsweepcomparison}
+\end{figure}
+
+\begin{figure*}[!t]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/freq/6700000.0Hz_MSO7034B.png}
+        \caption{$f_s = 6.7\,\mathrm{Mhz}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/freq/6780000.0Hz_MSO7034B.png}
+        \caption{$f_s = 6.78\,\mathrm{Mhz}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/freq/6900000.0Hz_MSO7034B.png}
+        \caption{$f_s = 6.9\,\mathrm{Mhz}$}
+    \end{subfigure}
+    
+    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different switching frequencies.}
+    \label{fig:frequencysweepwave}
+\end{figure*}
+\begin{figure*}[!t]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Ro/50.0R_MSO7034B.png}
+        \caption{$R_o = 50 \Omega$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Ro/61.68502750680849R_MSO7034B.png}
+        \caption{$R_o = 61.685 \Omega$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Ro/74.5R_MSO7034B.png}
+        \caption{$R_o = 74.5 \Omega$}
+    \end{subfigure}
+    
+    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.}
+    \label{fig:Rosweepwaveform}
+\end{figure*}
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vout.eps}
+        \caption{$V_{\mathrm{out}}$ vs. $f_s$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Pout.eps}
+        \caption{$P_{\mathrm{out}}$ vs. $f_s$}
+    \end{subfigure}
+    
+    \vspace{1mm}
+    
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Eff.eps}
+        \caption{$\eta$ vs. $f_s$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vdsmax.eps}
+        \caption{$V_{\mathrm{ds,max}}$ vs. $f_s$}
+    \end{subfigure}
+    
+    \caption{Measured and simulated results versus switching frequency $f_s$.}
+    \label{fig:frequencysweepcomparison}
+\end{figure}
+
+\begin{figure}[!t]
+    \centering
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vout.eps}
+        \caption{$V_{\mathrm{out}}$ vs. $R_o$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Pout.eps}
+        \caption{$P_{\mathrm{out}}$ vs. $R_o$}
+    \end{subfigure}
+    
+    \vspace{1mm}
+    
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Eff.eps}
+        \caption{$\eta$ vs. $R_o$}
+    \end{subfigure}\hfill
+    \begin{subfigure}[t]{0.48\columnwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vdsmax.eps}
+        \caption{$V_{\mathrm{ds,max}}$ vs. $R_o$}
+    \end{subfigure}
+    
+    \caption{Measured and simulated results versus load resistance $R_o$.}
+    \label{fig:Rosweepcomparison}
+\end{figure}
+Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ ($18$--$28~\mathrm{V}$), $D$, $f_s$, and $R_o$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = 25~\mathrm{V}$ are shown in \cref{fig:vinsweepwave}. 
+It is observed that variations in $V_{\mathrm{in}}$ primarily affect the amplitudes of $v_{ds1}$ and $v_{ds2}$, while their waveform shapes remain largely unchanged.
+As shown in \cref{fig:vinsweepcomparison}, the simulated and experimental results exhibit good agreement in overall trend; however, the simulated output voltage $V_{\mathrm{out}}$, output power $P_{\mathrm{out}}$, and conversion efficiency $\eta$ are consistently higher than the measured values, primarily due to practical losses and voltage drops that are not fully captured in the simulation.
+As $V_{\mathrm{in}}$ increases, the maximum GAN FET drain-to-source voltage $v_{ds,\max}$ increases monotonically in both simulation and experiment, indicating a corresponding increase in the voltage amplitude applied to the load network. 
+Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $V_{\mathrm{in}}$.
+
+The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_o$ are fixed at their nominal values.
+The gate-drive signals and drain-to-source voltage waveforms of the GaN FETs for $D = 0.30$, $0.32$, and $0.40$ are shown in \cref{fig:Dsweepwaveform}. It can be observed that when $D$ exceeds the nominal value, the gate-drive signal begins to rise before $v_{ds}$ has fully resonated to zero, resulting in incomplete ZVS and increased switching losses. 
+Conversely, when $D$ is below the nominal value, $v_{ds}$ resonates to zero and subsequently oscillates upward, such that the device turns on with a nonzero drain-to-source voltage, again degrading the ZVS condition and increasing switching losses. 
+At nominal $D$, $v_{ds}$ is close to zero at the onset of device turn-on, resulting in near-optimal ZVS behavior and minimal switching loss.
+The simulated and experimental results are presented in \cref{fig:Dsweepcomparison}. 
+%The conversion efficiency reaches its maximum at approximately $D = 0.32$, corresponding to the nominal operating point, which is consistent with the switching-loss analysis.
+%Both the output power $P_{\mathrm{out}}$ and output voltage $V_{\mathrm{out}}$ exhibit a slight increase with increasing duty cycle. In contrast, the peak drain-to-source voltage $v_{ds,\max}$ begins to increase once the duty cycle exceeds a certain value, indicating increased device voltage stress at higher duty cycles.\\
+Because the load is predominantly resistive, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ exhibit similar trends.
+In simulation, both quantities show a slight increase with increasing $D$, whereas in the experimental results they remain nearly unchanged over the same range. 
+This discrepancy arises from practical nonideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
+For duty cycles below the exact-ZVS condition, the GaN FET turns on after $v_{ds}$ has resonated to zero. The resulting small turn-on $v_{ds}$ leads to weakly duty-dependent switching loss, while the limited variation of the main $v_{ds}$ waveform causes only minor changes in the resonant-tank input voltage. 
+Consequently, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant.
+In contrast, for duty cycles exceeding the exact-ZVS condition, the MOSFET is turned on before $v_{ds}$ reaches zero. The resulting large and duty-dependent turn-on $v_{ds}$ leads to a significant increase in switching loss, while the substantial modification of the main $v_{ds}$ waveform causes pronounced variations in the resonant-tank input voltage and, consequently, in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$.
+In simulation, the exact-ZVS condition occurs at approximately $D = 0.34$. 
+Accordingly, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant for smaller duty cycles and increase as $D$ is further raised, while the switching loss is initially unchanged and then increases, leading to an efficiency that is first nearly constant and subsequently decreases. 
+In the experimental results, however, over the duty-cycle range of 0.3--0.4, the MOSFET consistently turns on after $v_{ds}$ has resonated to zero. As a result, $V_{\mathrm{out}}$, $P_{\mathrm{out}}$, switching loss, and efficiency exhibit minimal variation within this range. 
+The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36, which is not observed experimentally, can be attributed to the duty-cycle-dependent influence on the $v_{ds}$ waveform discussed above.
+
+\indent
+Switching-frequency variation is investigated by sweeping $f_s$ from 6.7~MHz to 6.9~MHz, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_o$ are held constant.
+The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of 6.7~MHz, 6.78~MHz, and 6.9~MHz are shown in \cref{fig:frequencysweepwave}. 
+As $f_s$ deviates from the nominal operating point, the $v_{ds}$ waveforms become increasingly distorted.
+The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}. 
+A close agreement between the experimental measurements and simulation results is observed over the entire frequency range. 
+Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ decrease monotonically with increasing switching frequency, while the maximum drain--source voltage $V_{\mathrm{ds,max}}$ remains approximately constant.
+This behavior may be attributed to waveform distortion, whereby the RMS value of $v_{ds}$ decreases as the switching frequency increases, whereas its peak value is largely unaffected.
+The efficiency remains approximately constant over this frequency range, which may be attributed to the increase in switching losses as the switching frequency.\\
+%Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ increase with switching frequency up to an optimum point and then decrease as the frequency further increases. 
+%This behavior may be attributed to waveform distortion, while discrepancies between the measured and simulated $v_{ds}$ waveforms result in different frequencies for the maximum $P_{\mathrm{out}}$.
+%In contrast, the efficiency reaches its maximum at $f_s$ slightly below $6.78~\mathrm{MHz}$. In the experimental results, a slight recovery of efficiency is observed at low frequencies, which may be associated with increased waveform distortion.
+%In addition, the maximum drain--source voltage $V_{\mathrm{ds,max}}$ exhibits two distinct extrema as the switching frequency is varied.
+%The trend of efficiency can be attributed to variations in soft-switching conditions and resonant-network impedance with switching frequency. 
+%At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
+%Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
+\indent
+The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_o$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
+The drain-to-source voltage waveforms for $R_o = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
+The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
+The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
+It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_o$. 
+The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_o$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
+The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
+Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
+Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
+\FloatBarrier
+\section{Conclusion}
+This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer system based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 39 W, and a peak efficiency of 90.5\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
+
+
+%\section{Resonant Tank Characterization}
+%In this converter, energy is transferred through a loosely coupled coil pair, whose cantilever‐model parameters—including magnetizing inductance $L_{\mu}$, leakage inductances $L_{\text{leak}}$, and coupling ratios $n$—vary with coil alignment and separation distance. 
+%These variations strongly influence the resonant frequency, the impedance seen by the inverter, and the achievable power-transfer efficiency. 
+%To characterize the coil pair, a VNA 2180 impedance analyzer is used to extract the parameters of the cantilever transformer model under aligned conditions and across different separation distances.
+%The coils were first fixed in place, after which short-circuit and open-circuit tests were performed: the secondary coil was alternately shorted and opened while measuring inductances from the primary side, followed by the primary coil being shorted and opened while measuring from the secondary side.
+%The resulting measurements, after calculation, are summarized are summarized in \cref{tab:cantilever_params}.\\
+%
+%\begin{table}[!ht]
+%    \centering
+%    \caption{Measured cantilever-model parameters at different coil separations}
+%    \begin{tabular}{lcc}
+%        \toprule
+%        \textbf{Parameter} & \textbf{3 mm} & \textbf{6 mm} \\
+%        \midrule
+%            Magnetizing inductance $L_{\mu}$ (µH)   & --- & --- \\
+%            Leakage inductance $L_{\text{leak}}$ (µH) & --- & --- \\
+%            Coupling ratio $n$                      & --- & --- \\
+%        \bottomrule
+%    \end{tabular}
+%    \label{tab:cantilever_params}
+%\end{table}
+%
+%To emulate the equivalent resistance of the full-bridge rectifier, a $4Ω$ resistor is then connected to the secondary coil.
+%With the primary coil connected to the resonance capacitor $C{res}$, the input impedance of the resonant tank is measured using the VNA 2180 under a coil separation of 3 mm. The resulting Bode plot is shown in \cref{fig:resonantbodemeas}.\\
+%
+%By comparing the curves in \cref{fig:resonantbode}, it is observed that both the measured and simulated responses indicate a resonant frequency of approximately 130 kHz.\\
+%
+%\begin{figure}[h]
+%	\centering
+%    \subfloat[Experimental]{\includegraphics[width=0.48\columnwidth]{example-image-a}}
+%	\hfil
+%	\subfloat[Simulation]{\includegraphics[width=0.48\columnwidth]{example-image-a}\label{fig:resonantbodespice}}
+%    \caption{Input impedance of the resonant tank}
+%	\label{fig:resonantbode}
+%\end{figure}
+%
+%\section{LTSpice Simulation}
+%In the simulation , the wireless receiver and transmitter coils are represented using the cantilever transformer model. 
+%To ensure consistency with the hardware evaluation, the model parameters are set to match those measured at a coil separation of 3 mm, as listed in \cref{tab:cantilever_params}. 
+%An ideal transformer is implemented using a controlled current source to emulate the coupling behavior prescribed by the cantilever model. 
+%The corresponding simulation results are presented in \cref{sec:results}.
+%
+%\section {Experimental Setup and Procedure}
+%The primary-side PCB was assembled using solder paste, a stencil, and a reflow oven, followed by hand-soldering of through-hole components and inspection for shorts. 
+%After assembly, the test setup followed the prescribed procedure: a DMM continuity check was performed, DC terminals were connected with correct polarity, and a 200 kHz gate-drive square wave was applied with the function generator set to high-impedance mode. 
+%With only the +5 V rail enabled, the gate-to-source voltages of the half-bridge MOSFETs were verified to be complementary 5 V signals with a sufficient dead time of approximately 40 ns. 
+%Enabling the +24 V supply, the switched node waveform was confirmed to toggle between 0 V and 24 V. 
+%Finally, proper operation was verified over a switching-frequency range of 100–500 kHz.\\
+%\indent
+%The secondary-side rectifier was assembled on a bare FR4 board using discrete diodes, capacitors, and copper tape. 
+%The TX/RX coils were mounted and aligned using a 3D-printed fixture. Finally, the inverter, coils, and rectifier were assembled together to form the complete wireless power converter.\\
+%\indent
+%A Keysight EL34143A electronic load was used to provide the output load while measuring output voltage, current, and power. 
+%The 24V input supply was monitored with a digital multimeter to obtain the input voltage and current. 
+%Two Keysight 1147B current probes were used to capture both the primary-side current and the input current waveforms, while two Keysight 10073D passive probes measured the output voltage and the switched-node voltage of the bottom MOSFET. 
+%A Python script was used to automate sweeping of the gate-drive frequency and electronic-load settings during measurement.
+%\begin{figure}
+%    \centering
+%    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
+%    \hfil
+%    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
+%    \hfil
+%    \includegraphics[angle=270,origin=c,width=0.3\linewidth]{example-image-a}
+%    \caption{Rectifier thermal; coil thermal; board thermal}
+%\end{figure}
+%
+%\section{Results}
+%\label{sec:results}
+%
+%\begin{figure*}[!t]
+%    \centering
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ip-fs}}
+%    \hfil
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:vo-fs}}
+%    \hfil
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:ratio-fs}}
+%    \vspace{6pt} 
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:pout-fs}}
+%    \hfil
+%    \subfloat[]{\includegraphics[width=0.32\linewidth]{example-image-a}\label{fig:eta-fs}}
+%    \caption{
+%        \centering
+%        Experimental Results vs. Frequency $f_s$.\\
+%        (a) $I_p$  vs. $f_s$\quad
+%        (b) $V_o$ vs. $f_s$\quad
+%        (c) $\sfrac{V_o}{V_i}$ vs. $f_s$\\
+%        (d) $P_{out}$ vs. $f_s$\quad
+%        (e) $\eta$ vs. $f_s$
+%    }
+%    \label{fig:experiment_results}
+%\end{figure*}
+
+%\section{Conclusion and Outlook}
+%\subsection{Conclusion}
+
+
+% regular IEEE prefers the singular form
+
+%\cite{1050739}\cite{4463867}\cite{474969}\cite{Gu2025}\cite{nmos}\cite{si827x}
+
+
+%%% ===============================================================================
+%%% Bibliography
+%%% ===============================================================================
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% Enable to reduce spacing between bibitems (source: https://tex.stackexchange.com/a/25774)
+% \def\IEEEbibitemsep{0pt plus .5pt}F
+
+\bibliographystyle{IEEEtranN} % IEEEtranN is the natbib compatible bst file
+%\bibliographystyle{IEEEtran} % IEEEtranN is the normal bibtex compatible bst file
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{sources}
+
+% Enfore empty line after bibliography
+\ \\
+%
+\noindent
+All links were last followed on October 17, 2025.
+
+\newpage
+\onecolumn
+% todo see how to do latex counter
+
+\section*{Appendix I - SPICE Netlists}
+\label{Spicenetlist}
+
+\section*{Appendix II - Python Programs}
+
+\section*{Appendix III - MATLAB Programs}
+
+\section*{Appendix IV - Physical Schematics, Bills of Materials, PCB Layouts, \& Assembled Boards}
+
+\centering
+\subsection{Capacitance Emulator}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figure/sch/capacitance-emulator-sch.eps}
+    % TODO setup with verbbox
+    
+    \caption{Schematic of probe capacitance emulator to emulate the effect of a Keysight 10073D passive probe, Cal Test Electronics CT2708, and a Mini-Circuits SM-BF50+}
+    \label{fig:sch:probe-capacitance-emulator}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.4\linewidth]{figure/pcb_layout/probe_capacitance_simulator.eps}
+    % TODO setup with verbbox
+    
+    \caption{CAD drawing of PCB layout for the probe capacitance emulator}
+    \label{fig:pcb:probe-capacitance-emulator}
+\end{figure}
+
+\begin{table}[!htb]
+    \centering
+    \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
+    {table/bom/BOM-ProbeEmulator.csv}{}%
+    {\Designator & \Value & \Manufacturer & \ManufacturerPartNumber}
+    \caption{Bill of Materials for the probe capacitance emulator}
+    \label{tab:bom:probe-capacitance-emulator}
+\end{table}
+
+\begin{figure*}
+    \centering
+    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
+    \hfil
+    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0012_edit.PNG}\label{fig:board:probe-capacitance-emulator:rear}}
+   
+    \caption{
+        \centering
+        Assembled probe capacitance emulator:\quad
+        (a) Front
+        (b) Back
+    }
+    \label{fig:exp}
+\end{figure*}
+
+\section*{Appendix V - Other Content}
+A GitHub reposatory with all of the code, data, and any relevant instructions can be found at:
+\url{https://github.com/octocat/Spoon-Knife} \todofix{change from example}
+
+\end{document}
