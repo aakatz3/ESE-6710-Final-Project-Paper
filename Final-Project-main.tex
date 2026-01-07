@@ -293,14 +293,14 @@ All links were last followed on October 17, 2025.
     \label{fig:pcb:probe-capacitance-emulator}
 \end{figure}
 
-\begin{tabular}{cccc}
-    \csvreader[head to column names, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule]
+
+    \csvreader[head to column names,tabular=cccc table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule]
     {table/bom/BOM-ProbeEmulator.csv}{}%
-    {\Designator & \Value & \Manufacturer & \ManufacturerPartNumber}
-    \centering
-    \caption{Bill of Materials for the capacitance Emulator}
-    \label{tab:bom:probe-capacitance-emulator}
-\end{tabular}
+    {\Designator & \Value & \Manufacturer & \ManufacturerPartNumber}{\caption{Bill of Materials for the capacitance Emulator}
+        \label{tab:bom:probe-capacitance-emulator}}
+
+    
+
 
 
 \section*{Appendix VI - Other Content}
