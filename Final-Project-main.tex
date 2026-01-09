@@ -292,7 +292,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 \begin{table}[!htb]
     \centering
 %    circuit,current,voltage,flux,inductance,impedance,power
-    \csvreader[head to column names,tabular=ccccccc, table head=\toprule\bfseries Coil & \bfseries Current \unit{\milli\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries Impedance \unit{\ohm} & \bfseries Power [\unit{\watt}] \\ \midrule,table foot=\bottomrule,]
+    \csvreader[head to column names,tabular=ccccccc, table head=\toprule\bfseries Coil & \bfseries Current \unit{\milli\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries Impedance \unit{\ohm} & \bfseries Power \unit{\watt} \\ \midrule,table foot=\bottomrule,]
     {table/results/sims/femm/coils_v1_fixed.csv}{}%
     {\circuit & \current & \voltage & \flux & \inductance & \impedance & \power}
     \caption{Circuit parameter results from Femm}
