@@ -21,7 +21,7 @@
 %\IEEEoverridecommandlockouts
 
 % TODO: Make sure final correct power is here
-\title{\qty{25}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
+\title{Modular \qty{25}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
 
 \author{%
   \IEEEauthorblockN{Andrew Katz, Yiyu Lu}
@@ -63,7 +63,7 @@
 \begin{abstract}
 \pdfbookmark[1]{Abstract}{Abstract} 
 This project implements a 6.78-MHz wireless power transfer based on a push--pull $\phi_2$ topology. 
-The wireless power transfer operates from a 25~V dc input and delivers 36~W output power with high efficiency.
+The wireless power transfer operates from a 25~V dc input and delivers 39~W output power with high efficiency.
 The push--pull $\phi_2$ structure enables soft switching at MHz frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
 \end{abstract}
 
@@ -133,7 +133,8 @@ These sub-modules are shown in \cref{fig:converter-block}.
 \end{figure*}
 %\lipsum[5]
 \subsection{Coil Design}
-%\lipsum[6-7]
+\label{sec:coils}
+As a starting point, the open-source software Coil64 \cite{coil64} was used. 
 \subsection{Circuit Topology}
 The overall schematic of the wireless power transfer is shown in \cref{fig:converter-overall-sch}. 
 It consists of three main parts: a push--pull $\phi_2$ converter, a wireless power transfer link, and a rectifier. 
@@ -195,7 +196,7 @@ Following the design process outlined above, the component values employed in th
         Texas Instruments LM5114\\
         
         $L_{Fa},\,L_{Fb}$ &
-        2.75~$\mu$H, TDK RM6 K1 ferrite core
+        2.75~$\mu$H, TDK RM6 K1 ferrite core; 
         \\
         
         $L_{MRa},\,L_{MRb}$ &
@@ -218,7 +219,7 @@ Following the design process outlined above, the component values employed in th
         \multicolumn{2}{l}{\textbf{(c) Coils}} \\
         
         $L_1,\,L_2$ &
-        4.15~$\mu$H, AWG 14  \\
+        \qty{4.15}{\micro\henry}, 14 AWG; See \cref{sec:coils}  \\
         
         $C_1,\,C_2$ &
         132~pF, C0G, 500~V \\
@@ -279,6 +280,7 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
     \label{fig:sim_waveforms}
 \end{figure}
 
+\subsection{Electromagnetic Simulation}
 \section{Experimental Verification}
 \lipsum[21-22]
 \subsection{Setup and Procedure}
@@ -598,9 +600,7 @@ Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately 
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
 \FloatBarrier
 \section{Conclusion}
-This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer system based on a push--pull Class-$\Phi_2$ topology. 
-The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. 
-Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 36 W, and a peak efficiency of 91.2\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
+This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer system based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 39 W, and a peak efficiency of 90.5\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
 
 
 %\section{Resonant Tank Characterization}
