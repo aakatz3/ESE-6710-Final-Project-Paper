@@ -25,6 +25,10 @@
 \newcommand{\BPMN}{\initialism{BPMN}}
 \newcommand{\UML}{\initialism{UML}}
 
+\newsavebox\myVerb
+\newenvironment{verbbox}{\lrbox\myVerb}{\endlrbox}
+\newcommand*{\verbBox}{\usebox\myVerb}
+
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
