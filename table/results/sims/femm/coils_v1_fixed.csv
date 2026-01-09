@@ -1,0 +1,3 @@
+circuit,current,voltage,flux,inductance,impedance,power
+TX,0.8,0.0117,2.8409e-06,3.5511e-06,0.014635,0.0093661
+RX,0,0,1.1189e-06,--,--,0
