@@ -289,7 +289,15 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 Windings were removed until a seemingly reasonable inductance was achieved.
 A 3D solver would be preferred, but was out of scope for this initial round of design and proved problematic when use was attempted.
 
-
+\begin{table}[!htb]
+    \centering
+%    circuit,current,voltage,flux,inductance,impedance,power
+    \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Coil & \bfseries Current \unit{\milli\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries Impedance \unit{\ohm} & \bfseries Power [\unit{\watt}] \\ \midrule,table foot=\bottomrule,]
+    {table/results/sims/femm/coils_v1_fixed.csv}{}%
+    {\circuit & \current & \voltage & \flux & \inductance & \impedance & \power}
+    \caption{Circuit parameter results from Femm}
+    \label{tab:femm-results}
+\end{table}
 
 \section{Experimental Verification}
 \lipsum[21-22]
