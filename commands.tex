@@ -29,6 +29,13 @@
 \newenvironment{verbbox}{\lrbox\myVerb}{\endlrbox}
 \newcommand*{\verbBox}{\usebox\myVerb}
 
+% Preset verb-boxes
+\newsavebox\verbVNA
+\begin{lrbox}{\verbVNA}
+    \verb|Keysight E5063A|
+\end{lrbox}
+\newcommand*{\vna}{\usebox\verbVNA}
+
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
