@@ -99,26 +99,29 @@ This project demonstrates that the push--pull $\phi_2$ topology is an effective 
 \section{Specifications}
 %\lipsum[2-3]
 The required specifications (which were relaxed since the project started and was due) and the achieved specifications are summarized in \cref{tab:specifications}
+
+\begin{table}[!ht]
+    \centering
+    \tiny
 \begin{minipage}
-    \begin{table}[!ht]
-        \centering
-        \tiny
-        \begin{tabular}{ccccc}
-            \toprule
-            \textbf{Specification} & \textbf{Required} & \textbf{Nominal} & \textbf{Minimum} & \textbf{Maximum} \\
-            \midrule
-            Input Voltage $V_\textrm{DC}$   & $\qty{>20}{\volt}$& \qty{25}{\volt} & \qty{18}{\volt} & \qty{28}{\volt}\\
-            Switching Frequency $f_\textrm{s}$ 
-            \footnote{Originally, \qty{6}{\mega\hertz}-\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur}
-            & \qty{6.78}{\mega\hertz} & \qty{6.78}{\mega\hertz} & \qty{6.7}{\mega\hertz} & \qty{6.9}{\mega\hertz}\\
-            Output Power $P_\textrm{o}$   & $\qty{>25}{\watt}$ & --- & --- & ---\\
-            Coil Separation $d$ & $\qty{\ge1}{\inch}$ \footnote{Coil plane to coil plane (center of wire to center of wire, see \todo{insert figure somewhere with the measurement drawing})} & \qty{1.503}{\inch} & --- & ---  \\
-            \bottomrule& 
-        \end{tabular}
-        \caption{Specifications}
-        \label{tab:specifications}
-    \end{table}
+    \begin{tabular}{ccccc}
+        \toprule
+        \textbf{Specification} & \textbf{Required} & \textbf{Nominal} & \textbf{Minimum} & \textbf{Maximum} \\
+        \midrule
+        Input Voltage $V_\textrm{DC}$   & $\qty{>20}{\volt}$& \qty{25}{\volt} & \qty{18}{\volt} & \qty{28}{\volt}\\
+        Switching Frequency $f_\textrm{s}$ 
+        \footnote{Originally, \qty{6}{\mega\hertz}-\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur}
+        & \qty{6.78}{\mega\hertz} & \qty{6.78}{\mega\hertz} & \qty{6.7}{\mega\hertz} & \qty{6.9}{\mega\hertz}\\
+        Output Power $P_\textrm{o}$   & $\qty{>25}{\watt}$ & --- & --- & ---\\
+        Coil Separation $d$ & $\qty{\ge1}{\inch}$ \footnote{Coil plane to coil plane (center of wire to center of wire, see \todo{insert figure somewhere with the measurement drawing})} & \qty{1.503}{\inch} & --- & ---  \\
+        \bottomrule& 
+    \end{tabular}
 \end{minipage}
+    \caption{Specifications}
+    \label{tab:specifications}
+
+\end{table}
+
 
 
 
