@@ -385,7 +385,14 @@ To achieve a high coupling coefficient and quality factor, planar spiral coils w
 %Preliminary coil design was conducted using FEMM to ensure that, at the designed self-inductance values, a matched coupling coefficient $k$ can be achieved when the coil separation distance exceeds 1~inch. 
 %In the hardware implementation, a Keysight E5063A network analyzer was used to measure the impedance of individual components and branches for circuit tuning. 
 The coils were mounted on acrylic fixtures to maintain mechanical stability, and mirrored geometries and turn counts were employed for the transmitter and receiver coils to ensure closely matched self-inductances.
+The initial design of the coils matched that of the computer simulation.
+The coil inductances and coupling was measured with a \vna.
 Fine adjustment of the number of turns was performed to bring the measured inductance values close to the design targets.
+The initial and final configurations are listed in \cref{sec:coils}.
+The resonant tanks were then assembled using the calculated values, and all values were verified by measuring the individual components and branches with the \vna.
+Finally, the complete set of coils with series resonant tanks were measured as an assembly with the \vna.
+\todo{mention these results in results section}
+
 
 After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of 1~inch. Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance, the compensation capacitor values were calculated based on the measured inductances. 
 To maintain circuit symmetry, each compensation capacitor was implemented as two series capacitors connected to the two terminals of each coil. 
