@@ -52,6 +52,7 @@
 \interdisplaylinepenalty=2500 
 \usepackage{amssymb}
 \usepackage{mathtools}
+\usepackage{lualatex-math}
 \usepackage{xfrac}
 \usepackage{mdwmath}
 \usepackage{cases}
@@ -70,7 +71,18 @@
   \defaultfontfeatures{Ligatures = TeX}
 %  \setmainfont{Times New Roman}
 %  \setmainfont{TeX Gyre Termes}
-    \setmainfont{Times}
+%    \setmainfont{Times}
+    \setmathfont{STIX2Math}[
+    Extension={.otf},
+    Path=./stixfonts/fonts/static_otf/,
+    Scale=1]
+    \setmainfont{STIX2Text}[
+    Extension={.otf},
+    Path=./stixfonts/fonts/static_otf/,
+    UprightFont={*-Regular},
+    BoldFont={*-Bold},
+    ItalicFont={*-Italic},
+    BoldItalicFont={*-BoldItalic}]
   \setmonofont[Scale=0.82]{Cascadia Mono}
 %  \setmonofont{Courier New}
   \usepackage{unicode-math}
