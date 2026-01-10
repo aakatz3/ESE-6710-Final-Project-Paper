@@ -12,8 +12,10 @@
 \input{preamble}
 
 % TODO: TEMP placeholders
+\ifoptionfinal{}{
 \usepackage{mwe}
 \usepackage{lipsum}
+}
 
 \begin{document}
     
@@ -254,7 +256,13 @@ Following the design process outlined above, the component values employed in th
 \subsection{Coil Compensation}
 \lipsum[9-10]
 \subsection{Mechanical Design}
-The test setup is based around a \qty{2}{\foot} long piece of $\qty{40}{\milli\meter} \times \qty{20}{\milli\meter}$ T-Slot extruded aluminum framing to allow for rigid fixturing and easy adjustment. 
+The test setup is based around a \qty{2}{\foot} long piece of $\qty{40}{\milli\meter} \times \qty{20}{\milli\meter}$ T-Slot extruded aluminum framing to allow for rigid fixturing and easy adjustment.
+All PCBs are attached to the framing via the 
+\begin{figure}
+    \centering
+    \includegraphics{example-image-}
+    \label{fig:pcb-attach}
+\end{figure}
 \subsection{Schematic Implementation \& PCB Layout}
 Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
 A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
