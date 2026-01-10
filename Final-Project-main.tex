@@ -272,7 +272,7 @@ The schematics, board layouts, and bills of materials can be seen in \cref{sec:a
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
 Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes. 
 \section{Simulation}
-\textcolor{red5}{\lipsum[16-18]}
+Several rounds of simulation were performed, with measurement results\todo{finish} % TODO finish
 \subsection{SPICE Simulations}
 LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
 With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
@@ -341,6 +341,9 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
     \label{tab:femm-results}
 \end{table*}
 \FloatBarrier
+
+\subsection{RF Simulations}
+\textcolor{red5}{\lipsum[16-18]}
 
 \section{Experimental Verification}
 \label{sec:exp}
