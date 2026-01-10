@@ -394,10 +394,12 @@ Finally, the complete set of coils with series resonant tanks were measured as a
 \todo{mention these results in results section}
 
 
-After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of 1~inch. Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance, the compensation capacitor values were calculated based on the measured inductances. 
+After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of 1~inch.
+Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance, the compensation capacitor values were calculated based on the measured inductances. 
 To maintain circuit symmetry, each compensation capacitor was implemented as two series capacitors connected to the two terminals of each coil. 
 With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at 6.78~MHz, indicating proper resonance.
-When the two coils have identical inductance values and a coupling coefficient $k$, connecting a $50~\Omega$ RF load to the secondary results in an equivalent $50~\Omega$ impedance measured from the primary side. This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \todofix{photo of the coils}.
+When the two coils have identical inductance values and a coupling coefficient $k$, connecting a $50~\Omega$ RF load to the secondary results in an equivalent $50~\Omega$ impedance measured from the primary side.
+This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \todofix{photo of the coils}.
 
 With the $50~\Omega$ RF load was maintained on the secondary-side coil, the output of the push--pull $\phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the $50~\Omega$ RF load was replaced with an inductively compensated rectifier, with a Keysight 34143A electronic load used as the resistive load, and a series of experiments was conducted.
 
