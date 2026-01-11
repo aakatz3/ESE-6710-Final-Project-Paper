@@ -42,10 +42,7 @@
 %\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
 %\makeatother
 
-% Modern replacement for Times.sty that sets math fonts correctly and scales helvet properly
-\usepackage{mathptmx}
-\usepackage[scaled=.90]{helvet}
-\usepackage{courier}
+
 
 %% !! Include math libraries before unicode-math
 \usepackage{amsmath}
@@ -104,7 +101,11 @@
 %  \setsansfont[scale=MatchAveragecase]{Helvetica}
 %  \setsansfont[scale=MatchAveragecase]{Arial}
 \else
-\defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
+  % Modern replacement for Times.sty that sets math fonts correctly and scales helvet properly
+  \usepackage{mathptmx}
+  \usepackage[scaled=.90]{helvet}
+  \usepackage{courier}
+  \defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
   % use nicer font for code
   \usepackage[zerostyle=b,scaled=.75]{newtxtt}
 
