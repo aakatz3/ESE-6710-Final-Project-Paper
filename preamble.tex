@@ -672,11 +672,6 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \usepackage{enumitem}
 
 
-\tikzoption{base font}{\def\tikz@base@textfont{#1}}
-\tikzoption{font}{\def\tikz@textfont{\tikz@base@textfont#1}}
-\tikzset{
-    base font=\sffamily,
-}
 \tikzset{every picture/.style={/utils/exec={\sffamily}}}
 \usepackage{float}
 \usepackage{aliascnt}
