@@ -15,6 +15,8 @@
 \ifoptionfinal{}{
 \usepackage{mwe}
 \usepackage{lipsum}
+}{
+\newcommand{\lipsum}[1][]{\parbox{4in}{#1}}
 }
 
 \begin{document}
