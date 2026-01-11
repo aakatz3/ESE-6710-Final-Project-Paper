@@ -70,9 +70,9 @@
 \fi
 \begin{abstract}
 \pdfbookmark[1]{Abstract}{Abstract} 
-This project implements a 6.78-MHz wireless power transfer based on a push--pull $\phi_2$ topology. 
+This project implements a 6.78-MHz wireless power transfer based on a push--pull $\mathbf{\Phi_2}$ topology. 
 The wireless power transfer operates from a 25~V dc input and delivers 39~W output power with high efficiency.
-The push--pull $\phi_2$ structure enables soft switching at MHz frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
+The push--pull $\mathbf{\Phi_2}$ structure enables soft switching at MHz frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
 \end{abstract}
 
 % For peer review papers, you can put extra information on the cover
@@ -92,13 +92,13 @@ The push--pull $\phi_2$ structure enables soft switching at MHz frequencies, red
     \caption{Theoretical circuit of the converter}
     \label{fig:converter-overall-sch}
 \end{figure*}
-This final project presents the design and implementation of a 6.78~MHz push--pull $\phi_2$ wireless power transfer system operating from a 25~V dc input and delivering 39~W to the load.
+This final project presents the design and implementation of a 6.78~MHz push--pull $\Phi_2$ wireless power transfer system operating from a 25~V dc input and delivering 39~W to the load.
 The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
-The push--pull $\phi_2$ topology is chosen for its suitability for MHz-frequency operation. The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at 6.78~MHz. 
-The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a 25~V input. Furthermore, the $\phi_2$ topology allows component values to be calculated using closed-form equations, simplifying the design and ensuring reliable MHz-frequency operation.
+The push--pull $\Phi_2$ topology is chosen for its suitability for MHz-frequency operation. The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at 6.78~MHz. 
+The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a 25~V input. Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations, simplifying the design and ensuring reliable MHz-frequency operation.
 In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
 Simulation and experimental results validate the design methodology and confirm that the implemented converter achieves efficient and reliable wireless power delivery at the specified operating conditions.
-This project demonstrates that the push--pull $\phi_2$ topology is an effective solution for medium-power, MHz-frequency wireless power transfer applications.
+This project demonstrates that the push--pull $\Phi_2$ topology is an effective solution for medium-power, MHz-frequency wireless power transfer applications.
 
 
 
@@ -163,12 +163,12 @@ The distance was tweaked and the inductance was measured using a \href{https://w
 More details about this procedure are in \cref{sec:exp}.\\
 \subsection{Circuit Topology}
 The overall schematic of the wireless power transfer is shown in \cref{fig:converter-overall-sch}. 
-It consists of three main parts: a push--pull $\phi_2$ converter, a wireless power transfer link, and a rectifier. 
-The push--pull $\phi_2$ stage shapes the input voltage applied to the resonant tank, while the wireless link enables contactless power transfer, and the rectifier converts the received ac power into dc to supply the load.
+It consists of three main parts: a push--pull $\Phi_2$ converter, a wireless power transfer link, and a rectifier. 
+The push--pull $\Phi_2$ stage shapes the input voltage applied to the resonant tank, while the wireless link enables contactless power transfer, and the rectifier converts the received ac power into dc to supply the load.
 
-In the push--pull $\phi_2$ topology, an auxiliary branch that presents an approximate short circuit to the second harmonic effectively suppresses the second-harmonic component of the drain--source voltage, significantly reducing MOSFET voltage stress. 
+In the push--pull $\Phi_2$ topology, an auxiliary branch that presents an approximate short circuit to the second harmonic effectively suppresses the second-harmonic component of the drain--source voltage, significantly reducing MOSFET voltage stress. 
 The combined action of the resonant components allows the drain--source voltage to naturally resonate to zero, achieving zero-voltage switching and zero-derivative voltage switching. 
-Based on the closed-form design methodology of the push--pull $\phi_2$ topology presented in~\cite{9039741}, the key resonant component values can be directly calculated as
+Based on the closed-form design methodology of the push--pull $\Phi_2$ topology presented in~\cite{9039741}, the key resonant component values can be directly calculated as
 \begin{subequations}
     \begin{align}
         L_{\mathrm{MR}} &= 0.94\,\frac{R_L}{\omega_s} \label{eq:LMR} \\
@@ -411,7 +411,7 @@ As the resonent tank was designed for a \qty{50}{\ohm} source and load, an addit
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a $50~\Omega$ RF load to the secondary results in an equivalent $50~\Omega$ impedance measured from the primary side.
 This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \todofix{photo of the coils}.
 
-With the $50~\Omega$ RF load was maintained on the secondary-side coil, the output of the push--pull $\phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the $50~\Omega$ RF load was replaced with an inductively compensated rectifier, with a Keysight 34143A electronic load used as the resistive load, and a series of experiments was conducted.
+With the $50~\Omega$ RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the $50~\Omega$ RF load was replaced with an inductively compensated rectifier, with a Keysight 34143A electronic load used as the resistive load, and a series of experiments was conducted.
 
 
 \todo{procedure extracted from results section}
