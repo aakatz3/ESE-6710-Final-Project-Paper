@@ -66,7 +66,7 @@
 %%             is rendered as one character in the PDF and needs to be split
 %%             whily copying.
 
-\iffalse%luatex
+\ifluatex
   \usepackage[no-math]{fontspec}
   \defaultfontfeatures{Ligatures = TeX}
 
@@ -82,7 +82,8 @@
 %  \setmainfont{Times New Roman}
 %  \setmathfont{Times New Roman}
 %  \setmainfont{TeX Gyre Termes}
-%    \setmainfont{Times}
+    \setmainfont{Times}
+    \setmathfont{Times}
 %    \setmathfont{STIXTwoMath-Regular}[
 %    Extension={.otf},
 %    Path=./stixfonts/fonts/static_otf/,
