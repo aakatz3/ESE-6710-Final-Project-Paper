@@ -8,15 +8,15 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 
 
-\documentclass[journal,nofonttune,10pt,letterpaper,english]{IEEEtran}[2015/08/26]
+\documentclass[journal,nofonttune,10pt,letterpaper,english,final]{IEEEtran}[2015/08/26]
 \input{preamble}
 
 % TODO: TEMP placeholders
-\ifoptionfinal{}{
+\ifoptionfinal{
+\newcommand{\lipsum}[1][]{\parbox{4in}{#1}}
+}{
 \usepackage{mwe}
 \usepackage{lipsum}
-}{
-\newcommand{\lipsum}[1][]{\parbox{4in}{#1}}
 }
 
 \begin{document}
