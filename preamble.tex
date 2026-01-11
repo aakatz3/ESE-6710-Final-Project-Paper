@@ -77,7 +77,7 @@
   % language "english" or "ngerman" is passed to selnolig by the document class
   \usepackage{selnolig}
   
-%  \setmonofont[Scale=MatchAveragecase]{Cascadia Mono}
+  
 %  \setmonofont{Courier New}
 %  \setmainfont{Times New Roman}
 %  \setmathfont{Times New Roman}
@@ -85,18 +85,20 @@
 %    \setmainfont{Times}
 %    \setmathfont{Times}
 
-%    \setmathfont{STIXTwoMath-Regular}[
-%    Extension={.otf},
-%    Path=./stixfonts/fonts/static_otf/,
-%    Scale=1]
-%    \setmainfont{StixTwoText}[
-%    Extension={.otf},
-%    Path=./stixfonts/fonts/static_otf/,
-%    UprightFont={*-Regular},
-%    BoldFont={*-Bold},
-%    ItalicFont={*-Italic},
-%    BoldItalicFont={*-BoldItalic}]
-\setsansfont[scale=MatchAverageCase]{Helvetica}
+    \setmainfont{StixTwoText}[
+    Extension={.otf},
+    Path=./stixfonts/fonts/static_otf/,
+    UprightFont={*-Regular},
+    BoldFont={*-Bold},
+    ItalicFont={*-Italic},
+    BoldItalicFont={*-BoldItalic}]
+    \setmathfont{STIXTwoMath-Regular}[
+    Extension={.otf},
+    Path=./stixfonts/fonts/static_otf/,
+    Scale=1]
+    
+    \setmonofont[Scale=MatchAveragecase]{Cascadia Mono}
+    \setsansfont[scale=MatchAverageCase]{Helvetica}
 \else
 \defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
   % use nicer font for code
