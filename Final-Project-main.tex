@@ -285,42 +285,42 @@ Moreover, due to the suppression of the second-harmonic component, the voltage p
 From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
 After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
 In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicating that, with compensation provided by $L_{\mathrm{LP}}$, the rectifier can be effectively modeled as a resistive load, thereby mitigating the impact of its capacitive behavior on the resonant operation.
-%\begin{figure}[!ht]
-%    \centering
-%    
-%    \begin{subfigure}{0.96\linewidth}
-%        \centering
-%        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_a_voltages.eps}
-%        \label{fig:wave_voltages}
-%    \end{subfigure}
-%    \vspace{-1mm}
-%    \begin{subfigure}{0.48\linewidth}
-%        \centering
-%        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_b_Vs.eps}
-%        \label{fig:wave_vs}
-%    \end{subfigure}
-%    \vspace{-1mm}
-%    \begin{subfigure}{0.48\linewidth}
-%        \centering
-%        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_c_Is.eps}
-%        \label{fig:wave_is}
-%    \end{subfigure}
-%    \hfil
-%    \begin{subfigure}{0.48\linewidth}
-%        \centering
-%        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_d_Vr.eps}
-%        \label{fig:wave_vr}
-%    \end{subfigure}
-%    \hfil
-%    \begin{subfigure}{0.48\linewidth}
-%        \centering
-%        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_e_Ir.eps}
-%        \label{fig:wave_ir}
-%    \end{subfigure}
-%    
-%    \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
-%    \label{fig:sim_waveforms}
-%\end{figure}
+\begin{figure}[!ht]
+    \centering
+    
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.96\linewidth]{plottings/SIMWAVEFORM/Fig_a_voltages.eps}
+        \label{fig:wave_voltages}
+    \end{subfigure}
+    \vspace{-1mm}
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.48\linewidth]{plottings/SIMWAVEFORM/Fig_b_Vs.eps}
+        \label{fig:wave_vs}
+    \end{subfigure}
+    \vspace{-1mm}
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.48\linewidth]{plottings/SIMWAVEFORM/Fig_c_Is.eps}
+        \label{fig:wave_is}
+    \end{subfigure}
+    \hfil
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.48\linewidth]{plottings/SIMWAVEFORM/Fig_d_Vr.eps}
+        \label{fig:wave_vr}
+    \end{subfigure}
+    \hfil
+    \begin{subfigure}
+        \centering
+        \includegraphics[width=0.48\linewidth]{plottings/SIMWAVEFORM/Fig_e_Ir.eps}
+        \label{fig:wave_ir}
+    \end{subfigure}
+    
+    \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
+    \label{fig:sim_waveforms}
+\end{figure}
 
 \subsection{Electromagnetic Simulation}
 \label{sec:em-sim}
@@ -350,7 +350,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 \subsection{RF Simulations}
 %\textcolor{red5}{\lipsum[16-18]}
 RF Simulations were conducted in Keysight ADS and Cadence AWR Design Enviornment (Microwave Office)% \todo{cite}.
-
+\\
 \begin{figure}[!h]
     \centering
 %    \includesvg[width=0.8\linewidth]{figure/results/sims/awr/S11.svg}
