@@ -329,6 +329,16 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 2D cross-sections of the coils designed in \cref{sec:coils} were imported into FEMM \cite{femm} and simulated.
 Windings were removed until a seemingly reasonable inductance was achieved.
 A 3D solver would be preferred, but was out of scope for this initial round of design and proved problematic when use was attempted.
+\begin{table*}[!hb]
+    \centering
+    \tiny
+    %    circuit,current,voltage,flux,inductance,impedance,power
+    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
+    {table/results/sims/femm/coils_v1_fixed.csv}{}%
+    {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
+    \caption{Circuit parameter results from Femm}
+    \label{tab:femm-results}
+\end{table*}
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{figure/femm-setup.eps}
@@ -342,16 +352,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
     \label{fig:femm-results}
 \end{figure}
 
-\begin{table*}
-    \centering
-    \tiny
-%    circuit,current,voltage,flux,inductance,impedance,power
-    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
-    {table/results/sims/femm/coils_v1_fixed.csv}{}%
-    {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
-    \caption{Circuit parameter results from Femm}
-    \label{tab:femm-results}
-\end{table*}
+
 \FloatBarrier
 
 \subsection{RF Simulations}
