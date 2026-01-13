@@ -5,12 +5,10 @@
 \PreviewEnvironment{tikzpicture}
 \begin{document}
     % Insert figure here
-    \begin{tikzpicture}%[x=0.1in,y=0.1in]
-   
+    \begin{tikzpicture}
 	% Paths, nodes and wires:
-		%\draw (0,0) to[C, o-*] ++(1,0) coordinate(in);
 	% TMP reference point	
-	\node[circle] (c) at (0,0) {};
+	%\node[circle,draw] (c) at (0,0) {};
 	
 	\draw (0, 1.5) node[ground]  {}  to[american voltage source, invert, /tikz/circuitikz/bipoles/length=1.05cm, l={$V_\mathrm{in}$}] 
 	(1.5,1.5) coordinate(ctr1) -- (1.5,0)
