@@ -57,10 +57,3 @@
 \DeclareSIUnit{\awg}{~AWG}
 
 
-
-\ExplSyntaxOn
-\NewDocumentCommand \EnsureTitleCase { m }
-{
-    \MakeTitlecase [ words=all ] { \text_lowercase:n {#1} }
-}
-\ExplSyntaxOff
