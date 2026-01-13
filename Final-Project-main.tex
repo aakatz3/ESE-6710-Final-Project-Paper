@@ -206,56 +206,59 @@ For this inductance value, the minimum-loss condition corresponds to a coupling 
 The junction capacitance of rectifier diodes causes the rectifier to exhibit a capacitive input impedance when viewed from the AC side, particularly under high-frequency operation. This behavior degrades the input power factor and can be compensated using inductive or reactive elements \cite{10833657}.
 Using a rectifier implemented with the Schottky diode STPS360AF, a simulation-based experiment was conducted to examine the phase relationship between the rectifier input voltage and current. With a parallel inductance of $L_{\mathrm{LP}} = 2.43~\mu\mathrm{H}$, the rectifier input is observed to be approximately resistive.
 Following the design process outlined above, the component values employed in the circuit are summarized in \cref{tab:bom}.
-\begin{table}[t]
-    \centering
-    \caption{Bill of Materials, PPT $\Phi_2$ WPT DC--DC Converter}
-    \label{tab:bom}
-    \renewcommand{\arraystretch}{1.1}
-    \footnotesize
-    \begin{tabular}{p{0.25\columnwidth} p{0.7\columnwidth}}
-        \hline
-        \textbf{Devices} & \textbf{Component Description} \\
-        \hline
-        \multicolumn{2}{l}{\textbf{(a) Inverter}} \\
+\begin{minipage}{0.8\columnwidth}
+    \begin{table}[t]
+        \centering
+        \caption{Bill of Materials, PPT $\Phi_2$ WPT DC--DC Converter}
+        \label{tab:bom}
+        \renewcommand{\arraystretch}{1.1}
+        \footnotesize
+        \begin{tabular}{p{0.25\columnwidth} p{0.7\columnwidth}}
+            \hline
+            \textbf{Devices} & \textbf{Component Description} \\
+            \hline
+            \multicolumn{2}{l}{\textbf{(a) Inverter}} \\
+            
+            $S_{1,2}$ &
+            Infineon IGB110S101XTMA1, 100~V GaN FET\\
+            
+            Gate driver &
+            Texas Instruments LM5114\\
+            
+            $L_{Fa},\,L_{Fb}$ &
+            2.75~$\mu$H, TDK RM6 K1 ferrite core; 
+            \\
+            
+            $L_{MRa},\,L_{MRb}$ &
+            0.551~$\mu$H, AWG 18, 12 turns \\
+            
+            $C_{MR}$ &
+            250~pF \\
+            
+            $C_{Pa},\,C_{Pb}$ &
+            $S_{1a,1b}\; C_{\mathrm{oss}} + \mathrm{RB168LAM100TFTR}\; C_j + 273$~pF\\
+            \hline
+            \multicolumn{2}{l}{\textbf{(b) Rectifier}} \\
+            
+            $D_{1-4}$ &
+            STPS360AF , 60~V Diode Schottky \\
+            
+            $L_{\mathrm{LP}}$ &
+            2.43~$\mu$H, AWG 18, 32 turns \\
+            \hline
+            \multicolumn{2}{l}{\textbf{(c) Coils}} \\
+            
+            $L_1,\,L_2$ &
+            \qty{4.15}{\micro\henry}, 14 AWG; See \cref{sec:coils}  \\
+            
+            $C_1,\,C_2$ &
+            132~pF, C0G, 500~V \\
+            \hline
+        \end{tabular}
         
-        $S_{1,2}$ &
-        Infineon IGB110S101XTMA1, 100~V GaN FET\\
-        
-        Gate driver &
-        Texas Instruments LM5114\\
-        
-        $L_{Fa},\,L_{Fb}$ &
-        2.75~$\mu$H, TDK RM6 K1 ferrite core; 
-        \\
-        
-        $L_{MRa},\,L_{MRb}$ &
-        0.551~$\mu$H, AWG 18, 12 turns \\
-        
-        $C_{MR}$ &
-        250~pF \\
-        
-        $C_{Pa},\,C_{Pb}$ &
-        $S_{1a,1b}\; C_{\mathrm{oss}} + \mathrm{RB168LAM100TFTR}\; C_j + 273$~pF\\
-        \hline
-        \multicolumn{2}{l}{\textbf{(b) Rectifier}} \\
-        
-        $D_{1-4}$ &
-        STPS360AF , 60~V Diode Schottky \\
-        
-        $L_{\mathrm{LP}}$ &
-        2.43~$\mu$H, AWG 18, 32 turns \\
-        \hline
-        \multicolumn{2}{l}{\textbf{(c) Coils}} \\
-        
-        $L_1,\,L_2$ &
-        \qty{4.15}{\micro\henry}, 14 AWG; See \cref{sec:coils}  \\
-        
-        $C_1,\,C_2$ &
-        132~pF, C0G, 500~V \\
-        \hline
-    \end{tabular}
-    
-\end{table}
+    \end{table}
+\end{minipage}
+
 \FloatBarrier
 \subsection{Coil Compensation}
 \textcolor{red5}{\lipsum[9-10]}
