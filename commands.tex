@@ -25,6 +25,16 @@
 \newcommand{\BPMN}{\initialism{BPMN}}
 \newcommand{\UML}{\initialism{UML}}
 
+\newsavebox\myVerb
+\newenvironment{verbbox}{\lrbox\myVerb}{\endlrbox}
+\newcommand*{\verbBox}{\usebox\myVerb}
+
+% Preset verb-boxes
+\newsavebox\verbVNA
+
+\newcommand*{\vna}{\usebox\verbVNA}
+\begin{lrbox}{\verbVNA}\verb|Keysight E5063A|\end{lrbox}
+
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
 \DeclareSymbolFont{MnSyC}{U}{MnSymbolC}{m}{n}
@@ -38,3 +48,12 @@
 	<12->   MnSymbolC12%
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
+
+% Custom units
+\DeclareSIUnit{\shortInch}{\"}
+\DeclareSIUnit{\shortFoot}{\'}
+\DeclareSIUnit{\inch}{in.}
+\DeclareSIUnit{\foot}{ft.}
+\DeclareSIUnit{\awg}{~AWG}
+
+

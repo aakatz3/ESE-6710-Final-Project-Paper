@@ -1,0 +1,45 @@
+% Save as .tex
+\documentclass{standalone}
+\usepackage[active,tightpage]{preview}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+% needed for BB
+\usetikzlibrary{calc}
+\PreviewEnvironment{tikzpicture}
+\begin{document}
+	% Insert figure here
+    	\definecolor{top-cu}{HTML}{ff0000}
+    	\definecolor{bot-cu}{HTML}{0000ff}
+
+    	\definecolor{top-pad}{HTML}{c64a3a}
+    	\definecolor{bottom-pad}{HTML}{a57f6f}
+    	
+	\definecolor{top-silk}{HTML}{008000}
+	\definecolor{hole}{HTML}{254968}
+	
+    	\definecolor{outline-designator}{HTML}{000000}
+    	\definecolor{board-outline}{HTML}{80157d}
+    	
+	\begin{tikzpicture}
+		\node at (0,0) {}; % origin
+		\draw [fill=top-cu] (2,5.5) rectangle (0,3.5);
+		\node [label={below:Top Copper}] at (1,3.5) {};
+		\draw  [fill=bot-cu] (2,2) rectangle (0,0);
+		\node [label={below:Bottom Copper}] at (1,0) {};
+		\draw [fill=top-pad] (5,5.5) rectangle (3,3.5);
+		\node [label={below:Top Pad}] at (4,3.5) {};
+		\draw [fill=bottom-pad] (5,2) rectangle (3,0);
+		\node [label={below:Bottom Pad}] at (4,0) {};
+		\draw [fill=top-silk] (8,5.5) rectangle (6,3.5);
+		\node [label={below:Top Silk}] at (7,3.5) {};
+		\draw [fill=hole] (8,2) rectangle (6,0);
+		\node [label={below:Pad/Via Hole}] at (7,0) {};
+		\draw [fill=outline-designator] (11,5.5) rectangle (9,3.5);
+		\node [label={below:Component Outline}] at (10,3.5) {};
+		\node  [label={below:or Designator}] at (10,3) {};
+		\draw [fill=board-outline] (11,2) rectangle (9,0);
+		\node [label={below:PCB Outline}] at (10,0) {};
+
+
+\end{tikzpicture}
+\end{document}

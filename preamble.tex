@@ -42,16 +42,18 @@
 %\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
 %\makeatother
 
-% Modern replacement for Times.sty that sets math fonts correctly and scales helvet properly
-\usepackage{mathptmx}
-\usepackage[scaled=.90]{helvet}
-\usepackage{courier}
+
 
 %% !! Include math libraries before unicode-math
 \usepackage{amsmath}
+\interdisplaylinepenalty=2500 
 \usepackage{amssymb}
 \usepackage{mathtools}
+\usepackage{lualatex-math}
 \usepackage{xfrac}
+\usepackage{mdwmath}
+\usepackage{cases}
+\usepackage{bm}
 
 
 %% !!! If you change the font, be sure that words such as "workflow" can
@@ -65,18 +67,43 @@
 \ifluatex
   \usepackage[no-math]{fontspec}
   \defaultfontfeatures{Ligatures = TeX}
-%  \setmainfont{Times New Roman}
-%  \setmainfont{TeX Gyre Termes}
-%  \setmonofont[Scale=0.85]{Cascadia Mono}
-%  \setmonofont{Courier New}
+
   \usepackage{unicode-math}
 
   % Enable proper ligatures
   % For more information see https://ctan.org/pkg/selnolig
   % language "english" or "ngerman" is passed to selnolig by the document class
-%  \usepackage{selnolig}
+  \usepackage{selnolig}
+  
+  
+
+%  \setmainfont{Times New Roman}
+%  \setmathfont{Times New Roman}
+%  \setmainfont{TeX Gyre Termes}
+%  \setmathfont{TeX Gyre Termes}
+%  \setmainfont{Times}
+%  \setmathfont{Times}
+    
+
+  \setmainfont{StixTwoText}[]
+  \setmathfont{StixTwoMath}[Scale=1]
+%  \AtBeginDocument{\setlength{\baselineskip}{8pt}}
+%  \setmonofont[Scale=MatchAveragecase]{Courier}
+%  \setmonofont[Scale=MatchAveragecase]{Courier New}
+%  \setmonofont[Scale=MatchAveragecase]{Cascadia Mono}
+%  \setmonofont[Scale=0.89]{Cascadia Mono}
+%   \usepackage{plex-mono}
+  % Matches STIX/Times better
+  \setmonofont[scale=MatchAverageCase, ScaleAgain=0.9]{IBMPlexMono}
+%  \setsansfont[scale=MatchAveragecase]{Helvetica}
+%  \setsansfont[scale=MatchAveragecase]{Arial}
+  \setsansfont{Roboto}[scale=MatchAveragecase]
 \else
-\defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
+  % Modern replacement for Times.sty that sets math fonts correctly and scales helvet properly
+  \usepackage{mathptmx}
+  \usepackage[scaled=.90]{helvet}
+  \usepackage{courier}
+  \defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
   % use nicer font for code
   \usepackage[zerostyle=b,scaled=.75]{newtxtt}
 
@@ -168,9 +195,16 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 	backgroundcolor=\color{back-color},
 	sensitive=false,
 	comment=[l]{\;},
-	morecomment=[l]{*},
+%	morecomment=[l]{*},
 	moredelim=[l][\color{spiceContinuationText}]{+},
-	moredelim=[l][\color{spiceDotCommand}]{.},
+%	moredelim=[l][\color{spiceDotCommand}]{.},
+    moredelim=[l][\color{spiceDotCommand}]{.meas},
+    moredelim=[l][\color{spiceDotCommand}]{.op},
+    moredelim=[l][\color{spiceDotCommand}]{.tra},
+    moredelim=[l][\color{spiceDotCommand}]{.par},
+    moredelim=[l][\color{spiceDotCommand}]{.lib},
+    moredelim=[l][\color{spiceDotCommand}]{.end},
+    moredelim=[l][\color{spiceDotCommand}]{.OPT},
 }
 
 
@@ -402,6 +436,7 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{colortbl}
+\usepackage{makecell}
 \usepackage{csvsimple}
 
 % Extended enumerate, such as \begin{compactenum}
@@ -530,6 +565,7 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
 
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
+\sisetup{propagate-math-font = true}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 
@@ -583,12 +619,13 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \crefname{lstlisting}{Listing}{Listings}
 \Crefname{lstlisting}{Listing}{Listings}
 
-\usepackage{lipsum}
+
 %
 %% For demonstration purposes only
 %% These packages can be removed when all examples have been deleted
 %\usepackage[math]{blindtext}
 %\usepackage{mwe}
+%\usepackage{lipsum}
 %\usepackage[realmainfile]{currfile}
 %\usepackage{tcolorbox}
 %\tcbuselibrary{listings}
@@ -637,20 +674,17 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
   \pdfgentounicode=1
 \fi
 
-\usepackage{siunitx}
-\DeclareSIUnit{\shortInch}{"}
-\DeclareSIUnit{\inch}{in.}
+
+
 
 
 
 \usepackage{circuitikz}
 \usepackage{nicematrix}
-\usepackage{svg}
+%\usepackage{svg} - Disabled due to font problems
 \usepackage{enumitem}
 
-\newsavebox\myVerb
-\newenvironment{verbbox}{\lrbox\myVerb}{\endlrbox}
-\newcommand*{\verbBox}{\usebox\myVerb}
+
 
 \usepackage{float}
 \usepackage{aliascnt}
