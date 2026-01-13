@@ -49,11 +49,11 @@
 	to[full Schottky diode, invert,mirror, /tikz/circuitikz/bipoles/length=20pt, l={$D_3$}] (15.7,1.5) coordinate(rectNeg)
 	to[full Schottky diode, /tikz/circuitikz/bipoles/length=20pt,l={$D_1$}] (rectTop)
 	to[cute inductor, mirror, l={$L_{LP}$}] (rectBot)
-	%(15,0) node[jump crossing, anchor=west](X1){}
+%	(15,0) node[jump crossing, anchor=west](X1){}
 %	(rectBot) |- (X1.east)
-	%(X1.west) 
-	%(rectNeg) -| (X1.north)
-	%(X1.south) node[ground]{}
+%	(X1.west) 
+%	(rectNeg) -| (X1.north)
+%	(X1.south) node[ground]{}
 	(rectNeg) -| (15.3,1.) node[sground]{}
 	(rectBot) |- (15,0)
 	to[capacitor, /tikz/circuitikz/bipoles/length=20pt, l_={$C_4$}] (l2n)
