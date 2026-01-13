@@ -1,59 +1,82 @@
 % !TeX encoding = utf8
-
-
 \documentclass{standalone}
 \usepackage{circuitikz}
+\usepackage[active]{preview}
+\PreviewEnvironment{tikzpicture}
 \begin{document}
     % Insert figure here
-    \begin{tikzpicture}
-        % Paths, nodes and wires:
-        \node[GaN hemt, xscale=0.99, yscale=0.99](N1) at (6.35, 2.286){} node[anchor=west] at (N1.text){$S_1$};
-        \draw (7.366, 1.524) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l_={$S^\prime_1$}] (7.366, 3.048);
-        \draw (14.739, 1.524) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l={$D_1$}] (16.009, 2.794);
-        \draw (16.009, 2.794) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l={$D_2$}] (17.279, 1.524);
-        \draw (14.739, 1.524) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l_={$D_3$}] (16.009, 0.254);
-        \draw (16.009, 0.254) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l_={$D_4$}] (17.279, 1.524);
-        \draw (16.009, 0.254) to[cute inductor, l_={$L_{LP}$}] (16.009, 2.794);
-        \node[GaN hemt, xscale=0.99, yscale=-0.99](N2) at (6.35, 0.762){} node[anchor=west] at (N2.text){$S_2$};
-        \draw (7.366, 1.524) to[full Schottky diode, mirror, /tikz/circuitikz/bipoles/length=0.700cm, l={$S^\prime_2$}] (7.366, -0);
-        \node[ground] at (9.398, 1.524){};
-        \node[jump crossing, rotate=-90, xscale=1.9, yscale=1.9] at (14.243, -0.007){};
-        \node[sground] at (14.243, -0.273){};
-        \draw (14.509, -0.007) -| (16.009, 0) -| (16.009, 0.254);
-        \draw (14.243, 0.258) |- (14.231, 1.524) -- (14.739, 1.524);
-        \draw (13.977, 3.048) -- (16.009, 3.048) -| (16.009, 2.794);
-        \node[vcc](N3) at (20.32, 3.048){} node[anchor=south] at (N3.text){$\small{V_\textrm{out}}$};
-        \draw (17.279, 1.524) -- (17.787, 1.524) -| (17.787, 2.794) -| (17.787, 3.048) -- (18.549, 3.048);
-        \node[sground] at (18.549, 0){};
-        \draw (20.327, 3.048) to[american resistor, /tikz/circuitikz/bipoles/length=1.05cm, l={$\small{R_\textrm{load}}$}] (20.327, 0);
-        \node[sground] at (20.327, 0){};
-        \draw (18.549, 3.048) -- (20.327, 3.048);
-        \draw (4.11, 2.133) to[square voltage source, /tikz/circuitikz/bipoles/length=0.700cm, l={$\textrm{CRTL}_1$}] (5.38, 2.133);
-        \draw (4.11, 0.914) to[square voltage source, mirror, /tikz/circuitikz/bipoles/length=0.700cm, l_={$\textrm{CRTL}_2$}] (5.38, 0.914);
-        \node[ground, xscale=0.5, yscale=0.5] at (4.11, 0.914){};
-        \node[ground, xscale=0.5, yscale=0.5] at (4.11, 2.133){};
-        \draw (8.382, 3.048) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_\mathrm{P_1}$}] (8.382, 1.524);
-        \draw (8.382, 1.524) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_{P_2}$}] (8.397, -0.001);
-        \draw (18.549, 3.048) to[curved capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$\small{C_\textrm{out}}$}] (18.549, 0);
-        \draw (6.35, -0.001) -| (7.366, -0) -| (8.397, -0.001) -| (9.144, -0.007);
-        \draw (6.35, 1.523) -| (7.366, 1.524) -- (8.382, 1.524) -- (9.398, 1.524);
-        \draw (6.35, 3.048) |- (7.366, 3.048) -- (8.382, 3.048) -| (9.144, 3.048);
-        \draw (0.508, 3.041) to[cute choke, l={$L_{F_1}$}] (2.794, 3.041);
-        \draw (0.508, -0.007) to[cute choke, l_={$L_{F_2}$}] (2.794, -0.015);
-        \draw (2.794, 1.517) to[cute inductor, /tikz/circuitikz/bipoles/length=1.05cm, l_={$L_{MR_1}$}] (2.794, 3.041);
-        \draw (2.794, -0.015) to[cute inductor, /tikz/circuitikz/bipoles/length=1.05cm, l_={$L_{MR_2}$}] (2.794, 1.517);
-        \draw (0.508, 1.509) to[american voltage source, /tikz/circuitikz/bipoles/length=1.05cm, l={$V_\mathrm{in}$}] (-1.016, 1.509);
-        \node[ground, xscale=0.5, yscale=0.5] at (-1.016, 1.509){};
-        \draw (2.794, 1.517) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_{MR}$}] (1.016, 1.509);
-        \node[ground] at (1.016, 1.509){};
-        \draw (0.508, 3.041) -- (0.508, 1.509) -- (0.508, -0.015);
-        \draw (6.35, -0) -| (2.794, -0.015);
-        \draw (9.144, 3.048) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_1$}] (10.922, 3.048);
-        \draw (9.144, -0) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l_={$C_2$}] (10.922, -0);
-        \draw (10.922, 3.048) to[cute inductor, l_={$L_1$}] (10.922, -0);
-        \draw (12.192, -0) to[cute inductor, l_={$L_2$}] (12.192, 3.048);
-        \draw (2.794, 3.041) -| (6.35, 3.048);
-        \draw (12.192, 3.048) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_3$}] (13.97, 3.048);
-        \draw (12.192, -0) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l_={$C_4$}] (13.97, -0);
-    \end{tikzpicture}
+    \begin{tikzpicture}%[x=0.1in,y=0.1in]
+	% Paths, nodes and wires:
+		%\draw (0,0) to[C, o-*] ++(1,0) coordinate(in);
+		
+	\node[circle,draw] (c) at (0,0) {};
+	\node[ground] at (0, 1.5) {};
+	\draw (1.5,1.5) to[american voltage source, /tikz/circuitikz/bipoles/length=1.05cm, l={$V_\mathrm{in}$}] (0,1.5)
+	++(1.5,1.5)++(0,0) -- (1.5,1.5) -- (1.5,0)
+	 to[cute choke, l_={$L_{F_2}$}] (3.8,0)
+	--(3.8,0) to[cute inductor, l_={$L_{MR_2}$}] (3.8,1.5)
+	to[cute inductor, l_={$L_{MR_1}$}] (3.8,3)
+	to[cute choke, l_={$L_{F_1}$}]  (1.5,3) ;
+	
+	
+	
+	
+	
+	
+	
+	\draw (8.382,1.515) to[full Schottky diode, l_={$S^\prime_1$}] (8.382,3.039);
+	\draw (5.1,2.1) to[square voltage source, /tikz/circuitikz/bipoles/length=20pt, l={$\textrm{CRTL}_1$}] (6.4,2.1)
+	node[GaN hemt,anchor=G] (N1) at (6.4,2.1) {} node[anchor=west] at (N1.text){$S_1$}
+	(N1.D) -- (3,3) (0,0)
+	(1,1) node [GaN hemt, anchor=G] (N2) at (6.4,0.8) {$S_2$}
+	(N1.S) -- (N2.D)
+	 (N2.G) to[square voltage source, /tikz/circuitikz/bipoles/length=20pt, l={$\textrm{CRTL}_2$}] (5.2,0.8)
+	 node[ground, scale=0.5]{};
+	
+	
+%	\draw (8.382,1.515) to[full Schottky diode, mirror, /tikz/circuitikz/bipoles/length=0.700cm, l={$S^\prime_2$}] (8.382,-0.009);
+%	\node[ground] at (10.414,1.515) {};
+%	\node[jump crossing, rotate=-90, xscale=1.9, yscale=1.9] at (15.259,-0.016) {};
+%	\node[sground] at (15.259,-0.282) {};
+%	\draw (15.525,-0.016) -| (17.025,-0.009) -| (17.025,0.245);
+%	\draw (15.259,0.249) |- (15.247,1.515) -- (15.755,1.515);
+%	\draw (14.993,3.039) -- (17.025,3.039) -| (17.025,2.785);
+%	\node[vcc] (N3) at (21.336,3.039) {} node[anchor=south] at (N3.text){$\small{V_\textrm{out}}$};
+%	\draw (18.295,1.515) -- (18.803,1.515) -| (18.803,2.785) -| (18.803,3.039) -- (19.565,3.039);
+%	\node[sground] at (19.565,-0.009) {};
+%	\draw (21.343,3.039) to[american resistor, /tikz/circuitikz/bipoles/length=1.05cm, l={$\small{R_\textrm{load}}$}] (21.343,-0.009);
+%	\node[sground] at (21.343,-0.009) {};
+%	\draw (19.565,3.039) -- (21.343,3.039);
+%	
+%	%\draw (5.126,0.905) to[square voltage source, mirror, /tikz/circuitikz/bipoles/length=0.700cm, l_={$\textrm{CRTL}_2$}] (6.396,0.905);
+%	
+%	\node[ground, xscale=0.5, yscale=0.5] at (5.126,2.124) {};
+%	\draw (9.398,3.039) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_\mathrm{P_1}$}] (9.398,1.515);
+%	\draw (9.398,1.515) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_{P_2}$}] (9.413,-0.01);
+%	\draw (19.565,3.039) to[curved capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$\small{C_\textrm{out}}$}] (19.565,-0.009);
+%	\draw (7.366,-0.01) -| (8.382,-0.009) -| (9.413,-0.01) -| (10.16,-0.016);
+%	\draw (7.8,1.5) -| (8.382,1.515) -- (9.398,1.515) -- (10.414,1.515);
+%	\draw (7.366,3.039) |- (8.382,3.039) -- (9.398,3.039) -- (10.16,3.039);
+%	
+%	
+%	\draw (3.81,1.508) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_{MR}$}] (2.032,1.5);
+%	\node[ground] at (2.032,1.5) {};
+%	
+%	\draw (7.366,-0.009) -| (3.81,-0.024);
+%	\draw (10.16,3.039) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_1$}] (11.938,3.039);
+%	\draw (10.16,-0.009) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l_={$C_2$}] (11.938,-0.009);
+%	\draw (11.938,3.039) to[cute inductor, l_={$L_1$}] (11.938,-0.009);
+%	\draw (13.208,-0.009) to[cute inductor, l_={$L_2$}] (13.208,3.039);
+%	
+%	\draw (13.208,3.039) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l={$C_3$}] (14.986,3.039);
+%	\draw (13.208,-0.009) to[capacitor, /tikz/circuitikz/bipoles/length=1.05cm, l_={$C_4$}] (14.986,-0.009);
+%	
+%	
+%	% Rectifier
+%	\draw (15.755,1.515) to[full Schottky diode, l={$D_1$}] (17.025,2.785);
+%	\draw (17.025,2.785) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l={$D_2$}] (18.295,1.515);
+%	\draw (15.755,1.515) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l_={$D_3$}] (17.025,0.245);
+%	\draw (17.025,0.245) to[full Schottky diode, /tikz/circuitikz/bipoles/length=0.700cm, l_={$D_4$}] (18.295,1.515);
+%	\draw (17.025,0.245) to[cute inductor, l_={$L_{LP}$}] (17.025,2.785);
+\end{tikzpicture}
 \end{document}
