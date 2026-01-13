@@ -33,6 +33,11 @@
 \newsavebox\verbVNA
 
 \newcommand*{\vna}{\usebox\verbVNA}
+\AtBeginDocument{% Create vna verbbox
+    \begin{lrbox}{\verbVNA}
+        \verb|Keysight E5063A|
+    \end{lrbox}
+}
 
 %introduce \powerset - hint by http://matheplanet.com/matheplanet/nuke/html/viewtopic.php?topic=136492&post_id=997377
 \DeclareFontFamily{U}{MnSymbolC}{}
@@ -48,8 +53,18 @@
 }{}
 \DeclareMathSymbol{\powerset}{\mathord}{MnSyC}{180}
 
+% Custom units
 \DeclareSIUnit{\shortInch}{\"}
 \DeclareSIUnit{\shortFoot}{\'}
 \DeclareSIUnit{\inch}{in.}
 \DeclareSIUnit{\foot}{ft.}
 \DeclareSIUnit{\awg}{~AWG}
+
+
+
+\ExplSyntaxOn
+\NewDocumentCommand \EnsureTitleCase { m }
+{
+    \MakeTitlecase [ words=all ] { \text_lowercase:n {#1} }
+}
+\ExplSyntaxOff
