@@ -410,7 +410,7 @@ Additional experiments were performed on each modular block of the converter, an
 \end{figure*}
 \todofix{PCB details}
 The scope, waveform generator, and spectrum analyzer (where applicable) were all supplied with the same 10MHz reference clock (generated from a \verb||)
-After the front-end push--pull $\Phi2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a Keysight 33500B waveform generator. 
+After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a Keysight 33500B waveform generator. 
 Circuit voltages and currents were monitored using Keysight 10073D and N2809A passive probes, Keysight 1147B current probes, and a Keysight MSO7034B oscilloscope. 
 Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions.
 This was verified using a \todofix{model} spectrum analyzer. \todo{include in results section}
@@ -730,7 +730,12 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
 \section{Conclusion}
 This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer system based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 39 W, and a peak efficiency of 90.5\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
 \subsection{Future Work}
+More data should be collected, and the long term reliability of the converter needs to be tested.
+While preliminary thermal results appeared to be okay, the late stage failures during testing are most likely related to thermal problems.
+Different cooling systems should be investigated to allow for additional data collection, particularly across a wider operating range.
 
+Additionally, the modular nature of the apparatus should be utilized in a future comparative study to test how different components effect the operation and efficiency of the converter, particularly with alternate semiconductor devices.
+The physical construction may also prove to be a useful foundation for more experiments with different coil geometries.
 
 %\section{Resonant Tank Characterization}
 %In this converter, energy is transferred through a loosely coupled coil pair, whose cantilever‐model parameters—including magnetizing inductance $L_{\mu}$, leakage inductances $L_{\text{leak}}$, and coupling ratios $n$—vary with coil alignment and separation distance. 
