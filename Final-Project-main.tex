@@ -100,7 +100,7 @@ The push--pull structure distributes the input voltage across two switches, redu
 In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
 Simulation and experimental results validate the design methodology and confirm that the implemented converter achieves efficient and reliable wireless power delivery at the specified operating conditions.
 This project demonstrates that the push--pull $\Phi_2$ topology is an effective solution for medium-power, MHz-frequency wireless power transfer applications.
-The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}
+The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
 
 
 
@@ -165,8 +165,7 @@ which showed that the electromagnetic simulations (\cref{sec:em-sim}) were in th
 The distance was tweaked and the inductance was measured using a \vna{} vector network analyzer.
 More details about this procedure are in \cref{sec:exp}.\\
 \subsection{Circuit Topology}
-The overall schematic of the wireless power transfer is shown in \cref{fig:converter-overall-sch}. 
-It consists of three main parts: a push--pull $\Phi_2$ converter, a wireless power transfer link, and a rectifier. 
+The circuit topology consists of three main parts: a push--pull $\Phi_2$ converter, a wireless power transfer link, and a rectifier. 
 The push--pull $\Phi_2$ stage shapes the input voltage applied to the resonant tank, while the wireless link enables contactless power transfer, and the rectifier converts the received ac power into dc to supply the load.
 
 In the push--pull $\Phi_2$ topology, an auxiliary branch that presents an approximate short circuit to the second harmonic effectively suppresses the second-harmonic component of the drain--source voltage, significantly reducing MOSFET voltage stress. 
@@ -183,30 +182,9 @@ Based on the closed-form design methodology of the push--pull $\Phi_2$ topology 
 Here, $R_L$ is modeled as the equivalent ac-side resistance of the rectifier and is set to \qty{50}{\ohm} to facilitate circuit tuning, experimental adjustment, data collection, and integration with any pre-existing RF components.
 $L_F$ is a design parameter and is chosen as $L_F = 5L_{\mathrm{MR}}$ in this design.
 
-Wireless energy transfer is realized using a pair of magnetically coupled inductors with identical self-inductance values. 
-A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link. 
-To achieve maximum efficiency, the compensation capacitors $C_1$ and $C_2$ for the coupled coils are calculated using the expressions given in~\cite{10833657}:
-\begin{equation}
-    C_1 = \frac{1}{\omega_s^2 L_1} \qquad
-    C_2 = \frac{1}{\omega_s^2 L_2}
-\end{equation}
-where $\omega_s$ denotes the angular switching frequency.
-For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{10833657}:
-\begin{equation}
-    L_2 \approx \frac{R_{L}}{k\omega_s}
-    \label{eq:L2_coupled}
-\end{equation}
-where $k$ denotes the magnetic coupling coefficient between the transmitter and receiver coils.
-Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
-Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of 1~inch must be greater than the target value $k$. 
-This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies (\ref{eq:L2_coupled}), thereby minimizing conduction and resonant losses in the wireless power transfer system.
-In the practical implementation, two identical coupled inductors with an inductance of $4.15~\mu\mathrm{H}$ were fabricated and used as the transmitting and receiving coils. 
-For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
-
 The junction capacitance of rectifier diodes causes the rectifier to exhibit a capacitive input impedance when viewed from the AC side, particularly under high-frequency operation. This behavior degrades the input power factor and can be compensated using inductive or reactive elements \cite{10833657}.
 Using a rectifier implemented with the Schottky diode STPS360AF, a simulation-based experiment was conducted to examine the phase relationship between the rectifier input voltage and current. With a parallel inductance of $L_{\mathrm{LP}} = 2.43~\mu\mathrm{H}$, the rectifier input is observed to be approximately resistive.
 Following the design process outlined above, the component values employed in the circuit are summarized in \cref{tab:bom}.
-
 \begin{table}[t]
     \centering
     \begin{minipage}{\linewidth}
@@ -261,37 +239,49 @@ Following the design process outlined above, the component values employed in th
     \caption{General list for PPT WPT DC--DC Converter}
     \label{tab:bom}
 \end{table}
+\begin{figure}[!tb]
+    \centering
+    \includegraphics[width=0.4\linewidth]{figure/sch/model.pdf}
+    \caption{Coil model for compensation analysis}
+    \label{fig:coilmodel}
+\end{figure}
 \FloatBarrier
 \subsection{Coil Compensation}
-\textcolor{red5}{\lipsum[9-10]}
-\subsection{Mechanical Design}
-The test setup is based around a \qty{2}{\foot} long piece of \qty{40}{\milli\meter}\times\qty{20}{\milli\meter} T-slot extruded aluminum framing to allow for rigid fixturing and easy adjustment.
-All PCBs are attached to the framing via the method shown in \cref{fig:pcb-attach}.
-The PCB is attached to an acrylic mounting plate with M3-\qty{0.5}{\milli\meter}\times\qty{6}{\milli\meter} Button Head Cap Screws, \qty{12}{\milli\meter} standoffs, and M3 nuts (acting as spacers).
-The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\milli\meter}\times\qty{12}{\milli\meter} flanged button-head cap screws, with four Nylon Plastic Washers as spacers, into four self-aligning T-slotted framing nuts with M5 threads.
-\begin{figure}[b]
+Wireless energy transfer is achieved through a pair of magnetically coupled inductors with identical self-inductance values, which are modeled as illustrated in \cref{fig:coilmodel}.
+In this model, $L_1$ and $L_2$ denote the self-inductances of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
+A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link, with two identical series-connected capacitors placed at the two terminals of each coil to ensure symmetry, as shown in \cref{fig:converter-overall-sch}. 
+The compensation capacitors $C_1$ and $C_2$ associated with $L_1$, and $C_3$ and $C_4$ associated with $L_2$, are designed to maximize efficiency using the expressions given in~\cite{10833657}:
+\begin{equation}
+    C_{1,2} = \frac{2}{\omega_s^2 L_1} \qquad
+    C_{3,4}= \frac{2}{\omega_s^2 L_2}
+\end{equation}
+where $\omega_s$ denotes the angular switching frequency.
+For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{10833657}:
+\begin{equation}
+    L_2 \approx \frac{R_{L}}{k\omega_s}
+    \label{eq:L2_coupled}
+\end{equation}
+where $k$ denotes the magnetic coupling coefficient between the transmitter and receiver coils.
+The values of the implemented compensation capacitors are summarized in \cref{tab:bom}.
+
+Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
+Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of 1~inch must be greater than the target value $k$. 
+This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies (\ref{eq:L2_coupled}), thereby minimizing conduction and resonant losses in the wireless power transfer system.
+In the practical implementation, two identical coupled inductors with an inductance of $4.15~\mu\mathrm{H}$ were fabricated and used as the transmitting and receiving coils. 
+For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
+%\textcolor{red5}{\lipsum[9-10]}
+\begin{figure}[!tb]
     \centering
     \includegraphics[width=0.6\linewidth]{figure/mech/PCB-Mounting-View-crop.eps}
     \caption{Diagram of attachment method of PCB to framing}
     \label{fig:pcb-attach}
 \end{figure}
-\subsection{Schematic Implementation \& PCB Layout}
-Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
-A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
-The primary design goal of the PCBs was to facilitate component variation for testing and to allow for easy measurement of component and operating parameters.
-The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
-Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
-Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes. 
-\section{Simulation}
-Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
-\subsection{SPICE Simulations}
-LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
-With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
-Moreover, due to the suppression of the second-harmonic component, the voltage peak is limited to approximately $2V_{\mathrm{in}}$, which alleviates the voltage stress on the GaN FETs and reduces switching losses.
-From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
-After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
-In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicating that, with compensation provided by $L_{\mathrm{LP}}$, the rectifier can be effectively modeled as a resistive load, thereby mitigating the impact of its capacitive behavior on the resonant operation.
-\begin{figure}[!ht]
+\subsection{Mechanical Design}
+The test setup is based around a \qty{2}{\foot} long piece of \qty{40}{\milli\meter}\times\qty{20}{\milli\meter} T-slot extruded aluminum framing to allow for rigid fixturing and easy adjustment.
+All PCBs are attached to the framing via the method shown in \cref{fig:pcb-attach}.
+The PCB is attached to an acrylic mounting plate with M3-\qty{0.5}{\milli\meter}\times\qty{6}{\milli\meter} Button Head Cap Screws, \qty{12}{\milli\meter} standoffs, and M3 nuts (acting as spacers).
+The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\milli\meter}\times\qty{12}{\milli\meter} flanged button-head cap screws, with four Nylon Plastic Washers as spacers, into four self-aligning T-slotted framing nuts with M5 threads.
+\begin{figure}[!t]
     \centering
     
     \begin{subfigure}{0.96\linewidth}
@@ -327,6 +317,22 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
     \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
     \label{fig:sim_waveforms}
 \end{figure}
+\subsection{Schematic Implementation \& PCB Layout}
+Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
+A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
+The primary design goal of the PCBs was to facilitate component variation for testing and to allow for easy measurement of component and operating parameters.
+The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
+Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
+Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes. 
+\section{Simulation}
+Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
+\subsection{SPICE Simulations}
+LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
+With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
+Moreover, due to the suppression of the second-harmonic component, the voltage peak is limited to approximately $2V_{\mathrm{in}}$, which alleviates the voltage stress on the GaN FETs and reduces switching losses.
+From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
+After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
+In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicating that, with compensation provided by $L_{\mathrm{LP}}$, the rectifier can be effectively modeled as a resistive load, thereby mitigating the impact of its capacitive behavior on the resonant operation.
 \FloatBarrier
 \subsection{Electromagnetic Simulation}
 \label{sec:em-sim}
@@ -433,20 +439,18 @@ The initial and final configurations are listed in \cref{sec:coils}; an example 
     \caption{TX coil mounted for individual measurement}
     \label{fig:single-coil}
 \end{figure}
-
 After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of \qty{1}{\inch}.
 
 Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance (as expected due to the designed distance being \qty{1.5}{\inch}), the distance was adjusted until the coupling factor matched the designed coupling factor.
-Measurements were conducted to be able to calculate the required parameters for model \todo{model?} from \todo{paper}, and then the compensation capacitor values were calculated. 
-To maintain circuit symmetry, each compensation capacitor was split into to branches with one connected to each of the terminals of each coil, resulting in the arrangement shown in \todo{figure}.
-Each individual set of paralell compensation capacitors were measured and the values recorded  once tuned to match the calculations.
+Measurements were conducted to be able to calculate the required parameters for model shown in \cref{fig:coilmodel}\todo{model?} from \todo{paper}, and then the compensation capacitor values were calculated. 
+After the compensation capacitors were implemented in hardware, each individual set of compensation capacitors were measured and the values recorded once tuned to match the calculations.
 With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at 6.78~MHz, indicating proper resonance.
 As the resonent tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a $50~\Omega$ RF load to the secondary results in an equivalent $50~\Omega$ impedance measured from the primary side.
-This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \todofix{photo of the coils}.
+This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:single-coil}.
 
-With the $50~\Omega$ RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the $50~\Omega$ RF load was replaced with an inductively compensated rectifier, with a Keysight 34143A electronic load used as the resistive load, and a series of experiments was conducted.
-
+With the $50~\Omega$ RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the $50~\Omega$ RF load was replaced with an inductively compensated rectifier, with a Keysight 34143A electronic load used as the resistive load.
+Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_o$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
 
 \todo{procedure extracted from results section}
 
