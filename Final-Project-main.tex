@@ -358,14 +358,9 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 
 \subsection{RF Simulations}
 %\textcolor{red5}{\lipsum[16-18]}
-RF Simulations were conducted in Keysight ADS and Cadence AWR Design Enviornment (Microwave Office) using the measured transformer parameters to construct the resonant circuit. These simulations were later used to compare with the 
+RF Simulations were conducted in Keysight ADS and Cadence AWR Design Enviornment (Microwave Office) using the measured transformer parameters to construct the resonant circuit. These simulations were later used to compare with the experimental results of the resonant tank characterization.
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=\columnwidth]{figure/results/sims/awr/S11_Crop.eps}
-    \caption{S11 and impedance measurement of simulated vs actual resonant tank}
-    \label{fig:awr-S11}
-\end{figure}
+
 \FloatBarrier
 \section{Experimental Verification}
 \label{sec:exp}
@@ -709,9 +704,19 @@ The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the f
 The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
 Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
+\subsubsection{Resonant Tank Results}
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\columnwidth]{figure/results/sims/awr/S11_Crop.eps}
+    \caption{S11 and impedance measurement of simulated vs actual resonant tank}
+    \label{fig:awr-S11}
+\end{figure}
+
 \FloatBarrier
 \section{Conclusion}
 This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer system based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 39 W, and a peak efficiency of 90.5\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
+
 
 
 %\section{Resonant Tank Characterization}
