@@ -1,0 +1,202 @@
+; PPT Converter SPICE simulation
+.lib CoolGaN Transistors 100 V G3 - Spice.lib ;(*\footnote{SPICE model provided by Infineon. \\ \indent See \url{https://www.infineon.com/row/public/documents/24/50/infineon-coolgan-transistors-100v-g3-spice-simulationmodels-en.zip}}*)
+.lib LM5114A_TRANS.lib ;(*\footnote{SPICE model provided by Texas Instruments. See: \url{https://www.ti.com/lit/zip/snvmad7}}*)
+.lib SN74LVC1G34.cir ;(*\footnote{SPICE model provided by Texas Instruments. See: \url{https://www.ti.com/lit/zip/scem630}}*)
+.lib ST_POWER_SCHOTTKY_V10.LIB ;(*\footnote{SPICE model provided by ST Microelectronics. See: \url{https://www.st.com/resource/en/spice_model/st_power_schottky_diodes_pspice_models_v6.zip}}*)
+.lib rb168lam100tf_ltspice.lib ;(*\footnote{SPICE model provided by ROHM Semiconductor. \\ \indent See: \url{https://fscdn.rohm.com/en/products/library/ltspice/discrete/diode/schottky_barrier/rb168lam100tf_ltspice.zip}}*)
+.lib c3216c0g2a104j160ac_p.mod ;(*\footnote{SPICE model provided by TDK Corporation. \\ \indent See: \url{https://product.tdk.com/system/files/dam/tvcl/capacitor/ceramic/mlcc/spice_p/commercial_midvoltage/c3216/c3216c0g2a104j160ac_p.mod}}*)
+.lib C3216X7R2A105K160AA_b_LTspice.mod ;(*\footnote{SPICE model provided by TDK Corporation. \\ \indent See: \url{https://product.tdk.com/system/files/dam/tvcl/capacitor/ceramic/mlcc/ltspice/commercial_midvoltage/c3216/c3216x7r2a105k160aa_b_ltspice.zip}}*)
+.lib C3216X6S2A106K160AC_b_LTspice.mod ;(*\footnote{SPICE model provided by TDK Corporation. \\ \indent See: \url{https://product.tdk.com/system/files/dam/tvcl/capacitor/ceramic/mlcc/ltspice/commercial_midvoltage/c3216/c3216x6s2a106k160ac_b_ltspice.zip}}*)
+.lib PCR1J101MCL1GS_v100.lib ;(*\footnote{SPICE model provided by Nichicon. See: \url{https://www.nichicon.com/getmedia/93094b96-842a-4d22-b98e-fe87155efd57/PCR.zip}}*)
+.lib 50SVPF68M.lib ;(*\footnote{SPICE model provided by Panasonic Industry Co., Ltd. See: \url{https://industrial.panasonic.com/content/data/CP/files/50SVPF68M.zip}}*)
+.lib 1SMB59XXBT3G (SPICE MODEL).LIB ;(*\footnote{SPICE model provided by onsemi (Semiconductor Components Industries, LLC). \\ \indent See: \url{https://www.onsemi.com/download/models/lib/1smb59xxbt3g\%20(spice\%20model).lib}}*)
+
+.OPTIONS NO_CARET_WARNING
+
+;----------------Values------------------
+;Design Choice
+.param Vdc   = 25
+.param Pout  = 30
+.param fs    = 6.78Meg
+;.param Qs    = 2
+.param Coss  = 280p ;need to be measured
+.param m     = 5    ; L1=m*L2
+.param k     = 0.3  ;coil coupling coefficient
+.param CD    = 50p  ;diode junction capacitor
+.param Qcoil = 300  ;coil quality factor
+
+;Component Value Calculation
+
+;Due to the paper Design Considerations for Multimegahertz Resonant Inductive Power Transfer
+;formula(27);the equivalent resistant of the rectifier equals the 2RL calculated at the primary side
+
+.param comL = 2.2u
+.param w   = 2*pi*fs
+.param Pdc_phase = Pout/2                   ;single phi-2 power
+;.param RL_phase = 0.74 * Vdc**2 / Pdc_phase ;single phi-2 load
+.param RL_phase = 25
+.param Rload_tot = 50 ;2*RL_phase
+.param L2 = 0.94 * RL_phase / w
+.param C2 = 1 / (4 * w**2 * L2)
+.param C1_total = 0.61 / (w * RL_phase)
+.param C1ext = C1_total -Coss
+.param L1 = m * L2
+;.param Ls = Qs * Rload_tot / w
+.param Ls2 =  Rload_tot/(k*w)
+;.param Ls2 = Ls/(1-k**2)
+;.param Cs = 1 / (w * Qs * Rload_tot)
+.param Cs2 = 1/((w**2)*Ls2)
+.param coilesr= (w*Ls2)/Qcoil
+
+;-------------transient---------------------
+.param Duty     = 0.3  ;0.3-0.35
+.param NCYCLES = 10000
+.param PPS     = 1000
+.param TPER    = 1/fs
+.param TSTOP   = NCYCLES*TPER
+.param TSTEP   = TPER/PPS
+
+;.step param Coss 100p 300p 10p
+;.step param comL 2u 3u 0.1u
+.tran 0 {TSTOP} 0 {TSTEP} uic
+;.options method=gear abstol=1n vntol=1m reltol=0.01
+.OPTIONS itl1=100000
+.OPTIONS itl2=100000
+.OPTIONS itl4=100000
+.options method=Trap abstol=1n vntol=1e-3 reltol=0.001 solver=alt
+.OPTIONS measdgt=99
+.OPTIONS numdgt=99
+.OPTIONS gmin=1e-15
+.OPTIONS list
+
+;----------------topology-------------------
+; DC input
+V1 IN 0 {Vdc} RSER=0.005 ; Calculated output resistance of Agilent E3634A
+XC IN 0 50SVPF68M
+; Top Branch (Fa, MRa)
+LFa IN N_Top_Mid {L1}
+LMRa N_Top_Mid Mid_Node {L2}
+; Bottom Branch (Fb, MRb)
+LFb IN N_Bot_Mid {L1}
+LMRb N_Bot_Mid Mid_Node {L2}
+CMR Mid_Node 0 {2*C2}
+
+; switches
+Xtop N_Top_Mid Gtop 0 IGB110S101_L1
+Xbottom N_Bot_Mid Gbottom 0 IGB110S101_L1
+Cpa N_Top_Mid 0 {C1ext}
+Cpb N_Bot_Mid 0 {C1ext}
+DZ1 0  N_Top_Mid  DRB168LAM100TF
+DZ2 0  N_Bot_Mid  DRB168LAM100TF
+
+*Load Network
+Cspri N_Top_Mid N_Cs1 {Cs2}
+Lspri N_Cs1 N_Res {Ls2*(1-k**2)} Rser={coilesr}
+;Lspri N_Cs1 N_Res {Ls2}
+;Lspri N_Load N_Bot_Mid  {Ls2} Rser={coilesr}
+;Rload N_Res N_Bot_Mid {Rload_tot}
+
+;ideal transformer
+Vsen  Sec_topa   Sec_top   0
+E1   Sec_topa  Sec_bot N_Res   N_Bot_Mid  {1/k}
+F1    N_Res   N_Bot_Mid    Vsen      {1/k}
+Rpg N_Res   0     1e15
+Rsg   Sec_topa  0     1e15
+
+;secondary side
+Lssec Sec_top   Sec_bot   {Ls2}
+Rssec Sec_top   Sec_mid   {coilesr}
+Cssec Sec_mid   Sec_r {Cs2}
+;Rtestload Sec_r   Sec_bot {Rload_tot}
+
+
+;full bridge
+Lcomp Sec_r Sec_bot {comL}
+D1 Sec_r  Vout  STPS360AF
+D2 0   Sec_r    STPS360AF
+D3 Sec_bot Vout STPS360AF
+D4 0   Sec_bot  STPS360AF
+XC_O_1 Vout 0 C3216C0G2A104J160AC_p
+XC_O_2 Vout 0 C3216X7R2A105K160AA_b
+XC_O_3 Vout 0 C3216X6S2A106K160AC_b
+XC_O_4 Vout 0 PCR1J101MCL1GS IC=0
+XZD 0 Vout 1SMB5946BT3
+R_L Vout 0 {(Rload_tot*(pi**2))/8}
+
+;Buffer
+Vg1 IN_TOP 0 PULSE(0 5 0 10n 10n {Duty*TPER} {TPER})
+Vg2 IN_BOT 0 PULSE(0 5 {TPER/2} 10n 10n {Duty*TPER} {TPER})
+VCC_BUF   VCC   0   5
+XBUF_TOP   IN_TOP2   IN_TOP   VCC   0   SN74LVC1G34
+XBUF_BOT   IN_BOT2   IN_BOT   VCC   0   SN74LVC1G34
+
+;Gate Driver
+VDD_TOP  VDDT  0  5
+VDD_BOT  VDDB  0  5
+XDRV_TOP  IN_TOP   0   VDDT   Gtop   GtopN   0   LM5114A
+XDRV_BOT  IN_BOT   0   VDDB   Gbottom   GbottomN   0   LM5114A
+RNTOP GtopN Gtop 1.5
+RNBOT GbottomN Gbottom 1.5
+
+*----------------measurement-------------------
+.op
+.meas show_LF     PARAM L1
+.meas show_LMR     PARAM L2
+.meas show_Cpext  PARAM C1ext
+.meas show_RL     PARAM RL_phase
+.meas show_L1andL2     PARAM Ls2
+.meas show_C1andC2     PARAM Cs2
+.meas show_RLoad  PARAM {(Rload_tot*(pi**2))/8}
+
+;power
+;.meas Pavg INTEG I(Rload)*(V(N_Res)-V(N_Bot_Mid)) FROM {TSTOP-20*TPER} TO {TSTOP-10*TPER}
+;.meas Pavg INTEG I(Rtestload)*(V(Sec_r)-V(Sec_bot)) FROM {TSTOP-20*TPER} TO {TSTOP}
+.meas Pavg INTEG I(R_L)*V(Vout) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas Pin  INTEG I(V1)*V(in) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas eff PARAM (-Pavg/Pin)
+.meas siwtchloss1 INTEG Ix(xbottom:drain) *V(n_bot_mid) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas siwtchloss2 INTEG Ix(xtop:drain) *V(n_top_mid) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas D1loss INTEG I(D1) *(V(Sec_r)-V(vout)) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas D2loss INTEG I(D2) *(-V(Sec_r)) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas D3loss INTEG I(D3) *(V(Sec_bot)-V(vout)) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas D4loss INTEG I(D4) *(-V(Sec_bot)) FROM {TSTOP-50*TPER} TO {TSTOP}
+;.meas LFApower INTEG I(LFa) *(V(IN)-V(N_Top_Mid)) FROM {TSTOP-50*TPER} TO {TSTOP}
+;.meas LFBpower INTEG I(LFb) *(V(IN)-V(N_Bot_Mid)) FROM {TSTOP-50*TPER} TO {TSTOP}
+;.meas LMRapower INTEG I(LMRa) *(-V(Mid_Node)+V(N_Top_Mid)) FROM {TSTOP-50*TPER} TO {TSTOP}
+;.meas LMRbpower INTEG I(LMRb) *(-V(Mid_Node)+V(N_Bot_Mid)) FROM {TSTOP-50*TPER} TO {TSTOP}
+;.meas CMRpower INTEG I(CMR) *V(Mid_Node) FROM {TSTOP-50*TPER} TO {TSTOP}
+.meas Coil2power INTEG I(Rssec) *(-V(Sec_mid)+V(Sec_top)) FROM {TSTOP-50*TPER} TO {TSTOP}
+;.meas loadnetworkpower INTEG I(Lspri) *(-V(N_Res)+V(N_Top_Mid)) FROM {TSTOP-50*TPER} TO {TSTOP}
+
+.meas loss1 PARAM (-siwtchloss1/Pin)
+.meas loss2 PARAM (-siwtchloss2/Pin)
+.meas loss3 PARAM (-D1loss /Pin)
+.meas loss4 PARAM (-D2loss /Pin)
+.meas loss5 PARAM (-D3loss /Pin)
+.meas loss6 PARAM (-D4loss /Pin)
+;.meas loss7 PARAM (-LFApower/Pin)
+;.meas loss8 PARAM (-LFBpower/Pin)
+;.meas loss9 PARAM (-LMRapower/Pin)
+;.meas loss10 PARAM (-LMRbpower/Pin)
+;.meas loss11 PARAM (-CMRpower/Pin)
+;.meas loss12 PARAM (-Coil2power/Pin)
+;Vds
+;.meas Vds1max_static MAX V(N_Bot_Mid) FROM {TSTOP-20*TPER} TO {TSTOP}
+;.meas Vds2max_static MAX V(N_Top_Mid) FROM {TSTOP-20*TPER} TO {TSTOP}
+;.meas Vds1max_trans MAX V(N_Bot_Mid)
+;.meas Vds2max_trans MAX V(N_Top_Mid)
+
+;CMR
+;.meas VCMRmax_static MAX V(Mid_Node) FROM {TSTOP-20*TPER} TO {TSTOP}
+;.meas VCMRmax_trans MAX V(Mid_Node)
+
+;Cs1
+;.meas VCs1max_static MAX V(N_Top_Mid)-V(N_Cs1) FROM {TSTOP-20*TPER} TO {TSTOP}
+;.meas VCs1max_trans MAX V(N_Top_Mid)-V(N_Cs1)
+
+;Cs2
+;.meas VCs2max_static MAX V(Sec_mid )-V(Sec_r) FROM {TSTOP-20*TPER} TO {TSTOP}
+;.meas VCs2max_trans MAX V(Sec_mid )-V(Sec_r)
+
+.end
+
