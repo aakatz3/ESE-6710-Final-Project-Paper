@@ -33,7 +33,7 @@
 \newsavebox\verbVNA
 
 \newcommand*{\vna}{\usebox\verbVNA}
-\AtBeginDocument{
+\appto{\document}{
     \begin{lrbox}{\verbVNA}\verb|Keysight E5063A|\end{lrbox}
 }
 
