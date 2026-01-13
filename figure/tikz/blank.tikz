@@ -1,0 +1,12 @@
+% Save as .tex
+\documentclass{standalone}
+\usepackage{ninecolors}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\begin{document}
+	% Insert figure here
+    	\begin{tikzpicture}
+    
+  
+\end{tikzpicture}
+\end{document}
