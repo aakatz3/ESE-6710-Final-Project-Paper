@@ -279,7 +279,7 @@ The schematics, board layouts, and bills of materials can be seen in \cref{sec:a
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
 Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes. 
 \section{Simulation}
-Several rounds of simulation were performed, with measurement results\todo{finish} % TODO finish
+Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
 \subsection{SPICE Simulations}
 LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
 With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
@@ -729,7 +729,7 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
 \FloatBarrier
 \section{Conclusion}
 This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer system based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 39 W, and a peak efficiency of 90.5\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
-
+\subsection{Future Work}
 
 
 %\section{Resonant Tank Characterization}
