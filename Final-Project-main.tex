@@ -284,6 +284,45 @@ The primary design goal of the PCBs was to facilitate component variation for te
 The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
 Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes. 
+
+\begin{figure}[!t]
+    \centering
+    
+    \begin{subfigure}{0.96\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_a_voltages.eps}
+        \label{fig:wave_voltages}
+    \end{subfigure}
+    \vspace{-1mm}
+    \begin{subfigure}{0.96\linewidth}%0.48
+        \centering
+        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_b_Vs.eps}
+        \label{fig:wave_vs}
+    \end{subfigure}
+    \vspace{-1mm}
+    \begin{subfigure}{0.96\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_c_Is.eps}
+        \label{fig:wave_is}
+    \end{subfigure}
+%    \hfil
+    \vspace{-1mm}
+    \begin{subfigure}{0.96\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_d_Vr.eps}
+        \label{fig:wave_vr}
+    \end{subfigure}
+%    \hfil
+    \vspace{-1mm}    
+    \begin{subfigure}{0.96\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/SIMWAVEFORM/Fig_e_Ir.eps}
+        \label{fig:wave_ir}
+    \end{subfigure}
+    
+    \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
+    \label{fig:sim_waveforms}
+\end{figure}
 \section{Simulation}
 Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
 \subsection{SPICE Simulations}
