@@ -132,7 +132,7 @@ Once set, the coil seperation was not varied, but it was bounded between 1--2\un
 \section {Design Process}
 \label{sec:design}
 The converter is designed in multiple separate modules to facilitate bring-up, testing, and allow for easy variation of components and sub-systems.
-Accordingly, the converter is organized into four main functional modules, as shown in \cref{fig:converter-block}: a push–pull $\Phi_2$ converter, the wireless power transfer coils, the coil compensation capacitors, and a rectifier.
+Accordingly, the converter is organized into four main functional modules, as shown in \cref{fig:converter-block}: a push–pull $\Phi_2$ inverter, the wireless power transfer coils, the coil compensation capacitors, and a rectifier.
 Each module is physically implemented as an independent hardware unit.
 Within this modular architecture, the push–pull $\Phi_2$ stage shapes the input voltage applied to the resonant tank, the wireless power transfer coils enable contactless power transfer, the compensation capacitors resonate with the coil inductances to achieve impedance matching and optimize power transfer efficiency, and the rectifier converts the received ac power into dc to supply the load.
 While this work only details a single configuration of these modules, alternate versions of the inverter and rectifier modules were designed that can be explored in future work.
