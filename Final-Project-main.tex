@@ -176,7 +176,7 @@ Based on the closed-form design methodology of the push--pull $\Phi_2$ topology 
 Here, $R_L$ is modeled as the equivalent ac-side resistance of the rectifier and is set to \qty{50}{\ohm} to facilitate circuit tuning, experimental adjustment, data collection, and integration with any pre-existing RF components.
 $L_F$ is a design parameter and is chosen as $L_F = 5L_{\mathrm{MR}}$ in this design.
 
-The rectifier module adopts a voltage-mode full-bridge configuration, implemented using STPS360AF Schottky diodes.
+The rectifier module adopts a voltage-mode full-bridge configuration, implemented using \verb|STPS360AF| Schottky diodes.
 The junction capacitance of rectifier diodes causes the rectifier to exhibit a capacitive input impedance when viewed from the AC side, particularly under high-frequency operation. This behavior degrades the input power factor and can be compensated using inductive or reactive elements \cite{10833657}.
 A simulation-based experiment was conducted to examine the phase relationship between the rectifier input voltage and current. With a parallel inductance of $L_{\mathrm{LP}} = \qty{2.43}{\micro\henry}$ the rectifier input is observed to be approximately resistive.
 Following the design process outlined above, the component values employed in the circuit are summarized in \cref{tab:bom}.
