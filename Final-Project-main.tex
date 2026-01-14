@@ -285,6 +285,7 @@ The schematics, board layouts, and bills of materials can be seen in \cref{sec:a
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
 Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes. 
 
+\section{Simulation}
 \begin{figure}[!t]
     \centering
     
@@ -323,7 +324,6 @@ Different varients of the boards were assembled to allow for testing different c
     \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
     \label{fig:sim_waveforms}
 \end{figure}
-\section{Simulation}
 Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
 \subsection{SPICE Simulations}
 LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
