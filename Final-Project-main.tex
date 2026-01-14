@@ -261,10 +261,10 @@ where $k$ denotes the magnetic coupling coefficient between the transmitter and 
 The values of the implemented compensation capacitors are summarized in \cref{tab:bom}.
 
 Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
-Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of 1~inch must be greater than the target value $k$. 
+Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of \qty{1}{\inch} must be greater than the target value $k$. 
 This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies (\ref{eq:L2_coupled}), thereby minimizing conduction and resonant losses in the wireless power transfer system.
 In the practical implementation, two identical coupled inductors with an inductance of \qty{4.15}{\micro\henry} were fabricated and used as the transmitting and receiving coils. 
-For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
+For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds \qty{1}{\inch}.
 %\textcolor{red5}{\lipsum[9-10]}
 \begin{figure}[!tb]
     \centering
