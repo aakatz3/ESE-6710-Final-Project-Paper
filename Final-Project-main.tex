@@ -321,7 +321,17 @@ A hierarchical approach was generally used for the design of each PCB, where dif
 The primary design goal of the PCBs was to facilitate component variation for testing and to allow for easy measurement of component and operating parameters.
 The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
-Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes. 
+Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes.
+\begin{table*}[!thb]
+    \centering
+    \tiny
+    %    circuit,current,voltage,flux,inductance,impedance,power
+    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
+    {table/results/sims/femm/coils_v1_fixed.csv}{}%
+    {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
+    \caption{Circuit parameter results from Femm}
+    \label{tab:femm-results}
+\end{table*}
 \section{Simulation}
 Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
 \subsection{SPICE Simulations}
@@ -337,16 +347,6 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 2D cross-sections of the coils designed in \cref{sec:coils} were imported into FEMM \cite{femm} and simulated.
 Windings were removed until a seemingly reasonable inductance was achieved.
 A 3D solver would be preferred, but was out of scope for this initial round of design and proved problematic when use was attempted.
-\begin{table*}[!thb]
-    \centering
-    \tiny
-    %    circuit,current,voltage,flux,inductance,impedance,power
-    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
-    {table/results/sims/femm/coils_v1_fixed.csv}{}%
-    {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
-    \caption{Circuit parameter results from Femm}
-    \label{tab:femm-results}
-\end{table*}
 % Disable as not useful
 %\begin{figure}
 %    \centering
