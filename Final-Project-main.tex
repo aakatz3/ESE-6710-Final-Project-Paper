@@ -242,41 +242,6 @@ Following the design process outlined above, the component values employed in th
     \label{fig:coilmodel}
 \end{figure}
 \FloatBarrier
-\subsection{Coil Compensation}
-Wireless energy transfer is achieved through a pair of magnetically coupled inductors with identical self-inductance values, which are modeled as illustrated in \cref{fig:coilmodel}.
-In this model, $L_1$ and $L_2$ denote the self-inductances of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
-A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link, with two identical series-connected capacitors placed at the two terminals of each coil to ensure symmetry, as shown in \cref{fig:converter-overall-sch}. 
-The compensation capacitors $C_1$ and $C_2$ associated with $L_1$, and $C_3$ and $C_4$ associated with $L_2$, are designed to maximize efficiency using the expressions given in \cite{10833657}:
-\begin{equation}
-    C_{1,2} = \frac{2}{\omega_s^2 L_1} \qquad
-    C_{3,4}= \frac{2}{\omega_s^2 L_2}
-\end{equation}
-where $\omega_s$ denotes the angular switching frequency.
-For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{10833657}:
-\begin{equation}
-    L_2 \approx \frac{R_{L}}{k\omega_s}
-    \label{eq:L2_coupled}
-\end{equation}
-where $k$ denotes the magnetic coupling coefficient between the transmitter and receiver coils.
-The values of the implemented compensation capacitors are summarized in \cref{tab:bom}.
-
-Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
-Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of 1~inch must be greater than the target value $k$. 
-This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies (\ref{eq:L2_coupled}), thereby minimizing conduction and resonant losses in the wireless power transfer system.
-In the practical implementation, two identical coupled inductors with an inductance of $4.15~\mu\mathrm{H}$ were fabricated and used as the transmitting and receiving coils. 
-For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
-%\textcolor{red5}{\lipsum[9-10]}
-\begin{figure}[!tb]
-    \centering
-    \includegraphics[width=0.6\linewidth]{figure/mech/PCB-Mounting-View-crop.eps}
-    \caption{Diagram of attachment method of PCB to framing}
-    \label{fig:pcb-attach}
-\end{figure}
-\subsection{Mechanical Design}
-The test setup is based around a \qty{2}{\foot} long piece of \qty{40}{\milli\meter}\times\qty{20}{\milli\meter} T-slot extruded aluminum framing to allow for rigid fixturing and easy adjustment.
-All PCBs are attached to the framing via the method shown in \cref{fig:pcb-attach}.
-The PCB is attached to an acrylic mounting plate with M3-\qty{0.5}{\milli\meter}\times\qty{6}{\milli\meter} Button Head Cap Screws, \qty{12}{\milli\meter} standoffs, and M3 nuts (acting as spacers).
-The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\milli\meter}\times\qty{12}{\milli\meter} flanged button-head cap screws, with four Nylon Plastic Washers as spacers, into four self-aligning T-slotted framing nuts with M5 threads.
 \begin{figure}[!t]
     \centering
     
@@ -315,6 +280,41 @@ The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\mil
     \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
     \label{fig:sim_waveforms}
 \end{figure}
+\subsection{Coil Compensation}
+Wireless energy transfer is achieved through a pair of magnetically coupled inductors with identical self-inductance values, which are modeled as illustrated in \cref{fig:coilmodel}.
+In this model, $L_1$ and $L_2$ denote the self-inductances of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
+A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link, with two identical series-connected capacitors placed at the two terminals of each coil to ensure symmetry, as shown in \cref{fig:converter-overall-sch}. 
+The compensation capacitors $C_1$ and $C_2$ associated with $L_1$, and $C_3$ and $C_4$ associated with $L_2$, are designed to maximize efficiency using the expressions given in \cite{10833657}:
+\begin{equation}
+    C_{1,2} = \frac{2}{\omega_s^2 L_1} \qquad
+    C_{3,4}= \frac{2}{\omega_s^2 L_2}
+\end{equation}
+where $\omega_s$ denotes the angular switching frequency.
+For SS compensation, the inductance required to achieve minimum loss is related to the equivalent load resistance as derived in~\cite{10833657}:
+\begin{equation}
+    L_2 \approx \frac{R_{L}}{k\omega_s}
+    \label{eq:L2_coupled}
+\end{equation}
+where $k$ denotes the magnetic coupling coefficient between the transmitter and receiver coils.
+The values of the implemented compensation capacitors are summarized in \cref{tab:bom}.
+
+Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
+Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of 1~inch must be greater than the target value $k$. 
+This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies (\ref{eq:L2_coupled}), thereby minimizing conduction and resonant losses in the wireless power transfer system.
+In the practical implementation, two identical coupled inductors with an inductance of $4.15~\mu\mathrm{H}$ were fabricated and used as the transmitting and receiving coils. 
+For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds 1~inch.
+%\textcolor{red5}{\lipsum[9-10]}
+\begin{figure}[!tb]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figure/mech/PCB-Mounting-View-crop.eps}
+    \caption{Diagram of attachment method of PCB to framing}
+    \label{fig:pcb-attach}
+\end{figure}
+\subsection{Mechanical Design}
+The test setup is based around a \qty{2}{\foot} long piece of \qty{40}{\milli\meter}\times\qty{20}{\milli\meter} T-slot extruded aluminum framing to allow for rigid fixturing and easy adjustment.
+All PCBs are attached to the framing via the method shown in \cref{fig:pcb-attach}.
+The PCB is attached to an acrylic mounting plate with M3-\qty{0.5}{\milli\meter}\times\qty{6}{\milli\meter} Button Head Cap Screws, \qty{12}{\milli\meter} standoffs, and M3 nuts (acting as spacers).
+The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\milli\meter}\times\qty{12}{\milli\meter} flanged button-head cap screws, with four Nylon Plastic Washers as spacers, into four self-aligning T-slotted framing nuts with M5 threads.
 \subsection{Schematic Implementation \& PCB Layout}
 Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
 A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
