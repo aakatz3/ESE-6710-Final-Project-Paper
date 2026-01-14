@@ -113,6 +113,7 @@ From the start of the design to the conclusion of the project, some of the requi
 In particular, the requirements for using devices with under a \qty{60}{\volt} rating (or alternatively, must not let the voltage go above \qty{60}{\volt} across a given device) and having an input voltage greater than \qty{20}{\volt} were removed.
 Originally, \qty{6}{\mega\hertz}--\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur.
 Coil separation distance was measured from coil plane to coil plane (center of wire to center of wire).
+Once set, the coil seperation was not varied, but it was bounded between 1--2\unit{\inch}.
 
 \begin{table}[!ht]
     \centering
@@ -124,7 +125,7 @@ Coil separation distance was measured from coil plane to coil plane (center of w
         Input Voltage $V_\textrm{DC}$   & $\qty{>20}{\volt}$& \qty{25}{\volt} & \qty{18}{\volt} & \qty{28}{\volt}\\
         Switching Frequency $f_\textrm{s}$ 
         & \qty{6.78}{\mega\hertz} & \qty{6.78}{\mega\hertz} & \qty{6.7}{\mega\hertz} & \qty{6.9}{\mega\hertz}\\
-        Output Power $P_\textrm{o}$   & $\qty{>25}{\watt}$ & --- & --- & ---\\
+        Output Power $P_\textrm{o}$   & $\qty{>25}{\watt}$ & \qty{36.3839}{\watt} & \qty{18.5062}{\watt} & \qty{45.8289}{\watt}\\
         Coil Separation $d$ & $\qty{\ge1}{\inch}$& \qty{1.503}{\inch} & --- & ---  \\
         Efficiency $\eta$ & --- & --- & --- & \qty{90.5}{\percent} \\
         \bottomrule& 
