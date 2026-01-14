@@ -675,7 +675,12 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \fi
 
 
-
+\ifoptionfinal{
+    \newcommand{\lipsum}[1][]{}
+}{
+    \usepackage{mwe}
+    \usepackage{lipsum}
+}
 
 
 
