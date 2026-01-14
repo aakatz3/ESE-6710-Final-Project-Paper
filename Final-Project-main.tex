@@ -101,7 +101,7 @@ The push--pull structure distributes the input voltage across two switches, redu
 Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations, simplifying the design and ensuring reliable \unit{\mega\hertz}-frequency operation.
 In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
 Simulation and experimental results validate the design methodology and confirm that the implemented converter achieves efficient and reliable wireless power delivery at the specified operating conditions.
-This project demonstrates that the push--pull $\Phi_2$ topology is an effective solution for medium-power, MHz-frequency wireless power transfer applications.
+This project demonstrates that the push--pull $\Phi_2$ topology is an effective solution for medium-power, \unit{\mega\hertz}-frequency wireless power transfer applications.
 The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
 
 
@@ -113,7 +113,7 @@ From the start of the design to the conclusion of the project, some of the requi
 In particular, the requirements for using devices with under a \qty{60}{\volt} rating (or alternatively, must not let the voltage go above \qty{60}{\volt} across a given device) and having an input voltage greater than \qty{20}{\volt} were removed.
 Originally, \qty{6}{\mega\hertz}--\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur.
 Coil separation distance was measured from coil plane to coil plane (center of wire to center of wire).
-Once set, the coil seperation was not varied, but it was bounded between 1--2\unit{\inch}.
+Once set, the coil seperation was not varied, but it was bounded between 1--2\unit{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
 
 \begin{table}[!ht]
     \centering
