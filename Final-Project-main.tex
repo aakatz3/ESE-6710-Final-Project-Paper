@@ -296,7 +296,7 @@ Moreover, due to the suppression of the second-harmonic component, the voltage p
 From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
 After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
 In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicating that, with compensation provided by $L_{\mathrm{LP}}$, the rectifier can be effectively modeled as a resistive load, thereby mitigating the impact of its capacitive behavior on the resonant operation.
-\begin{figure}[!ht]
+\begin{figure}[]
     \centering
     
     \begin{subfigure}{0.9\linewidth}
@@ -354,7 +354,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 %    \caption{FEMM Simulation setup}
 %    \label{fig:femm-setup}
 %\end{figure}
-\begin{table*}[!bht]
+\begin{table*}[!bt]
     \centering
     \tiny
     %    circuit,current,voltage,flux,inductance,impedance,power
@@ -364,7 +364,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
     \caption{Circuit parameter results from Femm}
     \label{tab:femm-results}
 \end{table*}
-\begin{figure}[!b]
+\begin{figure}[!h]
     \centering
     \includegraphics[width=0.8\linewidth]{figure/results/sims/femm/coils_v1_fixed.eps}
     \caption{FEMM results, DC condition}
