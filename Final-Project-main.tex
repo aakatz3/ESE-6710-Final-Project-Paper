@@ -334,7 +334,18 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
     \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
     \label{fig:sim_waveforms}
 \end{figure}
-
+\begin{table*}[!bh]
+    \centering
+    \tiny
+    \begin{minipage}{0.8\linewidth}
+        %    circuit,current,voltage,flux,inductance,impedance,power
+        \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
+        {table/results/sims/femm/coils_v1_fixed.csv}{}%
+        {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
+    \end{minipage}
+    \caption{Circuit parameter results from Femm}
+    \label{tab:femm-results}
+\end{table*}
 %\begin{figure}[!t]
 %    \centering
 %    \includegraphics[width=0.8\columnwidth]{figure/sch/ads-resonant-tank-sch-crop.pdf}
@@ -354,18 +365,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 %    \caption{FEMM Simulation setup}
 %    \label{fig:femm-setup}
 %\end{figure}
-\begin{table*}[!bh]
-    \centering
-    \tiny
-    \begin{minipage}{0.8\linewidth}
-    %    circuit,current,voltage,flux,inductance,impedance,power
-    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
-    {table/results/sims/femm/coils_v1_fixed.csv}{}%
-    {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
-    \end{minipage}
-    \caption{Circuit parameter results from Femm}
-    \label{tab:femm-results}
-\end{table*}
+
 \begin{figure}[!h]
     \centering
     \includegraphics[width=0.8\linewidth]{figure/results/sims/femm/coils_v1_fixed.eps}
