@@ -278,10 +278,11 @@ The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\mil
 \subsection{Schematic Implementation \& PCB Layout}
 Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
 A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
-The primary design goal of the PCBs was to facilitate component variation for testing and to allow for easy measurement of component and operating parameters.
+The primary design goal of the PCBs was to facilitate component variation for testing, to allow fast serviceability, and to allow for easy measurement of component and operating parameters.
+Outside of minimizing loop area, size was not a design constraing.
 The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
-Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes.
+Different variants of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes.
 
 
 \section{Simulation}
@@ -445,6 +446,9 @@ Additional experiments were performed on each modular block of the converter, an
     \label{fig:waveforms_operating_point}
 \end{figure*}
 \todofix{PCB details} % TODO
+The PCBs were assembled with either an IR reflow process for the large boards, or a hotplate reflow process for the small boards.
+Through hole components were manually soldered. The required mechanical parts were attatched to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
+
 
 The scope, waveform generator, and spectrum analyzer (where applicable) were all supplied with the same 10MHz reference clock (generated from a \verb|Keysight 33521A|).
 After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
