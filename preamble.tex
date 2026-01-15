@@ -116,7 +116,8 @@
 % Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
 
 
-\usepackage[section]{placeins}
+%\usepackage[section]{placeins}
+\usepackage{placeins}
 
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \ifLuaTeX
@@ -675,7 +676,12 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \fi
 
 
-
+\ifoptionfinal{
+    \newcommand{\lipsum}[1][]{}
+}{
+    \usepackage{mwe}
+    \usepackage{lipsum}
+}
 
 
 

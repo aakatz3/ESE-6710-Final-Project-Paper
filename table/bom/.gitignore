@@ -1,0 +1,5 @@
+tably/
+*.log
+*.aux
+*.pdf
+*.gz

@@ -1,0 +1,124 @@
+{
+    "version": "0.1",
+    "components": [
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 0,
+                    "y": -79.37
+                },
+                {
+                    "x": 75.591,
+                    "y": -79.37
+                }
+            ],
+            "label": {
+                "value": "(1-k^2)L_1",
+                "otherSide": true,
+                "distance": "0.12cm"
+            },
+            "id": "cute inductor"
+        },
+        {
+            "type": "node",
+            "label": {
+                "value": "k\\sqrt{\\frac{L_1}{L_2}}\\colon1",
+                "anchor": "default",
+                "position": "default",
+                "distance": "0.12cm"
+            },
+            "position": {
+                "x": 115.275,
+                "y": -39.685
+            },
+            "id": "transformer",
+            "options": [
+                "cute"
+            ]
+        },
+        {
+            "type": "path",
+            "points": [
+                {
+                    "x": 154.961,
+                    "y": -79.37
+                },
+                {
+                    "x": 154.961,
+                    "y": 0
+                }
+            ],
+            "label": {
+                "value": "L_2",
+                "distance": "0.12cm"
+            },
+            "id": "cute inductor"
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 75.591,
+                    "y": 0
+                },
+                {
+                    "x": 0,
+                    "y": 0
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 154.961,
+                    "y": -79.37
+                },
+                {
+                    "x": 207.874,
+                    "y": -79.37
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [
+                {
+                    "x": 154.961,
+                    "y": 0
+                },
+                {
+                    "x": 207.874,
+                    "y": 0
+                }
+            ],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": [
+                "-|"
+            ]
+        },
+        {
+            "type": "wire",
+            "points": [],
+            "stroke": {
+                "width": "0.4pt"
+            },
+            "directions": []
+        }
+    ]
+}

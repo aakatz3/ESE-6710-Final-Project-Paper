@@ -1,0 +1,17 @@
+% !TeX encoding = utf8
+\documentclass{standalone}
+\usepackage{circuitikz}
+\usepackage[active]{preview}
+\PreviewEnvironment{tikzpicture}
+\begin{document}
+    % Insert figure here
+    \begin{tikzpicture}
+	% Paths, nodes and wires:
+	\draw (0, 2.1) to[cute inductor, l_={$(1-k^2)L_1$}] (2, 2.1);
+	\node[transformer, cute](N3) at (3.05, 1.05){} node[anchor=south] at (N3.text){$k\sqrt{\frac{L_1}{L_2}}\colon1$};
+	\draw (4.1, 2.1) to[cute inductor, l={$L_2$}] (4.1, -0);
+	\draw (2, -0) -- (0, -0);
+	\draw (4.1, 2.1) -- (5.5, 2.1);
+	\draw (4.1, -0) -- (5.5, -0);
+\end{tikzpicture}
+\end{document}
