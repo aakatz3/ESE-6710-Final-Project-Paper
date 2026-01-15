@@ -337,12 +337,13 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 \begin{table*}[!bh]
     \centering
 %    \tiny
-    \begin{minipage}{0.8\linewidth}
+\footnotesize
+%    \begin{minipage}{0.8\linewidth}
         %    circuit,current,voltage,flux,inductance,impedance,power
         \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
         {table/results/sims/femm/coils_v1_fixed.csv}{}%
         {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
-    \end{minipage}
+%    \end{minipage}
     \caption{Circuit parameter results from Femm}
     \label{tab:femm-results}
 \end{table*}
@@ -388,7 +389,7 @@ RF Simulations were conducted in Keysight ADS \cite{ads} and Cadence AWR Design 
 \end{figure}
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.7\columnwidth]{figure/results/sims/ads/resonant-tank-only-s2p-crop.pdf}
+    \includegraphics[width=0.6\columnwidth]{figure/results/sims/ads/resonant-tank-only-s2p-crop.pdf}
     \caption{ADS results of resonant tank simulation}
     \label{fig:ads-tank-results}
 \end{figure}
