@@ -289,6 +289,7 @@ Several rounds of simulation were performed in multiple different tools to creat
 \subsection{SPICE Simulations}
 LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
 With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
+\\
 Moreover, due to the suppression of the second-harmonic component, the voltage peak is limited to approximately $2V_{\mathrm{in}}$, which alleviates the voltage stress on the GaN FETs and reduces switching losses.
 From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
 After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
@@ -357,7 +358,7 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 \label{sec:em-sim}
 2D cross-sections of the coils designed in \cref{sec:coils} were imported into FEMM \cite{femm} and simulated.
 Windings were removed until a seemingly reasonable inductance was achieved.
-A 3D solver would be preferred, but was out of scope for this initial round of design and proved problematic when use was attempted.
+A 3D solver would be preferred, but was out of scope for this initial round of design.% and proved problematic when use was attempted.
 % Disable as not useful
 %\begin{figure}
 %    \centering
