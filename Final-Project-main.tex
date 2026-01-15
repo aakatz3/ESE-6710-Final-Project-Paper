@@ -285,7 +285,8 @@ Different varients of the boards were assembled to allow for testing different c
 
 
 \section{Simulation}
-Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
+Several rounds of simulation were performed in multiple different tools to create and verify the design.
+Incremental revisions were made to the simulations to incorporate additional data from measured parameters to more accurately calculate the performance and specific component values.
 \subsection{SPICE Simulations}
 LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
 With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
