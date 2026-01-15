@@ -23,7 +23,7 @@
 %\IEEEoverridecommandlockouts
 
 % TODO: Make sure final correct power is here
-\title{Modular \qty{35}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
+\title{Modular \qty{36}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
 
 \author{%
   \IEEEauthorblockN{Andrew Katz, Yiyu Lu}
@@ -780,6 +780,8 @@ This project presented the design and experimental implementation of a 6.78-MHz 
 More data should be collected, and the long term reliability of the converter needs to be tested.
 While preliminary thermal results appeared to be okay, the late stage failures during testing are most likely related to thermal problems.
 Different cooling systems should be investigated to allow for additional data collection, particularly across a wider operating range.
+Using a scope with more channels to analyze more parameters simultaniously would also help troubleshooting, as it's possible that some component limits were being briefly exceeded.
+Active control over the enable pin (instead of turning the supply voltage on and off) would likely also reduce the chance of component failure. 
 
 Additionally, the modular nature of the apparatus should be utilized in a future comparative study to test how different components effect the operation and efficiency of the converter, particularly with alternate semiconductor devices.
 The physical construction may also prove to be a useful foundation for more experiments with different coil geometries.
