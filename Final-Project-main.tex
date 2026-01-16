@@ -447,7 +447,8 @@ Additional experiments were performed on each modular block of the converter, an
 \end{figure*}
 \todofix{PCB details} % TODO
 The PCBs were assembled with either an IR reflow process for the large boards, or a hotplate reflow process for the small boards.
-Through hole components were manually soldered. The required mechanical parts were attatched to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
+Through hole components were manually soldered.
+The required mechanical parts were attached to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
 
 The scope, waveform generator, and spectrum analyzer (where applicable) were all supplied with the same 10MHz reference clock (generated from a \verb|Keysight 33521A|).
 After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
@@ -755,6 +756,12 @@ The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the f
 The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
 Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
+\subsubsection{Frequency Domain Results}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{plottings/fig_f_p_mr.eps}
+    \label{fig:spectrum}
+\end{figure}
 \subsubsection{Resonant Tank Results}
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
 \begin{figure}[]
@@ -943,26 +950,31 @@ All links were last followed on January 8, 2026.
 \begin{figure}[!htb]
     \centering
     \includegraphics[page=1,width=0.8\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{}
+    \caption{Top level schematic of the inverter}
 \end{figure}
 \begin{figure}[!htb]
     \centering
     \includegraphics[page=2,width=0.8\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{}
+    \caption{Gate Drivers for the inverter}
 \end{figure}
 \begin{figure}[!htb]
     \centering
     \includegraphics[page=3,width=0.8\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{}
+    \caption{PPT converter implementation}
 \end{figure}
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.8\linewidth]{figure/pcb_layout/inverter-pcb-crop.pdf}
-    \caption{}
+    \caption{PCB Layout of the inverter}
+\end{figure}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figure/photo/board/inverter.png}
+    \caption{Assembled inverter PCB}
 \end{figure}
 \begin{table}[!htb]
     \includestandalone{table/bom/BOM-inverter}
-    \caption{}
+    \caption{BOM of the inverter}
 \end{table}
 \FloatBarrier
 \subsection{Probe Capacitance Emulator}
