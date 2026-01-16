@@ -453,8 +453,8 @@ The scope, waveform generator, and spectrum analyzer (where applicable) were all
 After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
 Circuit voltages and currents were monitored using \verb|Keysight 10073D| and \verb|N2809A| passive probes, \verb|Keysight 1147B| current probes, and a \verb|Keysight MSO7034B| oscilloscope. 
 Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions.
-This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer. \todo{include in results section} % TODO
-Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.\todo{check notes, see if we did this} % TODO
+This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer.
+Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.
 
 To achieve a high coupling coefficient and quality factor, planar spiral coils were selected as the geometric structure for the coupled inductors.
 %Preliminary coil design was conducted using FEMM to ensure that, at the designed self-inductance values, a matched coupling coefficient $k$ can be achieved when the coil separation distance exceeds 1~inch. 
@@ -480,16 +480,22 @@ When the two coils have identical inductance values and a coupling coefficient $
 This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:single-coil}.
 
 With the \qty{50}{\ohm} RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the \qty{50}{\ohm} RF load was replaced with an inductively compensated rectifier, with a \texttt{Keysight 34143A} electronic load (set in constant resistance mode) the load for the rectifier.
-Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_o$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
+Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_\mathrm{load}$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
+
+The converter was first tested under nominal operating conditions ($f_s=\qty{6.78}{\mega\hertz}$, $D=0.32$, $V_{IN}=\qty{25}{\volt}$, $R_\mathrm{load}=\qty{61.685}{\ohm}$). Several waveforms were measured, which were also collected later in parametric sweeps to ensure that they had not changed.
+Then, several parametric studies were performed to assess the converter.
+Each parameter was swept independently.
+Load resistance ($R_\mathrm{load}$) was swept from \qty{50}{\ohm} to \qty{75}{\ohm}.
+Duty cycle ($D$) was swept from 0.3 to 0.4.
+Switching frequency ($f_s$) was swept from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}.
+Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 
 
-
-\todo{procedure extracted from results section} %TODO
 
 %\FloatBarrier
 \subsection{Results}
 \label{sec:results}
-Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_o = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
+Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
 \begin{figure*}[!t]
@@ -630,19 +636,19 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Ro/50.0R_MSO7034B.png}
-        \caption{$R_o = 50 \Omega$}
+        \caption{$R_\mathrm{load} = 50 \Omega$}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Ro/61.68502750680849R_MSO7034B.png}
-        \caption{$R_o = 61.685 \Omega$}
+        \caption{$R_\mathrm{load} = 61.685 \Omega$}
     \end{subfigure}
     \hfill
     \begin{subfigure}[t]{0.32\textwidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Ro/75.0R_MSO7034B.png}
-        \caption{$R_o = 75 \Omega$}
+        \caption{$R_\mathrm{load} = 75 \Omega$}
     \end{subfigure}
     
     \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.}
@@ -683,12 +689,12 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
     \begin{subfigure}[t]{0.48\columnwidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vout.eps}
-        \caption{$V_{\mathrm{out}}$ vs. $R_o$}
+        \caption{$V_{\mathrm{out}}$ vs. $R_\mathrm{load}$}
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.48\columnwidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Pout.eps}
-        \caption{$P_{\mathrm{out}}$ vs. $R_o$}
+        \caption{$P_{\mathrm{out}}$ vs. $R_\mathrm{load}$}
     \end{subfigure}
     
     \vspace{1mm}
@@ -696,24 +702,24 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
     \begin{subfigure}[t]{0.48\columnwidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Eff.eps}
-        \caption{$\eta$ vs. $R_o$}
+        \caption{$\eta$ vs. $R_\mathrm{load}$}
     \end{subfigure}\hfill
     \begin{subfigure}[t]{0.48\columnwidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vdsmax.eps}
-        \caption{$V_{\mathrm{ds,max}}$ vs. $R_o$}
+        \caption{$V_{\mathrm{ds,max}}$ vs. $R_\mathrm{load}$}
     \end{subfigure}
     
-    \caption{Measured and simulated results versus load resistance $R_o$.}
+    \caption{Measured and simulated results versus load resistance $R_\mathrm{load}$.}
     \label{fig:Rosweepcomparison}
 \end{figure}
-Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ ($18$--$28~\mathrm{V}$), $D$, $f_s$, and $R_o$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = 25~\mathrm{V}$ are shown in \cref{fig:vinsweepwave}. 
+Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ ($18$--$28~\mathrm{V}$), $D$, $f_s$, and $R_\mathrm{load}$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = 25~\mathrm{V}$ are shown in \cref{fig:vinsweepwave}. 
 It is observed that variations in $V_{\mathrm{in}}$ primarily affect the amplitudes of $v_{ds1}$ and $v_{ds2}$, while their waveform shapes remain largely unchanged.
 As shown in \cref{fig:vinsweepcomparison}, the simulated and experimental results exhibit good agreement in overall trend; however, the simulated output voltage $V_{\mathrm{out}}$, output power $P_{\mathrm{out}}$, and conversion efficiency $\eta$ are consistently higher than the measured values, primarily due to practical losses and voltage drops that are not fully captured in the simulation.
 As $V_{\mathrm{in}}$ increases, the maximum GAN FET drain-to-source voltage $v_{ds,\max}$ increases monotonically in both simulation and experiment, indicating a corresponding increase in the voltage amplitude applied to the load network. 
 Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $V_{\mathrm{in}}$.
 
-The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_o$ are fixed at their nominal values.
+The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_\mathrm{load}$ are fixed at their nominal values.
 The gate-drive signals and drain-to-source voltage waveforms of the GaN FETs for $D = 0.30$, $0.32$, and $0.40$ are shown in \cref{fig:Dsweepwaveform}. It can be observed that when $D$ exceeds the nominal value, the gate-drive signal begins to rise before $v_{ds}$ has fully resonated to zero, resulting in incomplete ZVS and increased switching losses. 
 Conversely, when $D$ is below the nominal value, $v_{ds}$ resonates to zero and subsequently oscillates upward, such that the device turns on with a nonzero drain-to-source voltage, again degrading the ZVS condition and increasing switching losses. 
 At nominal $D$, $v_{ds}$ is close to zero at the onset of device turn-on, resulting in near-optimal ZVS behavior and minimal switching loss.
@@ -732,7 +738,7 @@ In the experimental results, however, over the duty-cycle range of 0.3--0.4, the
 The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36, which is not observed experimentally, can be attributed to the duty-cycle-dependent influence on the $v_{ds}$ waveform discussed above.
 
 \indent
-Switching-frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_o$ are held constant.
+Switching frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_\mathrm{load}$ are held constant.
 The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of \qty{6.7}{\mega\hertz}, \qty{6.8}{\mega\hertz}, and \qty{6.9}{\mega\hertz} are shown in \cref{fig:frequencysweepwave}. 
 As $f_s$ deviates from the nominal operating point, the $v_{ds}$ waveforms become increasingly distorted.
 The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}. 
@@ -748,12 +754,12 @@ The efficiency remains approximately constant over this frequency range, which m
 %At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
 %Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
 \indent
-The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_o$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
-The drain-to-source voltage waveforms for $R_o = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
+The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
+The drain-to-source voltage waveforms for $R_\mathrm{load} = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
 The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
 The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
-It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_o$. 
-The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_o$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
+It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
+The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
 The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
 Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
