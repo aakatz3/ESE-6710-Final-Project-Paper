@@ -989,10 +989,28 @@ All links were last followed on January 8, 2026.
     \caption{Assembled inverter PCB}
 \end{figure}
 \begin{table}[!htb]
-    \includestandalone{table/bom/BOM-inverter}
+    \input{table/bom/BOM-inverter}
     \caption{BOM of the inverter}
 \end{table}
 \FloatBarrier
+\subsection{Coil Interface}
+\begin{figure}
+    content...
+\end{figure}
+\begin{figure}
+    content...
+\end{figure}
+\begin{figure}
+    content...
+\end{figure}
+\begin{figure}
+    content...
+\end{figure}
+\begin{table}
+    \centering
+    \input{table/bom/BOM-CoilInterface.pdf}
+    \caption{BOM for TX and RX configurations of the coil interface}
+\end{table}
 \subsection{Probe Capacitance Emulator}
 
 
@@ -1013,6 +1031,21 @@ All links were last followed on January 8, 2026.
     \label{fig:pcb:probe-capacitance-emulator}
 \end{figure}
 
+\begin{figure}[!htb]
+    \centering
+    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
+    \hfil
+    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0012_edit.PNG}\label{fig:board:probe-capacitance-emulator:rear}}
+    
+    \caption{
+        \centering
+        Assembled probe capacitance emulator:\quad
+        (a) Front
+        (b) Back
+    }
+    \label{fig:cap-em}
+\end{figure}
+
 \begin{table}[!htb]
     \centering
     \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
@@ -1022,20 +1055,7 @@ All links were last followed on January 8, 2026.
     \label{tab:bom:probe-capacitance-emulator}
 \end{table}
 
-\begin{figure}[!htb]
-    \centering
-    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
-    \hfil
-    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0012_edit.PNG}\label{fig:board:probe-capacitance-emulator:rear}}
-   
-    \caption{
-        \centering
-        Assembled probe capacitance emulator:\quad
-        (a) Front
-        (b) Back
-    }
-    \label{fig:cap-em}
-\end{figure}
+
 \FloatBarrier
 \subsection{SMA to Wago}
 \label{sec:pcb:sma-wago}
