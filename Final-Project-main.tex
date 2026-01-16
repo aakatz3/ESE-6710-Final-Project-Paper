@@ -764,7 +764,7 @@ Therefore, these results should be considered preliminary and powers relative to
 While the reference level of the spectrum analyzer is potentially incorrect, a lack of equipment prevented any calibration of the reference level to confirm accuracy.
 These results should mainly be used to see the harmonics present at each point measured in the circuit.
 The multiresonant point, 
-\begin{figure}[!h]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.8\linewidth]{plottings/fig_f_p_mr.eps}
     \label{fig:spectrum}
@@ -772,19 +772,20 @@ The multiresonant point,
 \end{figure}
 \subsubsection{Resonant Tank Results}
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
-\begin{figure}[!t]
+The resonant frequency was found to align very closely, and the resonant tank was found to match the designed characteristic impedance of the system.
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/S11-Crop.eps}
     \caption{S11 and impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S11}
 \end{figure}
-\begin{figure}[!h]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_Z11-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-Z11}
 \end{figure}
-\begin{figure}[!h]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_S21-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
