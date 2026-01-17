@@ -21,7 +21,7 @@
 % See https://bytefreaks.net/tag/ieeeoverridecommandlockouts for details.
 %\IEEEoverridecommandlockouts
 
-% TODO: Make sure final correct power is here
+
 \title{Modular \qty{36}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
 
 \author{%
@@ -405,7 +405,7 @@ Additional experiments were performed on each modular block of the converter, an
     \caption{Full assembly of the converter\quad (a) Front View\quad (b) Side View}
 \end{figure}
 \subsection{Setup and Procedure}
-%\todofix{PCB details} % TODO
+
 The PCBs were assembled with either an IR reflow process for the large boards, or a hotplate reflow process for the small boards.
 Through hole components were manually soldered.
 The required mechanical parts were attached to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
@@ -423,7 +423,9 @@ To achieve a high coupling coefficient and quality factor, planar spiral coils w
 The coils were mounted on acrylic fixtures to maintain mechanical stability, and mirrored geometries and identical turn counts were employed for the transmitter and receiver coils to ensure closely matched self-inductances.
 The initial design of the coils matched that of the computer simulation.
 The self-inductance of each coil was measured with a \vna; fine adjustment of the number of turns was performed to bring the measured inductance values close to the design targets.
-The initial and final configurations are listed in \cref{sec:coils}; an example of one of the coils is shown in \cref{fig:single-coil}.
+The number of windings was reduced from 8 to 5 turns by removing the two innermost and one outermost winding.
+An example of one of the coils is shown in \cref{fig:single-coil}.
+ 
 % TODO table or what about number of windings, and values. 
 \begin{figure}[!htb]
     \centering
@@ -1097,6 +1099,43 @@ All links were last followed on January 8, 2026.
         \caption{BOM for TX and RX configurations of the coil interface}
     \end{table}
     \FloatBarrier
+    
+    \subsection{Rectifier}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=1,width=0.78\linewidth]{figure/sch/Rectifier-SCH.pdf}
+        \caption{Rectifier, STPS360AF varient (used)}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=2,width=0.78\linewidth]{figure/sch/Rectifier-SCH.pdf}
+        \caption{Rectifier, RB058LAM100TFTR varient (not used)}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\linewidth]{figure/pcb_layout/Rectifier-PCB.pdf}
+        \caption{PCB Layout of the rectifier}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/RX.png}}
+        \hfil
+        \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/TX.png}}
+        \caption{
+            \centering
+            Assembled coil interface:\quad
+            (a) RX
+            (b) TX
+        }
+    \end{figure}
+    \begin{table}[H]
+        \centering
+        \input{table/bom/BOM-CoilInterface.tex}
+        \caption{BOM for TX and RX configurations of the coil interface}
+    \end{table}
+    \FloatBarrier
+    
     \subsection{Probe Capacitance Emulator}
     
     
