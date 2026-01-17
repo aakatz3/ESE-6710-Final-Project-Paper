@@ -3,6 +3,8 @@ on:
     branches:
     - main
     - overleaf
+  workflow_dispatch:
+    
 jobs:
   latex:
     runs-on: ubuntu-latest
