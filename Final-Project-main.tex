@@ -594,68 +594,70 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
 
 \begin{figure*}[!t]
     \centering
-    
-    \begin{subfigure}[t]{0.32\linewidth}
+    \begin{minipage}{\linewidth}
+        \begin{subfigure}[t]{0.32\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/0.3_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/0.32_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/0.4000000000000001_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured drain--source voltages and gate-drive voltages of the GaN FETs at different duty cycles.\\
+            (a)\; $D = 0.3$\quad
+            (b)\; $D = 0.32$\quad
+            (c)\; $D = 0.4$
+        }
+        \label{fig:Dsweepwaveform}
+    \end{minipage}
+    \begin{minipage}{\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/0.3_MSO7034B.png}
-        \caption{}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/0.32_MSO7034B.png}
-        \caption{}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/0.4000000000000001_MSO7034B.png}
-        \caption{}
-    \end{subfigure}
-    
-    \caption{\centering
-        Measured drain--source voltages and gate-drive voltages of the GaN FETs at different duty cycles.\\
-        (a)\; $D = 0.3$\quad
-        (b)\; $D = 0.32$\quad
-        (c)\; $D = 0.4$
-    }
-    \label{fig:Dsweepwaveform}
+        \begin{subfigure}[t]{0.22\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfil
+        \begin{subfigure}[t]{0.22\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Pout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfil
+        \begin{subfigure}[t]{0.22\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Eff.eps}
+            \caption{}
+        \end{subfigure}
+        \hfil
+        \begin{subfigure}[t]{0.22\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vdsmax.eps}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured and simulated results versus duty cycles $D$.\\
+            (a)\; $V_{\mathrm{out}}$ vs. $D$\quad
+            (b)\; $P_{\mathrm{out}}$ vs. $D$\quad
+            (c)\; $\eta$ vs. $D$\quad
+            (d)\; $V_{\mathrm{ds,max}}$ vs. $D$
+        }
+        \label{fig:Dsweepcomparison}
+    \end{minipage}
 \end{figure*}
-\begin{figure*}[!t]
-    \centering
-    \begin{subfigure}[t]{0.22\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vout.eps}
-        \caption{}
-    \end{subfigure}
-    \hfil
-    \begin{subfigure}[t]{0.22\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Pout.eps}
-        \caption{}
-    \end{subfigure}
-    \hfil
-    \begin{subfigure}[t]{0.22\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Eff.eps}
-        \caption{}
-    \end{subfigure}
-    \hfil
-    \begin{subfigure}[t]{0.22\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vdsmax.eps}
-        \caption{}
-    \end{subfigure}
-    
-    \caption{\centering
-        Measured and simulated results versus duty cycles $D$.\\
-        (a)\; $V_{\mathrm{out}}$ vs. $D$\quad
-        (b)\; $P_{\mathrm{out}}$ vs. $D$\quad
-        (c)\; $\eta$ vs. $D$\quad
-        (d)\; $V_{\mathrm{ds,max}}$ vs. $D$
-    }
-    \label{fig:Dsweepcomparison}
-\end{figure*}
+
 
 
 \FloatBarrier
