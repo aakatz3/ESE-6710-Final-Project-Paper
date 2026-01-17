@@ -445,6 +445,13 @@ When the two coils have identical inductance values and a coupling coefficient $
 This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:both-coils}.
 % TODO Add image that has both coils
 
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.6\linewidth]{figure/photo/coil_pair}
+    \caption{Both coils attached to the framing}
+    \label{fig:both-coils}
+\end{figure}
+
 With the \qty{50}{\ohm} RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the \qty{50}{\ohm} RF load was replaced with an inductively compensated rectifier, with a \texttt{Keysight 34143A} electronic load (set in constant resistance mode) the load for the rectifier.
 Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_\mathrm{load}$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
 
@@ -992,7 +999,7 @@ All links were last followed on January 8, 2026.
         \input{table/bom/BOM-inverter}
         \caption{BOM of the inverter}
     \end{table}
-    \FloatBarrier
+%    \FloatBarrier
     \subsection{Coil Interface}
     \begin{figure}[H]
         \centering
