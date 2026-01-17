@@ -117,7 +117,9 @@
 
 
 %\usepackage[section]{placeins}
-\usepackage{placeins}
+%\usepackage{placeins}
+%\usepackage[section,above,below]{placeins}
+\usepackage[section,above,below,verbose]{placeins}
 
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \ifLuaTeX
@@ -435,7 +437,6 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 % Nicer tables (\toprule, \midrule, \bottomrule)
 \usepackage{booktabs}
-\usepackage{longtable}
 \usepackage{colortbl}
 \usepackage{makecell}
 \usepackage{csvsimple}
@@ -480,7 +481,8 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \usepackage{dcolumn}  % Ausrichtung an Komma oder Punkt
 
 %%% Doc: http://mirror.ctan.org/tex-archive/macros/latex/contrib/supertabular/supertabular.pdf
-%\usepackage{supertabular}
+% longtable does not work in multicolumn
+\usepackage{supertabular}
 
 %%% Fussnoten/Endnoten ===================================================
 
@@ -720,5 +722,4 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 \usepackage{standalone}
 \usepackage{multicol}
-%\usepackage{appendix}
 \AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
