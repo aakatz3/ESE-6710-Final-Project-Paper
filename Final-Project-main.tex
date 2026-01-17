@@ -9,9 +9,9 @@
 % !TeX TXS-program:compile = txs:///lualatex/[-shell-escape]
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
-
+%draft,onecolumn
 %nofonttune,9.5pt
-\documentclass[journal,letterpaper,english,final]{IEEEtran}[2015/08/26]
+\documentclass[journal, 9pt,letterpaper,english,final]{IEEEtran}[2015/08/26]
 \input{preamble}
 
 \begin{document}
@@ -23,7 +23,7 @@
 %\IEEEoverridecommandlockouts
 
 % TODO: Make sure final correct power is here
-\title{Modular \qty{35}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
+\title{Modular \qty{36}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
 
 \author{%
   \IEEEauthorblockN{Andrew Katz, Yiyu Lu}
@@ -65,7 +65,7 @@
 \begin{abstract}
 \pdfbookmark[1]{Abstract}{Abstract} 
 This project implements a $\mathbf{\qty{6.78}{\mega\hertz}}$ wireless power transfer converter based on a push--pull $\symbf{\Phi_2}$ topology. 
-The converter operates from a $\mathbf{\qty{25}{\volt}}$ dc input and delivers $\mathbf{\qty{35}{\watt}}$ output power with high efficiency.
+The converter operates from a $\mathbf{\qty{25}{\volt}}$ DC input and delivers $\mathbf{\qty{35}{\watt}}$ output power with high efficiency.
 The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\unit{\mega\hertz}}$ frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
 \end{abstract}
 
@@ -100,7 +100,7 @@ The schematic of the proposed converter is shown in \cref{fig:converter-overall-
 
 \section{Specifications}
 
-The required specifications (which were relaxed since the project started and was due) and the achieved specifications are summarized in \cref{tab:specifications}.
+The required specifications and the achieved specifications are summarized in \cref{tab:specifications}.
 From the start of the design to the conclusion of the project, some of the required specifications were changed.
 In particular, the requirements for using devices with under a \qty{60}{\volt} rating (or alternatively, must not let the voltage go above \qty{60}{\volt} across a given device) and having an input voltage greater than \qty{20}{\volt} were removed.
 Originally, \qty{6}{\mega\hertz}--\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur.
@@ -154,9 +154,6 @@ Coils were then designed in SOLIDWORKS\textregistered~\cite{solidworks}, with ma
     \verb|14H240|
 \end{verbbox}
 The coil supports were assembled and installed onto the closed corner brackets, and the coils were wound with \qty{14}{\awg} Polyimide coated magnet wire (P/N \href{https://www.remingtonindustries.com/magnet-wire/magnet-wire-240-c-14-awg-polyimide-6-spool-sizes-available/}{\verbBox}).
-\begin{lrbox}{\myVerb}
-    
-\end{lrbox}
 Individual coil impedance was measured using a \verb|Keysight E4980AL|,
 which showed that the electromagnetic simulations (\cref{sec:em-sim}) were in the correct order of magnitude but would require further tweaking.
 The distance was tweaked and the inductance was measured using a \vna{} vector network analyzer.
@@ -241,7 +238,6 @@ Following the design process outlined above, the component values employed in th
     \caption{Coil model for compensation analysis, from \cite{10833657}}
     \label{fig:coilmodel}
 \end{figure}
-\FloatBarrier
 \subsection{Coil Compensation}
 Wireless energy transfer is achieved through a pair of magnetically coupled inductors with identical self-inductance values, which are modeled as illustrated in \cref{fig:coilmodel}.
 In this model, $L_1$ and $L_2$ denote the self-inductances of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
@@ -281,17 +277,20 @@ The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\mil
 \subsection{Schematic Implementation \& PCB Layout}
 Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
 A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
-The primary design goal of the PCBs was to facilitate component variation for testing and to allow for easy measurement of component and operating parameters.
+The primary design goal of the PCBs was to facilitate component variation for testing, to allow fast serviceability, and to allow for easy measurement of component and operating parameters.
+Outside of minimizing loop area, size was not a design constraing.
 The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
-Different varients of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes.
+Different variants of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes.
 
 
 \section{Simulation}
-Several rounds of simulation were performed in multiple different tools to create and verify the design\todo{finish} % TODO finish
+Several rounds of simulation were performed in multiple different tools to create and verify the design.
+Incremental revisions were made to the simulations to incorporate additional data from measured parameters to more accurately calculate the performance and specific component values.
 \subsection{SPICE Simulations}
 LTspice simulations were conducted to validate the circuit design, with the complete simulation netlist included in \cref{Spicenetlist}.
 With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
+\\
 Moreover, due to the suppression of the second-harmonic component, the voltage peak is limited to approximately $2V_{\mathrm{in}}$, which alleviates the voltage stress on the GaN FETs and reduces switching losses.
 From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
 After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
@@ -360,7 +359,7 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 \label{sec:em-sim}
 2D cross-sections of the coils designed in \cref{sec:coils} were imported into FEMM \cite{femm} and simulated.
 Windings were removed until a seemingly reasonable inductance was achieved.
-A 3D solver would be preferred, but was out of scope for this initial round of design and proved problematic when use was attempted.
+A 3D solver would be preferred, but was out of scope for this initial round of design.% and proved problematic when use was attempted.
 % Disable as not useful
 %\begin{figure}
 %    \centering
@@ -445,13 +444,17 @@ Additional experiments were performed on each modular block of the converter, an
     \caption{Measured waveforms at the nominal operating point.}
     \label{fig:waveforms_operating_point}
 \end{figure*}
-\todofix{PCB details}
+\todofix{PCB details} % TODO
+The PCBs were assembled with either an IR reflow process for the large boards, or a hotplate reflow process for the small boards.
+Through hole components were manually soldered.
+The required mechanical parts were attached to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
+
 The scope, waveform generator, and spectrum analyzer (where applicable) were all supplied with the same 10MHz reference clock (generated from a \verb|Keysight 33521A|).
 After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
 Circuit voltages and currents were monitored using \verb|Keysight 10073D| and \verb|N2809A| passive probes, \verb|Keysight 1147B| current probes, and a \verb|Keysight MSO7034B| oscilloscope. 
 Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions.
-This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer. \todo{include in results section}
-Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.\todo{check notes, see if we did this}
+This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer. \todo{include in results section} % TODO
+Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.\todo{check notes, see if we did this} % TODO
 
 To achieve a high coupling coefficient and quality factor, planar spiral coils were selected as the geometric structure for the coupled inductors.
 %Preliminary coil design was conducted using FEMM to ensure that, at the designed self-inductance values, a matched coupling coefficient $k$ can be achieved when the coil separation distance exceeds 1~inch. 
@@ -476,10 +479,12 @@ As the resonent tank was designed for a \qty{50}{\ohm} source and load, an addit
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a \qty{50}{\ohm} RF load to the secondary results in an equivalent \qty{50}{\ohm} impedance measured from the primary side.
 This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:single-coil}.
 
-With the \qty{50}{\ohm} RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the \qty{50}{\ohm} RF load was replaced with an inductively compensated rectifier, with a Keysight 34143A electronic load used as the resistive load.
+With the \qty{50}{\ohm} RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the \qty{50}{\ohm} RF load was replaced with an inductively compensated rectifier, with a \texttt{Keysight 34143A} electronic load (set in constant resistance mode) the load for the rectifier.
 Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_o$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
 
-\todo{procedure extracted from results section}
+
+
+\todo{procedure extracted from results section} %TODO
 
 %\FloatBarrier
 \subsection{Results}
@@ -727,8 +732,8 @@ In the experimental results, however, over the duty-cycle range of 0.3--0.4, the
 The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36, which is not observed experimentally, can be attributed to the duty-cycle-dependent influence on the $v_{ds}$ waveform discussed above.
 
 \indent
-Switching-frequency variation is investigated by sweeping $f_s$ from 6.7~MHz to 6.9~MHz, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_o$ are held constant.
-The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of 6.7~MHz, 6.78~MHz, and 6.9~MHz are shown in \cref{fig:frequencysweepwave}. 
+Switching-frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_o$ are held constant.
+The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of \qty{6.7}{\mega\hertz}, \qty{6.8}{\mega\hertz}, and \qty{6.9}{\mega\hertz} are shown in \cref{fig:frequencysweepwave}. 
 As $f_s$ deviates from the nominal operating point, the $v_{ds}$ waveforms become increasingly distorted.
 The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}. 
 A close agreement between the experimental measurements and simulation results is observed over the entire frequency range. 
@@ -752,33 +757,56 @@ The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the f
 The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
 Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
+\subsubsection{Frequency Domain Results}
+For results obtained from the spectrum analyzer, all signals were passed through an attenuation, a 10X passive scope probe (with \qty{1}{\mega\ohm} series resistor), a \qty{20}{\dB} LNA, a \texttt{Keysight N2791A} differential probe, or some combination of the former.
+Therefore, these results should be considered preliminary and powers relative to each other.
+While the reference level of the spectrum analyzer is potentially incorrect, a lack of equipment prevented any calibration of the reference level to confirm accuracy.
+These results should mainly be used to see the harmonics present at each point measured in the circuit.
+The multiresonant point was found to have the highest spectral power at $\qty{13.5655}{\mega\hertz}$, which matches the expected value of $\qty{13.56}{\mega\hertz}$.
+The spectral power at $V_{D_{AB}}$ was measured and shows a significant reduction in power at the second harmonic, with relatively high power at the first and third harmonic.
+
+\begin{figure}[!b]
+    \centering
+    \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_mr.eps}
+    \label{fig:spectrum_mr}
+    \caption{$P_{MR}$, with 10X passive scope probe, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Apparent attenuation of \qty{72.833}{\dB}, figure uncorrected.}
+\end{figure}
+\begin{figure}[!b]
+    \centering
+    \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_ds.eps}
+    \label{fig:spectrum_VPRI}
+    \caption{$P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected.}.
+\end{figure}
+\FloatBarrier
 \subsubsection{Resonant Tank Results}
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
-\begin{figure}[]
+The resonant frequency was found to align very closely, and the resonant tank was found to match the designed characteristic impedance of the system.
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/S11-Crop.eps}
     \caption{S11 and impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S11}
 \end{figure}
-\begin{figure}[]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_Z11-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-Z11}
 \end{figure}
-\begin{figure}[]
+\begin{figure}[!b]
     \centering
     \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_S21-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S21}
 \end{figure}
-\FloatBarrier
 \section{Conclusion}
 This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer converter based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 35 W, and a peak efficiency of 91.2\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
 \subsection{Future Work}
 More data should be collected, and the long term reliability of the converter needs to be tested.
 While preliminary thermal results appeared to be okay, the late stage failures during testing are most likely related to thermal problems.
 Different cooling systems should be investigated to allow for additional data collection, particularly across a wider operating range.
+Using a scope with more channels to analyze more parameters simultaniously would also help troubleshooting, as it's possible that some component limits were being briefly exceeded.
+Active control over the enable pin (instead of turning the supply voltage on and off) would likely also reduce the chance of component failure.
 
 Additionally, the modular nature of the apparatus should be utilized in a future comparative study to test how different components effect the operation and efficiency of the converter, particularly with alternate semiconductor devices.
 The physical construction may also prove to be a useful foundation for more experiments with different coil geometries.
@@ -921,10 +949,10 @@ All links were last followed on January 8, 2026.
     \footnotesize\verb|pushpullphi2_new.sp|
 \end{verbbox}
 \lstinputlisting[language=spice,label=lst:maininc,caption={{\verbBox} SPICE Netlist for converter simulation}] {listing/pushpullphi2_new.sp}
-\section{Python Programs}
-\lipsum[1]
-\section{MATLAB Programs}
-\lipsum[1]
+%\section{Python Programs}
+%\lipsum[1]
+%\section{MATLAB Programs}
+%\lipsum[1]
 \section{Physical Schematics, Bills of Materials, PCB Layouts, \& Assembled Boards}
 \label{sec:appendix:pcb}
 \begin{figure}[!h]
@@ -937,27 +965,67 @@ All links were last followed on January 8, 2026.
 \subsection{Inverter}
 \begin{figure}[!htb]
     \centering
-    \includegraphics[page=1,width=0.8\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{}
+    \includegraphics[page=1,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
+    \caption{Top level schematic of the inverter}
 \end{figure}
 \begin{figure}[!htb]
     \centering
-    \includegraphics[page=2,width=0.8\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{}
+    \includegraphics[page=2,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
+    \caption{Gate Drivers for the inverter}
 \end{figure}
 \begin{figure}[!htb]
     \centering
-    \includegraphics[page=3,width=0.8\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{}
+    \includegraphics[page=3,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
+    \caption{PPT converter implementation}
 \end{figure}
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.8\linewidth]{figure/pcb_layout/inverter-pcb-crop.pdf}
-    \caption{}
+    \caption{PCB Layout of the inverter}
+\end{figure}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figure/photo/board/inverter.png}
+    \caption{Assembled inverter PCB}
 \end{figure}
 \begin{table}[!htb]
-    \includestandalone{table/bom/BOM-inverter}
-    \caption{}
+    \centering
+    \input{table/bom/BOM-inverter}
+    \caption{BOM of the inverter}
+\end{table}
+\FloatBarrier
+\subsection{Coil Interface}
+\begin{figure}[H]
+    \centering
+    \includegraphics[page=1,width=0.78\linewidth]{figure/sch/Coil-Interface-SCH.pdf}
+    \caption{Schematic of the coil interface, receiver side (RX)}
+\end{figure}
+\begin{figure}[H]
+        \centering
+    \includegraphics[page=2,width=0.78\linewidth]{figure/sch/Coil-Interface-SCH.pdf}
+    \caption{Schematic of the coil interface, transmitter side (TX)}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{figure/pcb_layout/Coil-Interface-PCB.pdf}
+    \caption{PCB Layout of the coil interface}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/RX.png}\label{fig:board:RX}}
+    \hfil
+    \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/TX.png}\label{fig:board:TX}}
+    \caption{
+        \centering
+        Assembled coil interface:\quad
+        (a) RX
+        (b) TX
+    }
+\end{figure}
+\begin{table}[H]
+    \centering
+    \input{table/bom/BOM-CoilInterface.tex}
+    \caption{BOM for TX and RX configurations of the coil interface}
 \end{table}
 \FloatBarrier
 \subsection{Probe Capacitance Emulator}
@@ -965,10 +1033,8 @@ All links were last followed on January 8, 2026.
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[trim=4.5in 3.75in 4in 3.5in, clip, width=0.5\linewidth]{figure/sch/capacitance-emulator-sch.pdf}
-    % TODO setup with verbbox
-    
-    \caption{Schematic of probe capacitance emulator to emulate the effect of a Keysight 10073D passive probe, Cal Test Electronics CT2708, and a Mini-Circuits SM-BF50+}
+    \includegraphics[trim=4.5in 3.75in 4in 3.5in, clip, width=0.5\linewidth]{figure/sch/capacitance-emulator-sch.pdf}    
+    \caption{Schematic of probe capacitance emulator to emulate the effect of a \texttt{Keysight 10073D} passive probe, \texttt{Cal Test Electronics CT2708}, and a \texttt{Mini-Circuits SM-BF50+}}
     \label{fig:sch:probe-capacitance-emulator}
 \end{figure}
 
@@ -980,6 +1046,21 @@ All links were last followed on January 8, 2026.
     \label{fig:pcb:probe-capacitance-emulator}
 \end{figure}
 
+\begin{figure}[!htb]
+    \centering
+    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
+    \hfil
+    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0012_edit.PNG}\label{fig:board:probe-capacitance-emulator:rear}}
+    
+    \caption{
+        \centering
+        Assembled probe capacitance emulator:\quad
+        (a) Front
+        (b) Back
+    }
+    \label{fig:cap-em}
+\end{figure}
+
 \begin{table}[!htb]
     \centering
     \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
@@ -989,20 +1070,7 @@ All links were last followed on January 8, 2026.
     \label{tab:bom:probe-capacitance-emulator}
 \end{table}
 
-\begin{figure}[!htb]
-    \centering
-    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
-    \hfil
-    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0012_edit.PNG}\label{fig:board:probe-capacitance-emulator:rear}}
-   
-    \caption{
-        \centering
-        Assembled probe capacitance emulator:\quad
-        (a) Front
-        (b) Back
-    }
-    \label{fig:cap-em}
-\end{figure}
+
 \FloatBarrier
 \subsection{SMA to Wago}
 \label{sec:pcb:sma-wago}
@@ -1032,7 +1100,7 @@ All links were last followed on January 8, 2026.
     }
     \label{fig:board_sma-wago}
 \end{figure}
-
+\FloatBarrier
 \section{Other Content}
 \raggedright
 

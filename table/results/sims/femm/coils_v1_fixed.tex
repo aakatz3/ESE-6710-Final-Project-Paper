@@ -1,11 +1,25 @@
+% !TeX program = luatex
 \documentclass{standalone}
 \usepackage{booktabs}
 \usepackage{siunitx}
+\usepackage{amsmath}
+\interdisplaylinepenalty=2500 
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{lualatex-math}
+\usepackage{xfrac}
+\usepackage{mdwmath}
+\usepackage{cases}
+\usepackage{bm}
+\usepackage{unicode-math}
+\usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
+\sisetup{propagate-math-font = true}
+
 \begin{document}
 	\centering
 	\begin{tabular}{cccccccc}
 		\toprule
-        Coil &  Frequency $\mathbf{\unit{\mega\hertz}}$ &  Current $\mathbf{\unit{\ampere}}$ &  Voltage $\mathbf{\unit{\volt}}$ &  Flux Linkage $\mathbf{\unit{\weber}}$ &  Inductance $\mathbf{\unit{\henry}}$ &  DC Resistance $\mathbf{\unit{\ohm}}$ &  Power $\mathbf{\unit{\watt}}$\\
+        \textbf{Coil} &  \textbf{Frequency} $\mathbf{\unit{\mega\hertz}}$ &  \textbf{Current} $\mathbf{\unit{\ampere}}$ &  \textbf{Voltage} $\mathbf{\unit{\volt}}$ &  \textbf{Flux Linkage} $\mathbf{\unit{\weber}}$ &  \textbf{Inductance} $\mathbf{\unit{\henry}}$ &  \textbf{Impedance Ω} &  \textbf{Power} $\mathbf{\unit{\watt}}$\\
         \midrule
 		TX & 0 & 0.8 & 0.01171 & 2.853e-06 & 3.566e-06 & 0.01463 & 0.009366 \\
 		RX & 0 & 0 & 0 & 1.119e-06 & -- & -- & 0 \\
