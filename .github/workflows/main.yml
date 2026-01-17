@@ -20,7 +20,8 @@ jobs:
         latexmk_use_lualatex: true
         latexmk_shell_escape: true
         args: -pdf -bibtex -file-line-error -halt-on-error -interaction=nonstopmode
-    - name: Upload PDF file
+    - name: Upload compile artifacts
+      if: always()
       uses: actions/upload-artifact@v6
       with:
         name: Artifacts
