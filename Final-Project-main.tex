@@ -747,16 +747,6 @@ The efficiency remains approximately constant over this frequency range, which m
 
 
 \subsubsection{Parametric Sweep, $R_\mathrm{load}$}
-The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
-The drain-to-source voltage waveforms for $R_\mathrm{load} = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
-The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
-The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
-It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
-The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
-The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
-Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
-Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
-
 \begin{figure*}[!b]
     \begin{minipage}{\linewidth}
         \centering
@@ -787,6 +777,7 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
         }
         \label{fig:Rosweepwaveform}
     \end{minipage}
+    \vspace{\floatsep}
     \begin{minipage}{\linewidth}
         \centering
         \begin{subfigure}[t]{0.24\linewidth}
@@ -823,6 +814,17 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
         \label{fig:Rosweepcomparison}
     \end{minipage}
 \end{figure*}
+The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
+The drain-to-source voltage waveforms for $R_\mathrm{load} = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
+The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
+The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
+It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
+The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
+The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
+Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
+Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
+
+
 \FloatBarrier
 \subsubsection{Frequency Domain Results}
 % Reference the figures
