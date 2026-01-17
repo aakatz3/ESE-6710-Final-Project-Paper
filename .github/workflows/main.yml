@@ -21,8 +21,8 @@ jobs:
     - name: Upload PDF file
       uses: actions/upload-artifact@v6
       with:
-        name: PDF
-        path: Final-Project-main.pdf
-        name: logfile
-        path: Final-Project-main.log
+        name: Artifacts
+        path: |
+          Final-Project-main.pdf
+          Final-Project-main.log
         
