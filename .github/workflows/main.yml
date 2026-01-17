@@ -15,7 +15,7 @@ jobs:
       with:
           format: pdf
           filename: Final-Project-main.tex
-          options: -shell-escape -bibtex
+          options: -shell-escape -bibtex -pvc -lualatex -verbose
     - name: Upload compile artifacts
       if: always()
       uses: actions/upload-artifact@v6
