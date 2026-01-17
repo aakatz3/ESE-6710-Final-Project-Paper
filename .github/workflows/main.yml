@@ -14,12 +14,11 @@ jobs:
       uses: xu-cheng/latex-action@4.0.0
       with:
         root_file: Final-Project-main.tex
-        texlive_version: 2025
+        texlive_version: latest
         os: debian
         extra_system_packages: "inkscape ghostscript"
-        latexmk_use_lualatex: true
         latexmk_shell_escape: true
-        args: -pdf -bibtex -file-line-error -interaction=nonstopmode
+        args: -pdf -f -lualatex -verbose -bibtex -file-line-error -interaction=nonstopmode
     - name: Upload compile artifacts
       if: always()
       uses: actions/upload-artifact@v6
