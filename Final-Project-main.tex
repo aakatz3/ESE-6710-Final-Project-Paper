@@ -443,7 +443,7 @@ With the compensation capacitors in place, impedance measurements were repeated 
 As the resonent tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a \qty{50}{\ohm} RF load to the secondary results in an equivalent \qty{50}{\ohm} impedance measured from the primary side.
 This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:both-coils}.
-% TODO Add image that has both coils
+
 
 \begin{figure}[!htb]
     \centering
@@ -502,21 +502,21 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
 \begin{figure*}[!t]
     \centering
     
-    \begin{subfigure}[t]{0.2\linewidth}
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
-        \includegraphics[width=\columnwidth]{plottings/Vin/18.0V_MSO7034B.png}
+        \includegraphics[width=\linewidth]{plottings/Vin/18.0V_MSO7034B.png}
         \caption{$V_{\mathrm{in}} = 18\,\mathrm{V}$}
     \end{subfigure}
     \hfil
-    \begin{subfigure}[t]{0.3\columnwidth}
+    \begin{subfigure}[t]{0.32\columnwidth}
         \centering
-        \includegraphics[width=\columnwidth]{plottings/Vin/25.0V_MSO7034B.png}
+        \includegraphics[width=\linewidth]{plottings/Vin/25.0V_MSO7034B.png}
         \caption{$V_{\mathrm{in}} = 25\,\mathrm{V}$}
     \end{subfigure}
     \hfil
-    \begin{subfigure}[t]{0.3\columnwidth}
+    \begin{subfigure}[t]{0.32\columnwidth}
         \centering
-        \includegraphics[width=\columnwidth]{plottings/Vin/28.0V_MSO7034B.png}
+        \includegraphics[width=\linewidth]{plottings/Vin/28.0V_MSO7034B.png}
         \caption{$V_{\mathrm{in}} = 28\,\mathrm{V}$}
     \end{subfigure}
     
