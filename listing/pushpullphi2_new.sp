@@ -81,7 +81,7 @@ LFb IN N_Bot_Mid {L1}
 LMRb N_Bot_Mid Mid_Node {L2}
 CMR Mid_Node 0 {2*C2}
 
-; switches
+;switches
 Xtop N_Top_Mid Gtop 0 IGB110S101_L1
 Xbottom N_Bot_Mid Gbottom 0 IGB110S101_L1
 Cpa N_Top_Mid 0 {C1ext}
@@ -89,7 +89,7 @@ Cpb N_Bot_Mid 0 {C1ext}
 DZ1 0  N_Top_Mid  DRB168LAM100TF
 DZ2 0  N_Bot_Mid  DRB168LAM100TF
 
-*Load Network
+;Load Network
 Cspri N_Top_Mid N_Cs1 {Cs2}
 Lspri N_Cs1 N_Res {Ls2*(1-k**2)} Rser={coilesr}
 ;Lspri N_Cs1 N_Res {Ls2}
@@ -138,7 +138,7 @@ XDRV_BOT  IN_BOT   0   VDDB   Gbottom   GbottomN   0   LM5114A
 RNTOP GtopN Gtop 1.5
 RNBOT GbottomN Gbottom 1.5
 
-*----------------measurement-------------------
+;----------------measurement-------------------
 .op
 .meas show_LF     PARAM L1
 .meas show_LMR     PARAM L2
