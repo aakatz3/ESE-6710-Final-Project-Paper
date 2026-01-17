@@ -15,7 +15,7 @@ jobs:
       with:
           format: pdf
           filename: article.tex
-          options: -shell-escape bibtex
+          options: -shell-escape -bibtex
     - name: Upload compile artifacts
       if: always()
       uses: actions/upload-artifact@v6
