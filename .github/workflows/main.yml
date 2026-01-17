@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+    - main
+    - overleaf
+  workflow_dispatch:
+    
+jobs:
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: GitHub Action for LaTeX
+      uses: hspaans/latexmk-action@v2.1.0
+      with:
+          format: pdf
+          filename: Final-Project-main.tex
+          options: -shell-escape -bibtex -lualatex -verbose
+    - name: Upload compile artifacts
+      if: always()
+      uses: actions/upload-artifact@v6
+      with:
+        name: Artifacts
+        path: |
+          Final-Project-main.pdf
+          Final-Project-main.log
+        
