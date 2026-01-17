@@ -64,7 +64,7 @@
 \begin{abstract}
 \pdfbookmark[1]{Abstract}{Abstract} 
 This project implements a $\mathbf{\qty{6.78}{\mega\hertz}}$ wireless power transfer converter based on a push--pull $\symbf{\Phi_2}$ topology. 
-The converter operates from a $\mathbf{\qty{25}{\volt}}$ DC input and delivers $\mathbf{\qty{35}{\watt}}$ output power with high efficiency.
+The converter operates from a $\mathbf{\qty{25}{\volt}}$ DC input and delivers $\mathbf{\qty{36}{\watt}}$ output power with high efficiency.
 The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\unit{\mega\hertz}}$ frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
 \end{abstract}
 
@@ -85,13 +85,14 @@ The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\un
     \caption{Theoretical circuit of the converter}
     \label{fig:converter-overall-sch}
 \end{figure*}
-This final project presents the design and implementation of a \qty{6.78}{\mega\hertz} push--pull $\Phi_2$ wireless power transfer converter operating from a \qty{25}{\volt} dc input and delivering \qty{35}{\watt} to the load.
+This final project presents the design and implementation of a \qty{6.78}{\mega\hertz} push--pull $\Phi_2$ wireless power transfer converter operating from a \qty{25}{\volt} dc input and delivering \qty{36}{\watt} to the load.
 The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
 The push--pull $\Phi_2$ topology is chosen for its suitability for \unit{\mega\hertz}-frequency operation. 
 The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at \qty{6.78}{\mega\hertz}.
 The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a \qty{25}{\volt} input. 
 Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations, simplifying the design and ensuring reliable \unit{\mega\hertz}-frequency operation.
 In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
+The disadvantages of the design are the physical size, circuit complexity, and higher cost compared to simpler designs such as Class D or Class E based WPT solutions.
 Both simulation and hardware experimental results confirm that the implemented converter achieves efficient and reliable wireless power delivery under the specified operating conditions and demonstrate that the push–pull $\Phi_2$ topology is an effective solution for medium-power, \unit{\mega\hertz}-frequency wireless power transfer applications.
 The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
 
@@ -773,9 +774,9 @@ The efficiency remains approximately constant over this frequency range, which m
         
         \caption{\centering
             Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.\\
-            (a)\; $R_\mathrm{load} = 50 \Omega$\quad
-            (b)\; $R_\mathrm{load} = 61.685 \Omega$\quad
-            (c)\; $R_\mathrm{load} = 75 \Omega$
+            (a)\; $R_\mathrm{load} = \qty{50}{\ohm}$\quad
+            (b)\; $R_\mathrm{load} = \qty{61.685}{\ohm}$\quad
+            (c)\; $R_\mathrm{load} = \qty{75}{\ohm}$
         }
         \label{fig:Rosweepwaveform}
     \end{minipage}
