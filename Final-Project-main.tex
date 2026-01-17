@@ -406,33 +406,6 @@ Additional experiments were performed on each modular block of the converter, an
     \caption{Full assembly of the converter\quad (a) Front View\quad (b) Side View}
 \end{figure}
 \subsection{Setup and Procedure}
-\begin{figure*}[!t]
-    \centering
-    
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalvdsvg.png}
-        \caption{Drain--source voltages $v_{ds1}(t)$, $v_{ds2}(t)$ and gate-drive voltages $v_{g1}(t)$, $v_{g2}(t)$ of the GaN FETs.}
-        \label{fig:vds_operating_point}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominaltank.png}
-        \caption{Input and output voltages and currents of the resonant tank.}
-        \label{fig:resonant_operating_point}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalripple.png}
-        \caption{Input and Output Voltage and Current Ripples}
-        \label{fig:ripple_operating_point}
-    \end{subfigure}
-    
-    \caption{Measured waveforms at the nominal operating point.}
-    \label{fig:waveforms_operating_point}
-\end{figure*}
 %\todofix{PCB details} % TODO
 The PCBs were assembled with either an IR reflow process for the large boards, or a hotplate reflow process for the small boards.
 Through hole components were manually soldered.
@@ -488,13 +461,40 @@ Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 %\FloatBarrier
 \subsection{Results}
 \label{sec:results}
+\begin{figure*}[!t]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalvdsvg.png}
+        \caption{Drain--source voltages $v_{ds1}(t)$, $v_{ds2}(t)$ and gate-drive voltages $v_{g1}(t)$, $v_{g2}(t)$ of the GaN FETs.}
+        \label{fig:vds_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominaltank.png}
+        \caption{Input and output voltages and currents of the resonant tank.}
+        \label{fig:resonant_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalripple.png}
+        \caption{Input and Output Voltage and Current Ripples}
+        \label{fig:ripple_operating_point}
+    \end{subfigure}
+    
+    \caption{Measured waveforms at the nominal operating point.}
+    \label{fig:waveforms_operating_point}
+\end{figure*}
 Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
 \begin{figure*}[!t]
     \centering
     
-    \begin{subfigure}[t]{0.3\columnwidth}
+    \begin{subfigure}[t]{0.2\linewidth}
         \centering
         \includegraphics[width=\columnwidth]{plottings/Vin/18.0V_MSO7034B.png}
         \caption{$V_{\mathrm{in}} = 18\,\mathrm{V}$}
