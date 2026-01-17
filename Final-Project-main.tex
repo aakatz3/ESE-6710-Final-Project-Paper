@@ -221,13 +221,13 @@ Following the design process outlined above, the component values employed in th
 \begin{figure}[!tb]
     \centering
 %    \includegraphics[width=0.4\linewidth]{figure/sch/model.pdf}
-    \includestandalone{figure/tikz/transformer_coil_model}
+    \input{figure/tikz/transformer_coil_model}
     \caption{Coil model for compensation analysis, from \cite{10833657}}
     \label{fig:coilmodel}
 \end{figure}
 \subsection{Coil Compensation}
 Wireless energy transfer is achieved through a pair of magnetically coupled inductors with identical self-inductance values, which are modeled as illustrated in \cref{fig:coilmodel}.
-In this model, $L_1$ and $L_2$ denote the self-inductances of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
+In this model, $L_1$ and $L_2$ denote the self-inductance of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
 A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link, with two identical series-connected capacitors placed at the two terminals of each coil to ensure symmetry, as shown in \cref{fig:converter-overall-sch}. 
 The compensation capacitors $C_1$ and $C_2$ associated with $L_1$, and $C_3$ and $C_4$ associated with $L_2$, are designed to maximize efficiency using the expressions given in \cite{10833657}:
 \begin{equation}
