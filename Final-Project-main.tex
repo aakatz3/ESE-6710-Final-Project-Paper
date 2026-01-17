@@ -680,6 +680,72 @@ The efficiency remains approximately constant over this frequency range, which m
 %The trend of efficiency can be attributed to variations in soft-switching conditions and resonant-network impedance with switching frequency. 
 %At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
 %Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
+\begin{figure*}[!t]
+    \begin{minipage}{\linewidth}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/6700000.0Hz_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/6780000.0Hz_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/6900000.0Hz_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+         \caption{\centering
+             Measured drain--source voltages and gate-drive voltages of the GaN FETs at different switching frequencies.\\
+             (a)\; $f_s = 6.7\,\mathrm{Mhz}$\quad
+             (b)\; $f_s = 6.78\,\mathrm{Mhz}$\quad
+             (c)\;$f_s = 6.9\,\mathrm{Mhz}$
+         }
+        \label{fig:frequencysweepwave}
+    \end{minipage}
+    \vspace{\floatsep}
+    \begin{minipage}{\linewidth}
+        \centering
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Pout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Eff.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vdsmax.eps}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured and simulated results versus switching frequency $f_s$.\\
+            (a)\; $V_{\mathrm{out}}$ vs. $f_s$\quad
+            (b)\; $P_{\mathrm{out}}$ vs. $f_s$\quad
+            (c)\; $\eta$ vs. $f_s$\quad
+            (d)\; $V_{\mathrm{ds,max}}$ vs. $f_s$
+        }
+        \label{fig:frequencysweepcomparison}
+    \end{minipage}
+\end{figure*}
+
+
 \subsubsection{Parametric Sweep, $R_\mathrm{load}$}
 The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
 The drain-to-source voltage waveforms for $R_\mathrm{load} = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
@@ -690,112 +756,72 @@ The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the f
 The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
 Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
-\begin{figure*}[!t]
-    \centering
-    
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/6700000.0Hz_MSO7034B.png}
-        \caption{$f_s = 6.7\,\mathrm{Mhz}$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/6780000.0Hz_MSO7034B.png}
-        \caption{$f_s = 6.78\,\mathrm{Mhz}$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/6900000.0Hz_MSO7034B.png}
-        \caption{$f_s = 6.9\,\mathrm{Mhz}$}
-    \end{subfigure}
-    
-    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different switching frequencies.}
-    \label{fig:frequencysweepwave}
-\end{figure*}
-\begin{figure}[!t]
-    \centering
-    
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/50.0R_MSO7034B.png}
-        \caption{$R_\mathrm{load} = 50 \Omega$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/61.68502750680849R_MSO7034B.png}
-        \caption{$R_\mathrm{load} = 61.685 \Omega$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/75.0R_MSO7034B.png}
-        \caption{$R_\mathrm{load} = 75 \Omega$}
-    \end{subfigure}
-    
-    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.}
-    \label{fig:Rosweepwaveform}
-\end{figure}
-\begin{figure}[!t]
-    \centering
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vout.eps}
-        \caption{$V_{\mathrm{out}}$ vs. $f_s$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Pout.eps}
-        \caption{$P_{\mathrm{out}}$ vs. $f_s$}
-    \end{subfigure}
-    
-    \vspace{1mm}
-    
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Eff.eps}
-        \caption{$\eta$ vs. $f_s$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vdsmax.eps}
-        \caption{$V_{\mathrm{ds,max}}$ vs. $f_s$}
-    \end{subfigure}
-    
-    \caption{Measured and simulated results versus switching frequency $f_s$.}
-    \label{fig:frequencysweepcomparison}
-\end{figure}
 
 \begin{figure}[!t]
-    \centering
-    \begin{subfigure}[t]{0.48\columnwidth}
+    \begin{minipage}{\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vout.eps}
-        \caption{$V_{\mathrm{out}}$ vs. $R_\mathrm{load}$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
+        
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/50.0R_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/61.68502750680849R_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/75.0R_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.\\
+            (a)\; $R_\mathrm{load} = 50 \Omega$\quad
+            (b)\; $R_\mathrm{load} = 61.685 \Omega$\quad
+            (c)\; $R_\mathrm{load} = 75 \Omega$
+        }
+        \label{fig:Rosweepwaveform}
+    \end{minipage}
+    \begin{minipage}{\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Pout.eps}
-        \caption{$P_{\mathrm{out}}$ vs. $R_\mathrm{load}$}
-    \end{subfigure}
-    
-    \vspace{1mm}
-    
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Eff.eps}
-        \caption{$\eta$ vs. $R_\mathrm{load}$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vdsmax.eps}
-        \caption{$V_{\mathrm{ds,max}}$ vs. $R_\mathrm{load}$}
-    \end{subfigure}
-    
-    \caption{Measured and simulated results versus load resistance $R_\mathrm{load}$.}
-    \label{fig:Rosweepcomparison}
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Pout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Eff.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vdsmax.eps}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured and simulated results versus load resistance $R_\mathrm{load}$.\\
+            (a)\; $V_{\mathrm{out}}$ vs. $R_\mathrm{load}$\quad
+            (b)\; $P_{\mathrm{out}}$ vs. $R_\mathrm{load}$\quad
+            (c)\; $\eta$ vs. $R_\mathrm{load}$\quad
+            (d)\; $V_{\mathrm{ds,max}}$ vs. $R_\mathrm{load}$
+        }
+        \label{fig:Rosweepcomparison}
+    \end{minipage}
 \end{figure}
 
 \subsubsection{Frequency Domain Results}
