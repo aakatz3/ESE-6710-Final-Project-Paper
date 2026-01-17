@@ -494,12 +494,11 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 % Proper positioning of double column floats; incompatible with stfloats
 \usepackage{dblfloatfix}
-\fnbelowfloat
 
 % EN: Extended support for footnotes
 % DE: Fußnoten
 %
-%\usepackage{dblfnote}  %Zweispaltige Fußnoten
+\usepackage{dblfnote}  %Zweispaltige Fußnoten
 %
 % Keine hochgestellten Ziffern in der Fußnote (KOMA-Script-spezifisch):
 %\deffootnote[1.5em]{0pt}{1em}{\makebox[1.5em][l]{\bfseries\thefootnotemark}}
@@ -515,9 +514,9 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 % DE: Fußnoten immer ganz unten auf einer \raggedbottom-Seite
 % DE: fnpos kommt aus dem yafoot package
-%\usepackage{fnpos}
-%\makeFNbelow
-%\makeFNbottom
+\usepackage{fnpos}
+\makeFNbelow
+\makeFNbottom
 
 
 %
