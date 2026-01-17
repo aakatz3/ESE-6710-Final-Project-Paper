@@ -15,9 +15,11 @@ jobs:
       with:
         root_file: Final-Project-main.tex
         texlive_version: 2025
+        os: debian
         extra_system_packages: "inkscape ghostscript"
         latexmk_use_lualatex: true
         latexmk_shell_escape: true
+        args: -pdf -bibtex -file-line-error -halt-on-error -interaction=nonstopmode
     - name: Upload PDF file
       uses: actions/upload-artifact@v6
       with:
