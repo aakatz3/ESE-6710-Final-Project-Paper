@@ -18,6 +18,8 @@ jobs:
         os: debian
         extra_system_packages: "inkscape ghostscript"
         latexmk_shell_escape: true
+        continue_on_error: true
+        pre_compile: "tlmgr update --self && tlmgr update --all"
         args: -pdf -f -lualatex -verbose -bibtex -file-line-error -interaction=nonstopmode
     - name: Upload compile artifacts
       if: always()
