@@ -833,42 +833,46 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
 For results obtained from the spectrum analyzer, all signals were passed through an attenuation, a 10X passive scope probe (with \qty{1}{\mega\ohm} series resistor), a \qty{20}{\dB} LNA, a \texttt{Keysight N2791A} differential probe, or some combination of the former.
 Therefore, these results should be considered preliminary and powers relative to each other.
 While the reference level of the spectrum analyzer is potentially incorrect, a lack of equipment prevented any calibration of the reference level to confirm accuracy.
-These results should mainly be used to see the harmonics present at each point measured in the circuit.
+These results should mainly be used to see the harmonics present at each point measured in the circuit. The multiresonant point spectrum can be seen in \cref{fig:spectrum_mr}.
 The multiresonant point was found to have the highest spectral power at $\qty{13.5655}{\mega\hertz}$, which matches the expected value of $\qty{13.56}{\mega\hertz}$.
 The spectral power at $V_{D_{AB}}$ was measured and shows a significant reduction in power at the second harmonic, with relatively high power at the first and third harmonic.
+This spectrum is shown in \cref{fig:spectrum_VD}.
 
-\begin{figure}[!b]
+\begin{figure}[]
     \centering
     \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_mr.eps}
     \label{fig:spectrum_mr}
     \caption{$P_{MR}$, with 10X passive scope probe, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Apparent attenuation of \qty{72.833}{\dB}, figure uncorrected.}
 \end{figure}
-\begin{figure}[!b]
+\begin{figure}[]
     \centering
     \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_ds.eps}
-    \label{fig:spectrum_VPRI}
+    \label{fig:spectrum_VD}
     \caption{$P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected.}.
 \end{figure}
 \FloatBarrier
 \subsubsection{Resonant Tank Results}
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
 The resonant frequency was found to align very closely, and the resonant tank was found to match the designed characteristic impedance of the system.
-%TODO Reference figures and explain them
-\begin{figure}[!b]
+The smith chart in \cref{awr-S11} shows that there is little imaginary coefficient in the impedance of the resonant tank, and the impedance is close to \qty{50}{\ohm}, indicating a good RF match.
+The $|Z11|$ measurement in \cref{fig:awr-Z11} shows that \qty{6.78}{\mega\hertz} is extremely close to our resonant frequency.
+The $S21$ measurement in \cref{fig:awr-S21} shows that there is decent coupling around \qty{6.78}{\mega\hertz}, with relatively minimal losses.
+
+\begin{figure}[]
     \centering
     \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/S11-crop.eps}
     \caption{S11 and impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S11}
 \end{figure}
-\begin{figure}[!b]
+\begin{figure}[]
     \centering
-    \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_Z11-crop.eps}
+    \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/db_Z11-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-Z11}
 \end{figure}
-\begin{figure}[!b]
+\begin{figure}[]
     \centering
-    \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_S21-crop.eps}
+    \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/db_S21-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S21}
 \end{figure}
@@ -1131,7 +1135,7 @@ All links were last followed on January 8, 2026.
     \end{figure}
     \begin{table}[H]
         \centering
-%  todo insert      \input{table/bom/BOM-Rectifier.tex}
+        \input{table/bom/BOM-Rectifier.tex}
         \caption{BOM for the rectifier}
     \end{table}
     \FloatBarrier
