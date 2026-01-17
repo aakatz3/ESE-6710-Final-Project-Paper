@@ -463,6 +463,7 @@ The coils were mounted on acrylic fixtures to maintain mechanical stability, and
 The initial design of the coils matched that of the computer simulation.
 The self-inductance of each coil was measured with a \vna; fine adjustment of the number of turns was performed to bring the measured inductance values close to the design targets.
 The initial and final configurations are listed in \cref{sec:coils}; an example of one of the coils is shown in \cref{fig:single-coil}.
+% TODO table or what about number of windings, and values. 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=0.6\linewidth]{figure/photo/single_coil}
@@ -477,7 +478,8 @@ After the compensation capacitors were implemented in hardware, each individual 
 With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at \qty{6.78}{\mega\hertz}, indicating proper resonance.
 As the resonent tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a \qty{50}{\ohm} RF load to the secondary results in an equivalent \qty{50}{\ohm} impedance measured from the primary side.
-This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:single-coil}.
+This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:both-coils}.
+% TODO Add image that has both coils
 
 With the \qty{50}{\ohm} RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the \qty{50}{\ohm} RF load was replaced with an inductively compensated rectifier, with a \texttt{Keysight 34143A} electronic load (set in constant resistance mode) the load for the rectifier.
 Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_\mathrm{load}$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
