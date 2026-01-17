@@ -491,30 +491,30 @@ Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
-\begin{figure*}[!t]
+\begin{figure}[!t]
     \centering
     
-    \begin{subfigure}[t]{0.32\textwidth}
+    \begin{subfigure}[t]{0.3\columnwidth}
         \centering
-        \includegraphics[width=\linewidth]{plottings/Vin/18.0V_MSO7034B.png}
+        \includegraphics[width=0.3\columnwidth]{plottings/Vin/18.0V_MSO7034B.png}
         \caption{$V_{\mathrm{in}} = 18\,\mathrm{V}$}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
+    \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{plottings/Vin/25.0V_MSO7034B.png}
+        \includegraphics[width=0.3\columnwidth]{plottings/Vin/25.0V_MSO7034B.png}
         \caption{$V_{\mathrm{in}} = 25\,\mathrm{V}$}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
+    \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=\linewidth]{plottings/Vin/28.0V_MSO7034B.png}
+        \includegraphics[width=0.3\columnwidth]{plottings/Vin/28.0V_MSO7034B.png}
         \caption{$V_{\mathrm{in}} = 28\,\mathrm{V}$}
     \end{subfigure}
     
     \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different input voltages.}
     \label{fig:vinsweepwave}
-\end{figure*}
+\end{figure}
 \begin{figure*}[!t]
     \centering
     
