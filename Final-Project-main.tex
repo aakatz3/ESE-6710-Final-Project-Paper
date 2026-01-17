@@ -362,11 +362,14 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
     \label{fig:femm-results}
 \end{figure}
 
-\begin{table*}[!h]
+\begin{table}[!h]
     \centering
     %    \tiny
     \footnotesize
-    \includestandalone{table/results/sims/femm/coils_v1_fixed}
+    \begin{minipage}{0.8\linewidth}
+        \includestandalone{table/results/sims/femm/coils_v1_fixed}
+    \end{minipage}
+    
     %    circuit,current,voltage,flux,inductance,impedance,power
     %    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
     %    {table/results/sims/femm/coils_v1_fixed.csv}{}%
@@ -376,7 +379,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
     
     \caption{Circuit parameter results from Femm}
     \label{tab:femm-results}
-\end{table*}
+\end{table}
 
 
 \subsection{RF Simulations}
