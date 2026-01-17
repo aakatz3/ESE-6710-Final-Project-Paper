@@ -502,7 +502,6 @@ Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
-% TODO Check and adjust figure layout
 \begin{figure*}[!t]
     \centering
     
@@ -581,7 +580,7 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
     \label{fig:vinsweepcomparison}
 \end{figure}
 
-\begin{figure*}[!t]
+\begin{figure}[!t]
     \centering
     \begin{subfigure}[t]{0.48\columnwidth}
         \centering
@@ -609,7 +608,7 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
     
     \caption{Measured and simulated results versus duty cycles $D$.}
     \label{fig:Dsweepcomparison}
-\end{figure*}
+\end{figure}
 
 \begin{figure*}[!t]
     \centering
