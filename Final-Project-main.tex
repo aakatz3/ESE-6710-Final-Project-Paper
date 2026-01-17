@@ -658,7 +658,36 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
     }
     \label{fig:Dsweepcomparison}
 \end{figure*}
+
+
 \FloatBarrier
+
+\subsubsection{Parametric Sweep, $f_s$}
+Switching frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_\mathrm{load}$ are held constant.
+The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of \qty{6.7}{\mega\hertz}, \qty{6.8}{\mega\hertz}, and \qty{6.9}{\mega\hertz} are shown in \cref{fig:frequencysweepwave}. 
+As $f_s$ deviates from the nominal operating point, the $v_{ds}$ waveforms become increasingly distorted.
+The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}. 
+A close agreement between the experimental measurements and simulation results is observed over the entire frequency range. 
+Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ decrease monotonically with increasing switching frequency, while the maximum drain--source voltage $V_{\mathrm{ds,max}}$ remains approximately constant.
+This behavior may be attributed to waveform distortion, whereby the RMS value of $v_{ds}$ decreases as the switching frequency increases, whereas its peak value is largely unaffected.
+The efficiency remains approximately constant over this frequency range, which may be attributed to the increase in switching losses as the switching frequency.\\
+%Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ increase with switching frequency up to an optimum point and then decrease as the frequency further increases. 
+%This behavior may be attributed to waveform distortion, while discrepancies between the measured and simulated $v_{ds}$ waveforms result in different frequencies for the maximum $P_{\mathrm{out}}$.
+%In contrast, the efficiency reaches its maximum at $f_s$ slightly below $6.78~\mathrm{MHz}$. In the experimental results, a slight recovery of efficiency is observed at low frequencies, which may be associated with increased waveform distortion.
+%In addition, the maximum drain--source voltage $V_{\mathrm{ds,max}}$ exhibits two distinct extrema as the switching frequency is varied.
+%The trend of efficiency can be attributed to variations in soft-switching conditions and resonant-network impedance with switching frequency. 
+%At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
+%Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
+\indent
+The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
+The drain-to-source voltage waveforms for $R_\mathrm{load} = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
+The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
+The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
+It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
+The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
+The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
+Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
+Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
 \begin{figure*}[!t]
     \centering
     
@@ -766,32 +795,7 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
     \caption{Measured and simulated results versus load resistance $R_\mathrm{load}$.}
     \label{fig:Rosweepcomparison}
 \end{figure}
-\subsubsection{Parametric Sweep, $f_s$}
-Switching frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_\mathrm{load}$ are held constant.
-The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of \qty{6.7}{\mega\hertz}, \qty{6.8}{\mega\hertz}, and \qty{6.9}{\mega\hertz} are shown in \cref{fig:frequencysweepwave}. 
-As $f_s$ deviates from the nominal operating point, the $v_{ds}$ waveforms become increasingly distorted.
-The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}. 
-A close agreement between the experimental measurements and simulation results is observed over the entire frequency range. 
-Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ decrease monotonically with increasing switching frequency, while the maximum drain--source voltage $V_{\mathrm{ds,max}}$ remains approximately constant.
-This behavior may be attributed to waveform distortion, whereby the RMS value of $v_{ds}$ decreases as the switching frequency increases, whereas its peak value is largely unaffected.
-The efficiency remains approximately constant over this frequency range, which may be attributed to the increase in switching losses as the switching frequency.\\
-%Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ increase with switching frequency up to an optimum point and then decrease as the frequency further increases. 
-%This behavior may be attributed to waveform distortion, while discrepancies between the measured and simulated $v_{ds}$ waveforms result in different frequencies for the maximum $P_{\mathrm{out}}$.
-%In contrast, the efficiency reaches its maximum at $f_s$ slightly below $6.78~\mathrm{MHz}$. In the experimental results, a slight recovery of efficiency is observed at low frequencies, which may be associated with increased waveform distortion.
-%In addition, the maximum drain--source voltage $V_{\mathrm{ds,max}}$ exhibits two distinct extrema as the switching frequency is varied.
-%The trend of efficiency can be attributed to variations in soft-switching conditions and resonant-network impedance with switching frequency. 
-%At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
-%Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
-\indent
-The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
-The drain-to-source voltage waveforms for $R_\mathrm{load} = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
-The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
-The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
-It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
-The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
-The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
-Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
-Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
+\FloatBarrier
 \subsubsection{Frequency Domain Results}
 % Reference the figures
 For results obtained from the spectrum analyzer, all signals were passed through an attenuation, a 10X passive scope probe (with \qty{1}{\mega\ohm} series resistor), a \qty{20}{\dB} LNA, a \texttt{Keysight N2791A} differential probe, or some combination of the former.
