@@ -5,13 +5,12 @@
 % !TeX spellcheck = en-US
 % LTeX: language=en-US
 % !TeX encoding = utf8
-% !TeX program = luatex
-% !TeX TXS-program:compile = txs:///lualatex/[-shell-escape]
+% !TeX TXS-program:compile = txs:///latexmk/[-shell-escape]
 % !BIB program = bibtex
 % -*- coding:utf-8 mod:LaTeX -*-
 %draft,onecolumn
 %nofonttune,9.5pt
-\documentclass[journal, 9pt,letterpaper,english,final]{IEEEtran}[2015/08/26]
+\documentclass[journal, 9pt,letterpaper,english]{IEEEtran}[2015/08/26]
 \input{preamble}
 
 \begin{document}
@@ -107,26 +106,13 @@ Originally, \qty{6}{\mega\hertz}--\qty{7}{\mega\hertz} was tested, but this was 
 Coil separation distance was measured from coil plane to coil plane (center of wire to center of wire).
 Once set, the coil seperation was not varied, but it was bounded between 1--2\unit{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
 
-\begin{table}[!ht]
+\begin{table}[H]
     \centering
     \tiny
-    \begin{tabular}{ccccc}
-        \toprule
-        \textbf{Specification} & \textbf{Required} & \textbf{Nominal} & \textbf{Minimum} & \textbf{Maximum} \\
-        \midrule
-        Input Voltage $V_\textrm{DC}$   & $\qty{>20}{\volt}$& \qty{25}{\volt} & \qty{18}{\volt} & \qty{28}{\volt}\\
-        Switching Frequency $f_\textrm{s}$ 
-        & \qty{6.78}{\mega\hertz} & \qty{6.78}{\mega\hertz} & \qty{6.7}{\mega\hertz} & \qty{6.9}{\mega\hertz}\\
-        Output Power $P_\textrm{o}$   & $\qty{>25}{\watt}$ & \qty{36.3839}{\watt} & \qty{18.5062}{\watt} & \qty{45.8289}{\watt}\\
-        Coil Separation $d$ & $\qty{\ge1}{\inch}$& \qty{1.503}{\inch} & --- & ---  \\
-        Efficiency $\eta$ & --- & \qty{91.2074}{\percent} & \qty{89.8610}{\percent} & \qty{91.9856}{\percent} \\
-        \bottomrule& 
-    \end{tabular}
+    \resizebox{0.95\columnwidth}{!}{\input{table/specifications}}    
     \caption{Specifications}
     \label{tab:specifications}
 \end{table}
-
-
 
 
 \section {Design Process}
@@ -262,18 +248,19 @@ This design margin allows the effective coupling coefficient to be adjusted duri
 In the practical implementation, two identical coupled inductors with an inductance of \qty{4.15}{\micro\henry} were fabricated and used as the transmitting and receiving coils. 
 For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds \qty{1}{\inch}.
 %\textcolor{red5}{\lipsum[9-10]}
-\begin{figure}[!tb]
-    \centering
-    \includegraphics[width=0.6\linewidth]{figure/mech/PCB-Mounting-View-crop.eps}
-    \caption{Diagram of attachment method of PCB to framing}
-    \label{fig:pcb-attach}
-\end{figure}
+
 
 \subsection{Mechanical Design}
 The test setup is based around a \qty{2}{\foot} long piece of \qty{40}{\milli\meter}\times\qty{20}{\milli\meter} T-slot extruded aluminum framing to allow for rigid fixturing and easy adjustment.
 All PCBs are attached to the framing via the method shown in \cref{fig:pcb-attach}.
 The PCB is attached to an acrylic mounting plate with M3-\qty{0.5}{\milli\meter}$\times$\qty{6}{\milli\meter} Button Head Cap Screws, \qty{12}{\milli\meter} standoffs, and M3 nuts (acting as spacers).
 The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\milli\meter}\times\qty{12}{\milli\meter} flanged button-head cap screws, with four Nylon Plastic Washers as spacers, into four self-aligning T-slotted framing nuts with M5 threads.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{figure/mech/PCB-Mounting-View-crop.eps}
+    \caption{Diagram of attachment method of PCB to framing}
+    \label{fig:pcb-attach}
+\end{figure}
 \subsection{Schematic Implementation \& PCB Layout}
 Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
 A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
@@ -333,21 +320,7 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
     \caption{Simulated waveform results. $v_{ds1}$ and $v_{ds2}$ are the drain--source voltages of the two GaN FETs, and $v_{g1}$ and $v_{g2}$ are their gate voltages. $V_s$ and $I_s$ denote the input voltage and input current of the load network, respectively. $V_r$ and $I_r$ denote the input voltage and input current of the rectifier, respectively.}
     \label{fig:sim_waveforms}
 \end{figure}
-\begin{table*}[!bh]
-    \centering
-%    \tiny
-    \footnotesize
-    \includestandalone{table/results/sims/femm/coils_v1_fixed}
-    %    circuit,current,voltage,flux,inductance,impedance,power
-%    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
-%    {table/results/sims/femm/coils_v1_fixed.csv}{}%
-%    {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
 
-    
-
-    \caption{Circuit parameter results from Femm}
-    \label{tab:femm-results}
-\end{table*}
 %\begin{figure}[!t]
 %    \centering
 %    \includegraphics[width=0.8\columnwidth]{figure/sch/ads-resonant-tank-sch-crop.pdf}
@@ -370,12 +343,27 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\linewidth]{figure/results/sims/femm/coils_v1_fixed.eps}
+    \includegraphics[width=0.95\linewidth]{figure/results/sims/femm/coils_v1_fixed.eps}
     \caption{FEMM results, DC condition}
     \label{fig:femm-results}
 \end{figure}
 
-
+\begin{table}[!h]
+    \centering
+    %    \tiny
+    
+    \resizebox{0.95\columnwidth}{!}{\input{table/results/sims/femm/coils_v1_fixed}}
+    
+    %    circuit,current,voltage,flux,inductance,impedance,power
+    %    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
+    %    {table/results/sims/femm/coils_v1_fixed.csv}{}%
+    %    {\circuit & \frequency & \current & \voltage & \flux & \inductance & \impedance & \power \\}
+    
+    
+    
+    \caption{Circuit parameter results from Femm}
+    \label{tab:femm-results}
+\end{table}
 
 
 \subsection{RF Simulations}
@@ -384,13 +372,13 @@ RF Simulations were conducted in Keysight ADS and Cadence AWR Design Environment
 RF Simulations were conducted in Keysight ADS \cite{ads} and Cadence AWR Design Environment \cite{awr} using the measured transformer parameters to construct the resonant circuit. These simulations were later used to compare with the experimental results of the resonant tank characterization.
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\columnwidth]{figure/sch/ads-resonant-tank-sch-crop.pdf}
+    \includegraphics[width=0.6\columnwidth]{figure/sch/ads-resonant-tank-sch-crop.pdf}
     \caption{ADS Schematic of resonant tank simulation}
     \label{fig:ads-tank-sch}
 \end{figure}
 \begin{figure}[]
     \centering
-    \includegraphics[width=0.7\columnwidth]{figure/results/sims/ads/resonant-tank-only-s2p-crop.pdf}
+    \includegraphics[width=0.6\columnwidth]{figure/results/sims/ads/resonant-tank-only-s2p-crop.pdf}
     \caption{ADS results of resonant tank simulation}
     \label{fig:ads-tank-results}
 \end{figure}
@@ -417,34 +405,7 @@ Additional experiments were performed on each modular block of the converter, an
     \caption{Full assembly of the converter\quad (a) Front View\quad (b) Side View}
 \end{figure}
 \subsection{Setup and Procedure}
-\begin{figure*}[!t]
-    \centering
-    
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalvdsvg.png}
-        \caption{Drain--source voltages $v_{ds1}(t)$, $v_{ds2}(t)$ and gate-drive voltages $v_{g1}(t)$, $v_{g2}(t)$ of the GaN FETs.}
-        \label{fig:vds_operating_point}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominaltank.png}
-        \caption{Input and output voltages and currents of the resonant tank.}
-        \label{fig:resonant_operating_point}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalripple.png}
-        \caption{Input and Output Voltage and Current Ripples}
-        \label{fig:ripple_operating_point}
-    \end{subfigure}
-    
-    \caption{Measured waveforms at the nominal operating point.}
-    \label{fig:waveforms_operating_point}
-\end{figure*}
-\todofix{PCB details} % TODO
+%\todofix{PCB details} % TODO
 The PCBs were assembled with either an IR reflow process for the large boards, or a hotplate reflow process for the small boards.
 Through hole components were manually soldered.
 The required mechanical parts were attached to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
@@ -453,8 +414,8 @@ The scope, waveform generator, and spectrum analyzer (where applicable) were all
 After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
 Circuit voltages and currents were monitored using \verb|Keysight 10073D| and \verb|N2809A| passive probes, \verb|Keysight 1147B| current probes, and a \verb|Keysight MSO7034B| oscilloscope. 
 Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions.
-This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer. \todo{include in results section} % TODO
-Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.\todo{check notes, see if we did this} % TODO
+This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer.
+Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.
 
 To achieve a high coupling coefficient and quality factor, planar spiral coils were selected as the geometric structure for the coupled inductors.
 %Preliminary coil design was conducted using FEMM to ensure that, at the designed self-inductance values, a matched coupling coefficient $k$ can be achieved when the coil separation distance exceeds 1~inch. 
@@ -463,257 +424,222 @@ The coils were mounted on acrylic fixtures to maintain mechanical stability, and
 The initial design of the coils matched that of the computer simulation.
 The self-inductance of each coil was measured with a \vna; fine adjustment of the number of turns was performed to bring the measured inductance values close to the design targets.
 The initial and final configurations are listed in \cref{sec:coils}; an example of one of the coils is shown in \cref{fig:single-coil}.
+% TODO table or what about number of windings, and values. 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.6\linewidth]{figure/photo/single_coil}
+    \includegraphics[width=0.8\linewidth]{figure/photo/single_coil}
     \caption{TX coil mounted for individual measurement}
     \label{fig:single-coil}
 \end{figure}
 After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of \qty{1}{\inch}.
 
-Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance (as expected due to the designed distance being \qty{1.5}{\inch}), the distance was adjusted until the coupling factor matched the designed coupling factor.
-Measurements were conducted to be able to calculate the required parameters for model shown in \cref{fig:coilmodel} from, and then the compensation capacitor values were calculated. 
+
+% TODO Figure out how to explain this given partial missing data. Maybe say what we did, and note these intermediate measurements were not recorded.
+Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance (as expected due to the designed distance being \qty{1.5}{\inch}), the distance was adjusted until the coupling factor matched the designed coupling factor $k=0.3$ (though later testing and optimization showed that adjusting to $k=0.285$ was a better fit for our purposes). 
+Measurements were conducted to be able to calculate the required parameters for the model shown in \cref{fig:coilmodel}, and then the compensation capacitor values were calculated. 
 After the compensation capacitors were implemented in hardware, each individual set of compensation capacitors were measured and the values recorded once tuned to match the calculations.
 With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at \qty{6.78}{\mega\hertz}, indicating proper resonance.
 As the resonent tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a \qty{50}{\ohm} RF load to the secondary results in an equivalent \qty{50}{\ohm} impedance measured from the primary side.
-This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:single-coil}.
+This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:both-coils}.
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{figure/photo/coil_pair}
+    \caption{Both coils attached to the framing}
+    \label{fig:both-coils}
+\end{figure}
 
 With the \qty{50}{\ohm} RF load was maintained on the secondary-side coil, the output of the push--pull $\Phi_2$ converter was connected to the primary-side coil for initial testing. After proper operation of the system was verified, the \qty{50}{\ohm} RF load was replaced with an inductively compensated rectifier, with a \texttt{Keysight 34143A} electronic load (set in constant resistance mode) the load for the rectifier.
-Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_o$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
+Subsequently, parametric studies were conducted in which the input voltage $V_{\mathrm{in}}$, duty cycle $D$, switching frequency $f_s$, and load resistance $R_\mathrm{load}$ were varied independently while the remaining parameters were held at their nominal values; for each operating condition, the gate-to-source voltage $v_{gs}$, drain-to-source voltage $v_{ds}$, input voltage $v_{\mathrm{in}}$, and output voltage $v_{\mathrm{out}}$ waveforms were captured and measured.
+
+The converter was first tested under nominal operating conditions ($f_s=\qty{6.78}{\mega\hertz}$, $D=0.32$, $V_{IN}=\qty{25}{\volt}$, $R_\mathrm{load}=\qty{61.685}{\ohm}$). Several waveforms were measured, which were also collected later in parametric sweeps to ensure that they had not changed.
+Then, several parametric studies were performed to assess the converter.
+Each parameter was swept independently.
+Load resistance ($R_\mathrm{load}$) was swept from \qty{50}{\ohm} to \qty{75}{\ohm}.
+Duty cycle ($D$) was swept from 0.3 to 0.4.
+Switching frequency ($f_s$) was swept from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}.
+Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 
 
-
-\todo{procedure extracted from results section} %TODO
 
 %\FloatBarrier
 \subsection{Results}
 \label{sec:results}
-Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_o = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
+\subsubsection{Nominal Operating Point}
+\begin{figure*}[]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalvdsvg.png}
+        \caption{}
+        \label{fig:vds_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominaltank.png}
+        \caption{}
+        \label{fig:resonant_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalripple.png}
+        \caption{}
+        \label{fig:ripple_operating_point}
+    \end{subfigure}
+    
+    \caption{\centering
+        Measured waveforms at the nominal operating point.\\
+        (a)\; Drain--source voltages $v_{ds1}(t)$, $v_{ds2}(t)$ and gate-drive voltages $v_{g1}(t)$, $v_{g2}(t)$ of the GaN FETs.\\
+        (b)\; Input and output voltages and currents of the resonant tank.\\
+        (c)\; Input and Output Voltage and Current Ripples}
+    \label{fig:waveforms_operating_point}
+\end{figure*}
+Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
+\subsubsection{Parametric Sweep, $V_{IN}$}
 \begin{figure*}[!t]
     \centering
     
-    \begin{subfigure}[t]{0.32\textwidth}
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/18.0V_MSO7034B.png}
-        \caption{$V_{\mathrm{in}} = 18\,\mathrm{V}$}
+        \caption{}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
+    \hfil
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/25.0V_MSO7034B.png}
-        \caption{$V_{\mathrm{in}} = 25\,\mathrm{V}$}
+        \caption{}
     \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
+    \hfil
+    \begin{subfigure}[t]{0.32\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/28.0V_MSO7034B.png}
-        \caption{$V_{\mathrm{in}} = 28\,\mathrm{V}$}
+        \caption{}
     \end{subfigure}
     
-    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different input voltages.}
+    \caption{\centering
+        Measured drain--source voltages and gate-drive voltages of the GaN FETs at different input voltages.\\
+        (a)\; $V_{\mathrm{in}} = 18\,\mathrm{V}$\quad (b)\;$V_{\mathrm{in}} = 25\,\mathrm{V}$\quad (c)$V_{\mathrm{in}} = 28\,\mathrm{V}$}
     \label{fig:vinsweepwave}
 \end{figure*}
 \begin{figure*}[!t]
     \centering
-    
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/0.3_MSO7034B.png}
-        \caption{$D = 0.3$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/0.32_MSO7034B.png}
-        \caption{$D = 0.32$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/0.4000000000000001_MSO7034B.png}
-        \caption{$D = 0.4$}
-    \end{subfigure}
-    
-    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different duty cycles.}
-    \label{fig:Dsweepwaveform}
-\end{figure*}
-\begin{figure}[!t]
-    \centering
-    \begin{subfigure}[t]{0.48\columnwidth}
+    \begin{subfigure}[t]{0.24\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Vout.eps}
-        \caption{$V_{\mathrm{out}}$ vs. $V_{\mathrm{in}}$}
+        \caption{}
     \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
+    \begin{subfigure}[t]{0.24\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Pout.eps}
-        \caption{$P_{\mathrm{out}}$ vs. $V_{\mathrm{in}}$}
+        \caption{}
     \end{subfigure}
-    
-    \vspace{1mm}
-    
-    \begin{subfigure}[t]{0.48\columnwidth}
+    \hfil
+    \begin{subfigure}[t]{0.24\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Eff.eps}
-        \caption{$\eta$ vs. $V_{\mathrm{in}}$}
+        \caption{}
     \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
+    \begin{subfigure}[t]{0.24\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Vdsmax.eps}
-        \caption{$V_{\mathrm{ds,max}}$ vs. $V_{\mathrm{in}}$}
+        \caption{}
     \end{subfigure}
     
-    \caption{Measured and simulated results versus input voltages $V_{\mathrm{in}}$.}
+    \caption{\centering
+        Measured and simulated results versus input voltages $V_{\mathrm{in}}$.\\
+        (a)\; $V_{\mathrm{out}}$ vs. $V_{\mathrm{in}}$\quad
+        (b)\; $P_{\mathrm{out}}$ vs. $V_{\mathrm{in}}$\quad
+        (c)\; $\eta$ vs. $V_{\mathrm{in}}$\quad
+        (d)\; $V_{\mathrm{ds,max}}$ vs. $V_{\mathrm{in}}$
+    }
     \label{fig:vinsweepcomparison}
-\end{figure}
-
-\begin{figure}[!t]
-    \centering
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vout.eps}
-        \caption{$V_{\mathrm{out}}$ vs. $D$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Pout.eps}
-        \caption{$P_{\mathrm{out}}$ vs. $D$}
-    \end{subfigure}
-    
-    \vspace{1mm}
-    
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Eff.eps}
-        \caption{$\eta$ vs. $D$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vdsmax.eps}
-        \caption{$V_{\mathrm{ds,max}}$ vs. $D$}
-    \end{subfigure}
-    
-    \caption{Measured and simulated results versus duty cycles $D$.}
-    \label{fig:Dsweepcomparison}
-\end{figure}
-
-\begin{figure*}[!t]
-    \centering
-    
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/6700000.0Hz_MSO7034B.png}
-        \caption{$f_s = 6.7\,\mathrm{Mhz}$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/6780000.0Hz_MSO7034B.png}
-        \caption{$f_s = 6.78\,\mathrm{Mhz}$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/6900000.0Hz_MSO7034B.png}
-        \caption{$f_s = 6.9\,\mathrm{Mhz}$}
-    \end{subfigure}
-    
-    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different switching frequencies.}
-    \label{fig:frequencysweepwave}
 \end{figure*}
-\begin{figure*}[!t]
-    \centering
-    
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/50.0R_MSO7034B.png}
-        \caption{$R_o = 50 \Omega$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/61.68502750680849R_MSO7034B.png}
-        \caption{$R_o = 61.685 \Omega$}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/75.0R_MSO7034B.png}
-        \caption{$R_o = 75 \Omega$}
-    \end{subfigure}
-    
-    \caption{Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.}
-    \label{fig:Rosweepwaveform}
-\end{figure*}
-\begin{figure}[!t]
-    \centering
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vout.eps}
-        \caption{$V_{\mathrm{out}}$ vs. $f_s$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Pout.eps}
-        \caption{$P_{\mathrm{out}}$ vs. $f_s$}
-    \end{subfigure}
-    
-    \vspace{1mm}
-    
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Eff.eps}
-        \caption{$\eta$ vs. $f_s$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vdsmax.eps}
-        \caption{$V_{\mathrm{ds,max}}$ vs. $f_s$}
-    \end{subfigure}
-    
-    \caption{Measured and simulated results versus switching frequency $f_s$.}
-    \label{fig:frequencysweepcomparison}
-\end{figure}
 
-\begin{figure}[!t]
-    \centering
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vout.eps}
-        \caption{$V_{\mathrm{out}}$ vs. $R_o$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Pout.eps}
-        \caption{$P_{\mathrm{out}}$ vs. $R_o$}
-    \end{subfigure}
-    
-    \vspace{1mm}
-    
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Eff.eps}
-        \caption{$\eta$ vs. $R_o$}
-    \end{subfigure}\hfill
-    \begin{subfigure}[t]{0.48\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vdsmax.eps}
-        \caption{$V_{\mathrm{ds,max}}$ vs. $R_o$}
-    \end{subfigure}
-    
-    \caption{Measured and simulated results versus load resistance $R_o$.}
-    \label{fig:Rosweepcomparison}
-\end{figure}
-Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ ($18$--$28~\mathrm{V}$), $D$, $f_s$, and $R_o$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = 25~\mathrm{V}$ are shown in \cref{fig:vinsweepwave}. 
+Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ ($18$--$28~\mathrm{V}$), $D$, $f_s$, and $R_\mathrm{load}$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = 25~\mathrm{V}$ are shown in \cref{fig:vinsweepwave}. 
 It is observed that variations in $V_{\mathrm{in}}$ primarily affect the amplitudes of $v_{ds1}$ and $v_{ds2}$, while their waveform shapes remain largely unchanged.
 As shown in \cref{fig:vinsweepcomparison}, the simulated and experimental results exhibit good agreement in overall trend; however, the simulated output voltage $V_{\mathrm{out}}$, output power $P_{\mathrm{out}}$, and conversion efficiency $\eta$ are consistently higher than the measured values, primarily due to practical losses and voltage drops that are not fully captured in the simulation.
 As $V_{\mathrm{in}}$ increases, the maximum GAN FET drain-to-source voltage $v_{ds,\max}$ increases monotonically in both simulation and experiment, indicating a corresponding increase in the voltage amplitude applied to the load network. 
 Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $V_{\mathrm{in}}$.
+%\FloatBarrier
 
-The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_o$ are fixed at their nominal values.
+
+
+\subsubsection{Parametric Sweep, $D$}
+\begin{figure*}[!t]
+    \centering
+    \begin{minipage}{\linewidth}
+        \begin{subfigure}[t]{0.32\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/0.3_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/0.32_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/0.4000000000000001_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured drain--source voltages and gate-drive voltages of the GaN FETs at different duty cycles.\\
+            (a)\; $D = 0.3$\quad
+            (b)\; $D = 0.32$\quad
+            (c)\; $D = 0.4$
+        }
+        \label{fig:Dsweepwaveform}
+    \end{minipage}
+    \vspace{\floatsep}
+    \begin{minipage}{\linewidth}
+        \centering
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfil
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Pout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfil
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Eff.eps}
+            \caption{}
+        \end{subfigure}
+        \hfil
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/DUTY/fig_duty_Vdsmax.eps}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured and simulated results versus duty cycles $D$.\\
+            (a)\; $V_{\mathrm{out}}$ vs. $D$\quad
+            (b)\; $P_{\mathrm{out}}$ vs. $D$\quad
+            (c)\; $\eta$ vs. $D$\quad
+            (d)\; $V_{\mathrm{ds,max}}$ vs. $D$
+        }
+        \label{fig:Dsweepcomparison}
+    \end{minipage}
+\end{figure*}
+The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_\mathrm{load}$ are fixed at their nominal values.
 The gate-drive signals and drain-to-source voltage waveforms of the GaN FETs for $D = 0.30$, $0.32$, and $0.40$ are shown in \cref{fig:Dsweepwaveform}. It can be observed that when $D$ exceeds the nominal value, the gate-drive signal begins to rise before $v_{ds}$ has fully resonated to zero, resulting in incomplete ZVS and increased switching losses. 
 Conversely, when $D$ is below the nominal value, $v_{ds}$ resonates to zero and subsequently oscillates upward, such that the device turns on with a nonzero drain-to-source voltage, again degrading the ZVS condition and increasing switching losses. 
 At nominal $D$, $v_{ds}$ is close to zero at the onset of device turn-on, resulting in near-optimal ZVS behavior and minimal switching loss.
@@ -731,8 +657,14 @@ Accordingly, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant fo
 In the experimental results, however, over the duty-cycle range of 0.3--0.4, the MOSFET consistently turns on after $v_{ds}$ has resonated to zero. As a result, $V_{\mathrm{out}}$, $P_{\mathrm{out}}$, switching loss, and efficiency exhibit minimal variation within this range. 
 The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36, which is not observed experimentally, can be attributed to the duty-cycle-dependent influence on the $v_{ds}$ waveform discussed above.
 
-\indent
-Switching-frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_o$ are held constant.
+
+
+
+
+
+
+\subsubsection{Parametric Sweep, $f_s$}
+Switching frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_\mathrm{load}$ are held constant.
 The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of \qty{6.7}{\mega\hertz}, \qty{6.8}{\mega\hertz}, and \qty{6.9}{\mega\hertz} are shown in \cref{fig:frequencysweepwave}. 
 As $f_s$ deviates from the nominal operating point, the $v_{ds}$ waveforms become increasingly distorted.
 The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}. 
@@ -747,17 +679,155 @@ The efficiency remains approximately constant over this frequency range, which m
 %The trend of efficiency can be attributed to variations in soft-switching conditions and resonant-network impedance with switching frequency. 
 %At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
 %Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
-\indent
-The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_o$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
-The drain-to-source voltage waveforms for $R_o = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
-The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
+\begin{figure*}[]
+    \begin{minipage}{\linewidth}
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/6700000.0Hz_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/6780000.0Hz_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/6900000.0Hz_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+         \caption{\centering
+             Measured drain--source voltages and gate-drive voltages of the GaN FETs at different switching frequencies.\\
+             (a)\; $f_s = 6.7\,\mathrm{Mhz}$\quad
+             (b)\; $f_s = 6.78\,\mathrm{Mhz}$\quad
+             (c)\;$f_s = 6.9\,\mathrm{Mhz}$
+         }
+        \label{fig:frequencysweepwave}
+    \end{minipage}
+    \vspace{\floatsep}
+    \begin{minipage}{\linewidth}
+        \centering
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Pout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Eff.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\columnwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vdsmax.eps}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured and simulated results versus switching frequency $f_s$.\\
+            (a)\; $V_{\mathrm{out}}$ vs. $f_s$\quad
+            (b)\; $P_{\mathrm{out}}$ vs. $f_s$\quad
+            (c)\; $\eta$ vs. $f_s$\quad
+            (d)\; $V_{\mathrm{ds,max}}$ vs. $f_s$
+        }
+        \label{fig:frequencysweepcomparison}
+    \end{minipage}
+%    \vspace{\floatsep}
+\end{figure*}
+
+
+\subsubsection{Parametric Sweep, $R_\mathrm{load}$}
+\begin{figure*}[]
+    \begin{minipage}{\linewidth}
+        \centering
+        
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/50.0R_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/61.68502750680849R_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.32\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/75.0R_MSO7034B.png}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.\\
+            (a)\; $R_\mathrm{load} = 50 \Omega$\quad
+            (b)\; $R_\mathrm{load} = 61.685 \Omega$\quad
+            (c)\; $R_\mathrm{load} = 75 \Omega$
+        }
+        \label{fig:Rosweepwaveform}
+    \end{minipage}
+    \vspace{\floatsep}
+    \begin{minipage}{\linewidth}
+        \centering
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Pout.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Eff.eps}
+            \caption{}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[t]{0.24\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vdsmax.eps}
+            \caption{}
+        \end{subfigure}
+        
+        \caption{\centering
+            Measured and simulated results versus load resistance $R_\mathrm{load}$.\\
+            (a)\; $V_{\mathrm{out}}$ vs. $R_\mathrm{load}$\quad
+            (b)\; $P_{\mathrm{out}}$ vs. $R_\mathrm{load}$\quad
+            (c)\; $\eta$ vs. $R_\mathrm{load}$\quad
+            (d)\; $V_{\mathrm{ds,max}}$ vs. $R_\mathrm{load}$
+        }
+        \label{fig:Rosweepcomparison}
+    \end{minipage}
+\end{figure*}
+The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from \qty{50}{\ohm} to \qty{75}{\ohm} under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
+The drain-to-source voltage waveforms for $R_\mathrm{load} = \qty{50}{\ohm}$, $\qty{61.685}{\ohm}$, and $\qty{75}{\ohm}$ are shown in \cref{fig:Rosweepwaveform}. 
+The $V_{DS}$ waveforms are generally similar, with minor differences in the ZVS condition.
 The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
-It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_o$. 
-The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_o$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
+It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
+The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
 The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
 Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
+
+
+
 \subsubsection{Frequency Domain Results}
+% Reference the figures
 For results obtained from the spectrum analyzer, all signals were passed through an attenuation, a 10X passive scope probe (with \qty{1}{\mega\ohm} series resistor), a \qty{20}{\dB} LNA, a \texttt{Keysight N2791A} differential probe, or some combination of the former.
 Therefore, these results should be considered preliminary and powers relative to each other.
 While the reference level of the spectrum analyzer is potentially incorrect, a lack of equipment prevented any calibration of the reference level to confirm accuracy.
@@ -781,9 +851,10 @@ The spectral power at $V_{D_{AB}}$ was measured and shows a significant reductio
 \subsubsection{Resonant Tank Results}
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
 The resonant frequency was found to align very closely, and the resonant tank was found to match the designed characteristic impedance of the system.
+%TODO Reference figures and explain them
 \begin{figure}[!b]
     \centering
-    \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/S11-Crop.eps}
+    \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/S11-crop.eps}
     \caption{S11 and impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S11}
 \end{figure}
@@ -940,198 +1011,198 @@ All links were last followed on January 8, 2026.
 
 \newpage
 \onecolumn
-\appendices
-
-
-\section{SPICE Netlists}
-\label{Spicenetlist}
-\begin{verbbox}
-    \footnotesize\verb|pushpullphi2_new.sp|
-\end{verbbox}
-\lstinputlisting[language=spice,label=lst:maininc,caption={{\verbBox} SPICE Netlist for converter simulation}] {listing/pushpullphi2_new.sp}
-%\section{Python Programs}
-%\lipsum[1]
-%\section{MATLAB Programs}
-%\lipsum[1]
-\section{Physical Schematics, Bills of Materials, PCB Layouts, \& Assembled Boards}
-\label{sec:appendix:pcb}
-\begin{figure}[!h]
-    \centering
-    \includestandalone[width=0.4\linewidth]{figure/tikz/PCB-Color-Map}
-    \label{fig:pcb-color-map}
-    \caption{Color code for PCB prints}
-\end{figure}
-\centering
-\subsection{Inverter}
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[page=1,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{Top level schematic of the inverter}
-\end{figure}
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[page=2,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{Gate Drivers for the inverter}
-\end{figure}
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[page=3,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
-    \caption{PPT converter implementation}
-\end{figure}
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figure/pcb_layout/inverter-pcb-crop.pdf}
-    \caption{PCB Layout of the inverter}
-\end{figure}
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.8\linewidth]{figure/photo/board/inverter.png}
-    \caption{Assembled inverter PCB}
-\end{figure}
-\begin{table}[!htb]
-    \centering
-    \input{table/bom/BOM-inverter}
-    \caption{BOM of the inverter}
-\end{table}
-\FloatBarrier
-\subsection{Coil Interface}
-\begin{figure}[H]
-    \centering
-    \includegraphics[page=1,width=0.78\linewidth]{figure/sch/Coil-Interface-SCH.pdf}
-    \caption{Schematic of the coil interface, receiver side (RX)}
-\end{figure}
-\begin{figure}[H]
+\begin{appendices}
+    \section{SPICE Netlists}
+    \label{Spicenetlist}
+    \begin{verbbox}
+        \footnotesize\verb|pushpullphi2_new.sp|
+    \end{verbbox}
+    \lstinputlisting[language=spice,label=lst:maininc,caption={{\verbBox} SPICE Netlist for converter simulation}] {listing/pushpullphi2_new.sp}
+    %\section{Python Programs}
+    %\lipsum[1]
+    %\section{MATLAB Programs}
+    %\lipsum[1]
+    \section{Physical Schematics, Bills of Materials, PCB Layouts, \& Assembled Boards}
+    \label{sec:appendix:pcb}
+    \begin{figure}[!h]
         \centering
-    \includegraphics[page=2,width=0.78\linewidth]{figure/sch/Coil-Interface-SCH.pdf}
-    \caption{Schematic of the coil interface, transmitter side (TX)}
-\end{figure}
-\begin{figure}[H]
+        \includestandalone[width=0.4\linewidth]{figure/tikz/PCB-Color-Map}
+        \label{fig:pcb-color-map}
+        \caption{Color code for PCB prints}
+    \end{figure}
     \centering
-    \includegraphics[width=0.3\linewidth]{figure/pcb_layout/Coil-Interface-PCB.pdf}
-    \caption{PCB Layout of the coil interface}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/RX.png}\label{fig:board:RX}}
-    \hfil
-    \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/TX.png}\label{fig:board:TX}}
-    \caption{
+    \subsection{Inverter}
+    \begin{figure}[!htb]
         \centering
-        Assembled coil interface:\quad
-        (a) RX
-        (b) TX
-    }
-\end{figure}
-\begin{table}[H]
-    \centering
-    \input{table/bom/BOM-CoilInterface.tex}
-    \caption{BOM for TX and RX configurations of the coil interface}
-\end{table}
-\FloatBarrier
-\subsection{Probe Capacitance Emulator}
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[trim=4.5in 3.75in 4in 3.5in, clip, width=0.5\linewidth]{figure/sch/capacitance-emulator-sch.pdf}    
-    \caption{Schematic of probe capacitance emulator to emulate the effect of a \texttt{Keysight 10073D} passive probe, \texttt{Cal Test Electronics CT2708}, and a \texttt{Mini-Circuits SM-BF50+}}
-    \label{fig:sch:probe-capacitance-emulator}
-\end{figure}
-
-
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.4\linewidth]{figure/pcb_layout/capacitance-emulator-pcb.pdf}
-    \caption{CAD drawing of PCB layout for the probe capacitance emulator}
-    \label{fig:pcb:probe-capacitance-emulator}
-\end{figure}
-
-\begin{figure}[!htb]
-    \centering
-    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
-    \hfil
-    \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0012_edit.PNG}\label{fig:board:probe-capacitance-emulator:rear}}
+        \includegraphics[page=1,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
+        \caption{Top level schematic of the inverter}
+    \end{figure}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[page=2,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
+        \caption{Gate Drivers for the inverter}
+    \end{figure}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[page=3,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
+        \caption{PPT converter implementation}
+    \end{figure}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=0.8\linewidth]{figure/pcb_layout/inverter-pcb-crop.pdf}
+        \caption{PCB Layout of the inverter}
+    \end{figure}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=0.8\linewidth]{figure/photo/board/inverter.png}
+        \caption{Assembled inverter PCB}
+    \end{figure}
+    \begin{table}[!htb]
+        \centering
+        \input{table/bom/BOM-inverter}
+        \caption{BOM of the inverter}
+    \end{table}
+%    \FloatBarrier
+    \subsection{Coil Interface}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=1,width=0.78\linewidth]{figure/sch/Coil-Interface-SCH.pdf}
+        \caption{Schematic of the coil interface, receiver side (RX)}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=2,width=0.78\linewidth]{figure/sch/Coil-Interface-SCH.pdf}
+        \caption{Schematic of the coil interface, transmitter side (TX)}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.3\linewidth]{figure/pcb_layout/Coil-Interface-PCB.pdf}
+        \caption{PCB Layout of the coil interface}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/RX.png}\label{fig:board:RX}}
+        \hfil
+        \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/TX.png}\label{fig:board:TX}}
+        \caption{
+            \centering
+            Assembled coil interface:\quad
+            (a) RX
+            (b) TX
+        }
+    \end{figure}
+    \begin{table}[H]
+        \centering
+        \input{table/bom/BOM-CoilInterface.tex}
+        \caption{BOM for TX and RX configurations of the coil interface}
+    \end{table}
+    \FloatBarrier
+    \subsection{Probe Capacitance Emulator}
     
-    \caption{
-        \centering
-        Assembled probe capacitance emulator:\quad
-        (a) Front
-        (b) Back
-    }
-    \label{fig:cap-em}
-\end{figure}
-
-\begin{table}[!htb]
-    \centering
-    \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
-    {table/bom/BOM-ProbeEmulator.csv}{}%
-    {\Designator & \Value & \Manufacturer & \ManufacturerPartNumber}
-    \caption{Bill of Materials for the probe capacitance emulator}
-    \label{tab:bom:probe-capacitance-emulator}
-\end{table}
-
-
-\FloatBarrier
-\subsection{SMA to Wago}
-\label{sec:pcb:sma-wago}
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[trim=5.in 4.25in 3.5in 3in, clip, width=0.5\linewidth]{figure/sch/sma_to_wago.pdf}
-    \caption{Schematic drawing for the SMA to Wago adapter}
-    \label{fig:sch:sma-wago}
-\end{figure}
-\begin{figure}[!htb]
-    \centering
-    \includegraphics[width=0.4\linewidth]{figure/pcb_layout/sma_to_wago_pcb.pdf}
-    \caption{CAD drawing of PCB layout for the SMA to Wago adapter}
-    \label{fig:pcb:sma-wago}
-\end{figure}
-\begin{figure}[!htb]
-    \centering
-    \subfloat[]{\includegraphics[height=80pt]{figure/photo/board/sma_wago_plug_edit.PNG}\label{fig:board:sma-wago-plug}}
-    \hfil
-    \subfloat[]{\includegraphics[height=80pt]{figure/photo/board/sma_wago_jack_edit.PNG}\label{fig:board:sma-wago-jack}}
     
-    \caption{
+    \begin{figure}[!htb]
         \centering
-        Assembled SMA to Wago adapter:\quad
-        (a) Plug version
-        (b) Jack version
-    }
-    \label{fig:board_sma-wago}
-\end{figure}
-\FloatBarrier
-\section{Other Content}
-\raggedright
+        \includegraphics[trim=4.5in 3.75in 4in 3.5in, clip, width=0.5\linewidth]{figure/sch/capacitance-emulator-sch.pdf}    
+        \caption{Schematic of probe capacitance emulator to emulate the effect of a \texttt{Keysight 10073D} passive probe, \texttt{Cal Test Electronics CT2708}, and a \texttt{Mini-Circuits SM-BF50+}}
+        \label{fig:sch:probe-capacitance-emulator}
+    \end{figure}
+    
+    
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=0.4\linewidth]{figure/pcb_layout/capacitance-emulator-pcb.pdf}
+        \caption{CAD drawing of PCB layout for the probe capacitance emulator}
+        \label{fig:pcb:probe-capacitance-emulator}
+    \end{figure}
+    
+    \begin{figure}[!htb]
+        \centering
+        \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
+        \hfil
+        \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0012_edit.PNG}\label{fig:board:probe-capacitance-emulator:rear}}
+        
+        \caption{
+            \centering
+            Assembled probe capacitance emulator:\quad
+            (a) Front
+            (b) Back
+        }
+        \label{fig:cap-em}
+    \end{figure}
+    
+    \begin{table}[!htb]
+        \centering
+        \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
+        {table/bom/BOM-ProbeEmulator.csv}{}%
+        {\Designator & \Value & \Manufacturer & \ManufacturerPartNumber}
+        \caption{Bill of Materials for the probe capacitance emulator}
+        \label{tab:bom:probe-capacitance-emulator}
+    \end{table}
+    
+    
+    \FloatBarrier
+    \subsection{SMA to Wago}
+    \label{sec:pcb:sma-wago}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[trim=5.in 4.25in 3.5in 3in, clip, width=0.5\linewidth]{figure/sch/sma_to_wago.pdf}
+        \caption{Schematic drawing for the SMA to Wago adapter}
+        \label{fig:sch:sma-wago}
+    \end{figure}
+    \begin{figure}[!htb]
+        \centering
+        \includegraphics[width=0.4\linewidth]{figure/pcb_layout/sma_to_wago_pcb.pdf}
+        \caption{CAD drawing of PCB layout for the SMA to Wago adapter}
+        \label{fig:pcb:sma-wago}
+    \end{figure}
+    \begin{figure}[!htb]
+        \centering
+        \subfloat[]{\includegraphics[height=80pt]{figure/photo/board/sma_wago_plug_edit.PNG}\label{fig:board:sma-wago-plug}}
+        \hfil
+        \subfloat[]{\includegraphics[height=80pt]{figure/photo/board/sma_wago_jack_edit.PNG}\label{fig:board:sma-wago-jack}}
+        
+        \caption{
+            \centering
+            Assembled SMA to Wago adapter:\quad
+            (a) Plug version
+            (b) Jack version
+        }
+        \label{fig:board_sma-wago}
+    \end{figure}
+    \FloatBarrier
+    \section{Other Content}
+    \raggedright
+    
+    A GitHub repository with all of the code, data, and any relevant instructions can be found at:
+    \url{https://github.com/aakatz3/ESE6710-Final-Project}
+    
+    \section{Equipment Used}
+    The following is a list of all measurement equipment utilized in \cref{sec:exp} where results were recorded:
+    \begin{itemize}
+        \item \href{https://www.keysight.com/us/en/product/E3631A/80w-triple-output-power-supply-6v-5a--25v-1a.html}{Keysight (formerly Agilent/Hewlett--Packard) E3631A Triple Output Power Supply, 6V, 5A \& ±25V, 1A}
+        \item \href{https://www.keysight.com/us/en/product/E3634A/200w-power-supply-25v-7a-50v-4a.html}{Keysight (formerly Agilent/Hewlett--Packard) E3634A 200W Power Supply, 25V, 7A or 50V, 4A}
+        \item \href{https://www.keysight.com/us/en/product/33521A/function--arbitrary-waveform-generator-30-mhz.html}{Keysight (formerly Agilent) 33521A Function / Arbitrary Waveform Generator, 30 MHz}
+        \item \href{https://www.keysight.com/us/en/product/33510B/waveform-generator-20-mhz-2-channel.html}{Keysight 33510B Waveform Generator, 20 MHz, 2--Channel}
+        \item \href{https://www.keysight.com/us/en/product/MSO7034B/mixed-signal-oscilloscope-350mhz-4-analog-16-digital-channels.html}{Keysight (formerly Agilent) MSO7034B Mixed Signal Oscilloscope: 350 MHz, 4 Analog plus 16 Digital Channels}
+        \item \href{https://www.keysight.com/us/en/product/MSO6014A/mixed-signal-oscilloscope-100-mhz-4-analog-16-digital-channels.html}{Keysight (formerly Agilent) MSO6014A Mixed Signal Oscilloscope: 100 MHz, 4 Analog and 16 Digital Channels}
+        \item \href{https://www.keysight.com/us/en/product/N2791A/high-voltage-differential-probe-25-mhz.html}{Keysight N2791A High-Voltage Differential Probe, 25 MHz}
+        \item \href{https://www.keysight.com/us/en/product/1147B/ac-dc-current-probe-50-mhz-15a.html}{Keysight 1147B AC/DC Current Probe, 50 MHz, 15A}
+        \item \href{https://www.keysight.com/us/en/product/10073D/passive-probe-10-1-500-mhz-1-5-m.html}{Keysight (formerly Agilent) 10073D Passive Probe, 10:1, 500 MHz, 1.5 m}
+        \item \href{https://www.keysight.com/us/en/product/N2890A/passive-probe-10-1-500mhz-1-3m.html}{Keysight (formerly Agilent) N2890A Passive Probe, 10:1, 500 MHz, 1.3m}
+        \item \href{https://www.keysight.com/us/en/product/N2889A/passive-probe-10-1-1-1-350-mhz-1-3m.html}{Keysight (formerly Agilent) N2889A Passive Probe, 10:1/1:1, 350 MHz, 1.3m}
+        \item \href{https://www.keysight.com/us/en/product/34401A/digital-multimeter-6-digit.html}{Keysight (formerly Agilent/Hewlett--Packard) 34401A Digital Multimeter, 6½ Digit}
+        \item \href{https://www.keysight.com/us/en/product/EDU34450A/smart-bench-essentials-digital-multimeter-5-5-digit.html}{Keysight EDU34450A Smart Bench Essentials Digital Multimeter}
+        \item \href{https://www.keysight.com/us/en/product/EL34143A/dc-electronic-load-single-input-150v-60a-350w-lan-usb.html}{Keysight EL34143A 350W Bench Electronic Load, Single Input 150V, 60A, 350W}
+        \item \href{https://www.keysight.com/us/en/product/E4980AL/precision-lcr-meter-20-hz-300-khz-500-khz-1-mhz.html}{Keysight E4980AL Precision LCR Meter 20 Hz to 300 kHz / 500 kHz / 1 MHz}
+        \item \href{https://www.keysight.com/us/en/product/E5063A/e5063a-ena-vector-network-analyzer.html}{Keysight (formerly Agilent) E5063A ENA Vector Network Analyzer}
+        \item \href{https://www.keysight.com/us/en/product/N7554A/electronic-calibration-module-ecal-dc-18-ghz-2-port.html}{Keysight N7554A Electronic Calibration Module (ECal), DC-18 GHz, 2-Port}
+        \item \href{https://www.rohde-schwarz.com/us/products/test-and-measurement/benchtop-analyzers/rs-fpc-spectrum-analyzer_63493-542324.html}{Rohde \& Schwarz FPC1000}
+        \item \href{https://www.minicircuits.com/WebStore/dashboard.html?model=ZFL-1000LNB%2B}{Mini-Circuits ZFL-1000LNB+ Connectorized SMA, Low Noise, Linear Amplifier, 0.1 MHz to 1000 MHz, 50Ω}
+        \item \href{https://www.yageogroup.com/products/Resistors/part/RC1206FR-131ML}{Yageo 1 MOhms ±1\% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Moisture Resistant Thick Film}
+        \item \href{https://www.amazon.com/40dB-Attenuator-Precision-Adjustable-Communication/dp/B0F9VRD3KJ}{BECEN 200W N-Type 40dB Attenuator, DC to 3GHz, 50 Ohms, Precision Adjustable Signal Loss for RF Systems, Testing, Broadcast \& Communication}
+        \item \href{https://www.l-com.com/bandpass-filter-rf-splitter-0-6-ghz-type-n-male-terminator-50-ohm}{L-com 0-6 GHz Type N Male Terminator 50 Ohm}
+    \end{itemize}
+\end{appendices}
 
-A GitHub repository with all of the code, data, and any relevant instructions can be found at:
-\url{https://github.com/aakatz3/ESE6710-Final-Project}
-
-\section{Equipment Used}
-The following is a list of all measurement equipment utilized in \cref{sec:exp} where results were recorded:
-\begin{itemize}
-    \item \href{https://www.keysight.com/us/en/product/E3631A/80w-triple-output-power-supply-6v-5a--25v-1a.html}{Keysight (formerly Agilent/Hewlett--Packard) E3631A Triple Output Power Supply, 6V, 5A \& ±25V, 1A}
-    \item \href{https://www.keysight.com/us/en/product/E3634A/200w-power-supply-25v-7a-50v-4a.html}{Keysight (formerly Agilent/Hewlett--Packard) E3634A 200W Power Supply, 25V, 7A or 50V, 4A}
-    \item \href{https://www.keysight.com/us/en/product/33521A/function--arbitrary-waveform-generator-30-mhz.html}{Keysight (formerly Agilent) 33521A Function / Arbitrary Waveform Generator, 30 MHz}
-    \item \href{https://www.keysight.com/us/en/product/33510B/waveform-generator-20-mhz-2-channel.html}{Keysight 33510B Waveform Generator, 20 MHz, 2--Channel}
-    \item \href{https://www.keysight.com/us/en/product/MSO7034B/mixed-signal-oscilloscope-350mhz-4-analog-16-digital-channels.html}{Keysight (formerly Agilent) MSO7034B Mixed Signal Oscilloscope: 350 MHz, 4 Analog plus 16 Digital Channels}
-    \item \href{https://www.keysight.com/us/en/product/MSO6014A/mixed-signal-oscilloscope-100-mhz-4-analog-16-digital-channels.html}{Keysight (formerly Agilent) MSO6014A Mixed Signal Oscilloscope: 100 MHz, 4 Analog and 16 Digital Channels}
-    \item \href{https://www.keysight.com/us/en/product/N2791A/high-voltage-differential-probe-25-mhz.html}{Keysight N2791A High-Voltage Differential Probe, 25 MHz}
-    \item \href{https://www.keysight.com/us/en/product/1147B/ac-dc-current-probe-50-mhz-15a.html}{Keysight 1147B AC/DC Current Probe, 50 MHz, 15A}
-    \item \href{https://www.keysight.com/us/en/product/10073D/passive-probe-10-1-500-mhz-1-5-m.html}{Keysight (formerly Agilent) 10073D Passive Probe, 10:1, 500 MHz, 1.5 m}
-    \item \href{https://www.keysight.com/us/en/product/N2890A/passive-probe-10-1-500mhz-1-3m.html}{Keysight (formerly Agilent) N2890A Passive Probe, 10:1, 500 MHz, 1.3m}
-    \item \href{https://www.keysight.com/us/en/product/N2889A/passive-probe-10-1-1-1-350-mhz-1-3m.html}{Keysight (formerly Agilent) N2889A Passive Probe, 10:1/1:1, 350 MHz, 1.3m}
-    \item \href{https://www.keysight.com/us/en/product/34401A/digital-multimeter-6-digit.html}{Keysight (formerly Agilent/Hewlett--Packard) 34401A Digital Multimeter, 6½ Digit}
-    \item \href{https://www.keysight.com/us/en/product/EDU34450A/smart-bench-essentials-digital-multimeter-5-5-digit.html}{Keysight EDU34450A Smart Bench Essentials Digital Multimeter}
-    \item \href{https://www.keysight.com/us/en/product/EL34143A/dc-electronic-load-single-input-150v-60a-350w-lan-usb.html}{Keysight EL34143A 350W Bench Electronic Load, Single Input 150V, 60A, 350W}
-    \item \href{https://www.keysight.com/us/en/product/E4980AL/precision-lcr-meter-20-hz-300-khz-500-khz-1-mhz.html}{Keysight E4980AL Precision LCR Meter 20 Hz to 300 kHz / 500 kHz / 1 MHz}
-    \item \href{https://www.keysight.com/us/en/product/E5063A/e5063a-ena-vector-network-analyzer.html}{Keysight (formerly Agilent) E5063A ENA Vector Network Analyzer}
-    \item \href{https://www.keysight.com/us/en/product/N7554A/electronic-calibration-module-ecal-dc-18-ghz-2-port.html}{Keysight N7554A Electronic Calibration Module (ECal), DC-18 GHz, 2-Port}
-    \item \href{https://www.rohde-schwarz.com/us/products/test-and-measurement/benchtop-analyzers/rs-fpc-spectrum-analyzer_63493-542324.html}{Rohde \& Schwarz FPC1000}
-    \item \href{https://www.minicircuits.com/WebStore/dashboard.html?model=ZFL-1000LNB%2B}{Mini-Circuits ZFL-1000LNB+ Connectorized SMA, Low Noise, Linear Amplifier, 0.1 MHz to 1000 MHz, 50Ω}
-    \item \href{https://www.yageogroup.com/products/Resistors/part/RC1206FR-131ML}{Yageo 1 MOhms ±1\% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Moisture Resistant Thick Film}
-    \item \href{https://www.amazon.com/40dB-Attenuator-Precision-Adjustable-Communication/dp/B0F9VRD3KJ}{BECEN 200W N-Type 40dB Attenuator, DC to 3GHz, 50 Ohms, Precision Adjustable Signal Loss for RF Systems, Testing, Broadcast \& Communication}
-    \item \href{https://www.l-com.com/bandpass-filter-rf-splitter-0-6-ghz-type-n-male-terminator-50-ohm}{L-com 0-6 GHz Type N Male Terminator 50 Ohm}
-\end{itemize}
 
 \end{document}
