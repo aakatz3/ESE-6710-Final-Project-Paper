@@ -680,7 +680,7 @@ The efficiency remains approximately constant over this frequency range, which m
 %The trend of efficiency can be attributed to variations in soft-switching conditions and resonant-network impedance with switching frequency. 
 %At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
 %Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
-\begin{figure*}[!b]
+\begin{figure*}[]
     \begin{minipage}{\linewidth}
         \begin{subfigure}[t]{0.32\textwidth}
             \centering
@@ -748,7 +748,7 @@ The efficiency remains approximately constant over this frequency range, which m
 
 
 \subsubsection{Parametric Sweep, $R_\mathrm{load}$}
-\begin{figure*}[!t]
+\begin{figure*}[]
     \begin{minipage}{\linewidth}
         \centering
         
@@ -815,9 +815,9 @@ The efficiency remains approximately constant over this frequency range, which m
         \label{fig:Rosweepcomparison}
     \end{minipage}
 \end{figure*}
-The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from $50~\Omega$ to $74.5~\Omega$ under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
-The drain-to-source voltage waveforms for $R_\mathrm{load} = 50~\Omega$, $61.685~\Omega$, and $74.5~\Omega$ are shown in \cref{fig:Rosweepwaveform}. 
-The $v_{ds}$ waveforms are generally similar, with minor differences in the ZVS condition.
+The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from \qty{50}{\ohm} to \qty{75}{\ohm} under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
+The drain-to-source voltage waveforms for $R_\mathrm{load} = \qty{50}{\ohm}$, $\qty{61.685}{\ohm}$, and $\qty{75}{\ohm}$ are shown in \cref{fig:Rosweepwaveform}. 
+The $V_{DS}$ waveforms are generally similar, with minor differences in the ZVS condition.
 The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
 It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
 The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
