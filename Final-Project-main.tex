@@ -15,7 +15,12 @@
 \input{preamble}
 
 \begin{document}
-    
+    \begin{figure*}[!b]
+        \centering
+        \includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
+        \caption{Theoretical circuit of the converter}
+        \label{fig:converter-overall-sch}
+    \end{figure*}
     
     
 % Enable following command if you need to typeset "IEEEpubid".
@@ -90,12 +95,7 @@ In addition, the symmetric resonant operation helps achieve stable high-frequenc
 The disadvantages of the design are the physical size, circuit complexity, increased difficulty of tuning, and higher cost compared to simpler designs such as Class D or Class E based WPT solutions.
 Both simulation and hardware experimental results confirm that the implemented converter achieves efficient and reliable wireless power delivery under the specified operating conditions and demonstrate that the push–pull $\Phi_2$ topology is an effective solution for medium-power, \unit{\mega\hertz}-frequency wireless power transfer applications.
 The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
-\begin{figure*}[!b]
-    \centering
-    \includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
-    \caption{Theoretical circuit of the converter}
-    \label{fig:converter-overall-sch}
-\end{figure*}
+
 
 
 \section{Specifications}
@@ -832,6 +832,8 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
 
 
 \subsubsection{Frequenc}
+\cref{x1}
+\\
 \begin{verbbox}
     Spectrum of $P_{MR}$, with 10X passive scope probe, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Apparent attenuation of \qty{72.833}{\dB}, figure uncorrected
 \end{verbbox}
