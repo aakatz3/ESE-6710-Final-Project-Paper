@@ -327,3 +327,6 @@ TSWLatexianTemp*
 
 # Python Virtual Enviornments
 .venv/
+
+# General TMP files
+*.tmp

@@ -10,7 +10,7 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 %draft,onecolumn
 %nofonttune,9.5pt
-\documentclass[journal, 9pt,letterpaper,english]{IEEEtran}[2015/08/26]
+\documentclass[journal, 9pt,letterpaper,english,final]{IEEEtran}[2015/08/26]
 \input{preamble}
 
 \begin{document}
@@ -21,7 +21,7 @@
 % See https://bytefreaks.net/tag/ieeeoverridecommandlockouts for details.
 %\IEEEoverridecommandlockouts
 
-% TODO: Make sure final correct power is here
+
 \title{Modular \qty{36}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
 
 \author{%
@@ -64,7 +64,7 @@
 \begin{abstract}
 \pdfbookmark[1]{Abstract}{Abstract} 
 This project implements a $\mathbf{\qty{6.78}{\mega\hertz}}$ wireless power transfer converter based on a push--pull $\symbf{\Phi_2}$ topology. 
-The converter operates from a $\mathbf{\qty{25}{\volt}}$ DC input and delivers $\mathbf{\qty{35}{\watt}}$ output power with high efficiency.
+The converter operates from a $\mathbf{\qty{25}{\volt}}$ DC input and delivers $\mathbf{\qty{36}{\watt}}$ output power with high efficiency.
 The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\unit{\mega\hertz}}$ frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
 \end{abstract}
 
@@ -79,22 +79,22 @@ The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\un
 \IEEEpeerreviewmaketitle
 \section{Introduction}
 \label{sec:introduction}
-\begin{figure*}[b]
+This final project presents the design and implementation of a \qty{6.78}{\mega\hertz} push--pull $\Phi_2$ wireless power transfer converter operating from a \qty{25}{\volt} dc input and delivering \qty{36}{\watt} to the load.
+The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
+The push--pull $\Phi_2$ topology is chosen for its suitability for \unit{\mega\hertz}-frequency operation. 
+The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at \qty{6.78}{\mega\hertz}.
+The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a \qty{25}{\volt} input \cite{9039741,9458037}.
+Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations \cite{10833657}, simplifying the design and ensuring reliable \unit{\mega\hertz}-frequency operation.
+In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
+The disadvantages of the design are the physical size, circuit complexity, increased difficulty of tuning, and higher cost compared to simpler designs such as Class D or Class E based WPT solutions.
+Both simulation and hardware experimental results confirm that the implemented converter achieves efficient and reliable wireless power delivery under the specified operating conditions and demonstrate that the push–pull $\Phi_2$ topology is an effective solution for medium-power, \unit{\mega\hertz}-frequency wireless power transfer applications.
+The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
+\begin{figure*}[!b]
     \centering
     \includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
     \caption{Theoretical circuit of the converter}
     \label{fig:converter-overall-sch}
 \end{figure*}
-This final project presents the design and implementation of a \qty{6.78}{\mega\hertz} push--pull $\Phi_2$ wireless power transfer converter operating from a \qty{25}{\volt} dc input and delivering \qty{35}{\watt} to the load.
-The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
-The push--pull $\Phi_2$ topology is chosen for its suitability for \unit{\mega\hertz}-frequency operation. 
-The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at \qty{6.78}{\mega\hertz}.
-The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a \qty{25}{\volt} input. 
-Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations, simplifying the design and ensuring reliable \unit{\mega\hertz}-frequency operation.
-In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
-Both simulation and hardware experimental results confirm that the implemented converter achieves efficient and reliable wireless power delivery under the specified operating conditions and demonstrate that the push–pull $\Phi_2$ topology is an effective solution for medium-power, \unit{\mega\hertz}-frequency wireless power transfer applications.
-The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
-
 
 
 \section{Specifications}
@@ -104,7 +104,7 @@ From the start of the design to the conclusion of the project, some of the requi
 In particular, the requirements for using devices with under a \qty{60}{\volt} rating (or alternatively, must not let the voltage go above \qty{60}{\volt} across a given device) and having an input voltage greater than \qty{20}{\volt} were removed.
 Originally, \qty{6}{\mega\hertz}--\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur.
 Coil separation distance was measured from coil plane to coil plane (center of wire to center of wire).
-Once set, the coil seperation was not varied, but it was bounded between 1--2\unit{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
+Once set, the coil separation was not varied, but it was bounded between 1--2\unit{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
 
 \begin{table}[H]
     \centering
@@ -120,7 +120,7 @@ Once set, the coil seperation was not varied, but it was bounded between 1--2\un
 The converter is designed in multiple separate modules to facilitate bring-up, testing, and allow for easy variation of components and sub-systems.
 Accordingly, the converter is organized into four main functional modules, as shown in \cref{fig:converter-block}: a push–pull $\Phi_2$ inverter, the WPT coils, the resonant capacitors, and a rectifier.
 Each module is physically implemented as an independent hardware unit.
-Within this modular architecture, the inverter shapes the input voltage applied to the resonant tank, the WPT coils enable contactless power transfer, the resonant capacitors resonant with the coil inductances to achieve impedance matching and optimize power transfer efficiency, and the rectifier converts the received ac power into dc to supply the load.
+Within this modular architecture, the inverter shapes the input voltage applied to the resonant tank, the WPT coils enable contactless power transfer, the resonant capacitors resonate with the coil inductance to achieve impedance matching and optimize power transfer efficiency, and the rectifier converts the received ac power into dc to supply the load.
 While this work only details a single configuration of these modules, alternate versions of the inverter and rectifier modules were designed that can be explored in future work.
 \begin{figure*}[]
     \centering
@@ -220,13 +220,13 @@ Following the design process outlined above, the component values employed in th
 \begin{figure}[!tb]
     \centering
 %    \includegraphics[width=0.4\linewidth]{figure/sch/model.pdf}
-    \includestandalone{figure/tikz/transformer_coil_model}
+    \input{figure/tikz/transformer_coil_model}
     \caption{Coil model for compensation analysis, from \cite{10833657}}
     \label{fig:coilmodel}
 \end{figure}
 \subsection{Coil Compensation}
 Wireless energy transfer is achieved through a pair of magnetically coupled inductors with identical self-inductance values, which are modeled as illustrated in \cref{fig:coilmodel}.
-In this model, $L_1$ and $L_2$ denote the self-inductances of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
+In this model, $L_1$ and $L_2$ denote the self-inductance of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
 A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link, with two identical series-connected capacitors placed at the two terminals of each coil to ensure symmetry, as shown in \cref{fig:converter-overall-sch}. 
 The compensation capacitors $C_1$ and $C_2$ associated with $L_1$, and $C_3$ and $C_4$ associated with $L_2$, are designed to maximize efficiency using the expressions given in \cite{10833657}:
 \begin{equation}
@@ -265,7 +265,7 @@ The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\mil
 Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
 A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
 The primary design goal of the PCBs was to facilitate component variation for testing, to allow fast serviceability, and to allow for easy measurement of component and operating parameters.
-Outside of minimizing loop area, size was not a design constraing.
+Outside of minimizing loop area, size was not a design constraining.
 The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
 Different variants of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes.
@@ -361,7 +361,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
     
     
     
-    \caption{Circuit parameter results from Femm}
+    \caption{Circuit parameter results from FEMM}
     \label{tab:femm-results}
 \end{table}
 
@@ -405,13 +405,13 @@ Additional experiments were performed on each modular block of the converter, an
     \caption{Full assembly of the converter\quad (a) Front View\quad (b) Side View}
 \end{figure}
 \subsection{Setup and Procedure}
-%\todofix{PCB details} % TODO
+
 The PCBs were assembled with either an IR reflow process for the large boards, or a hotplate reflow process for the small boards.
 Through hole components were manually soldered.
 The required mechanical parts were attached to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
 
 The scope, waveform generator, and spectrum analyzer (where applicable) were all supplied with the same 10MHz reference clock (generated from a \verb|Keysight 33521A|).
-After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
+After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180\unit{\deg}$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
 Circuit voltages and currents were monitored using \verb|Keysight 10073D| and \verb|N2809A| passive probes, \verb|Keysight 1147B| current probes, and a \verb|Keysight MSO7034B| oscilloscope. 
 Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions.
 This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer.
@@ -423,7 +423,9 @@ To achieve a high coupling coefficient and quality factor, planar spiral coils w
 The coils were mounted on acrylic fixtures to maintain mechanical stability, and mirrored geometries and identical turn counts were employed for the transmitter and receiver coils to ensure closely matched self-inductances.
 The initial design of the coils matched that of the computer simulation.
 The self-inductance of each coil was measured with a \vna; fine adjustment of the number of turns was performed to bring the measured inductance values close to the design targets.
-The initial and final configurations are listed in \cref{sec:coils}; an example of one of the coils is shown in \cref{fig:single-coil}.
+The number of windings was reduced from 8 to 5 turns by removing the two innermost and one outermost winding.
+An example of one of the coils is shown in \cref{fig:single-coil}.
+ 
 % TODO table or what about number of windings, and values. 
 \begin{figure}[!htb]
     \centering
@@ -439,7 +441,7 @@ Once it was confirmed that a coupling coefficient exceeding the value required f
 Measurements were conducted to be able to calculate the required parameters for the model shown in \cref{fig:coilmodel}, and then the compensation capacitor values were calculated. 
 After the compensation capacitors were implemented in hardware, each individual set of compensation capacitors were measured and the values recorded once tuned to match the calculations.
 With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at \qty{6.78}{\mega\hertz}, indicating proper resonance.
-As the resonent tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
+As the resonant tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a \qty{50}{\ohm} RF load to the secondary results in an equivalent \qty{50}{\ohm} impedance measured from the primary side.
 This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:both-coils}.
 
@@ -648,7 +650,7 @@ The simulated and experimental results are presented in \cref{fig:Dsweepcomparis
 %Both the output power $P_{\mathrm{out}}$ and output voltage $V_{\mathrm{out}}$ exhibit a slight increase with increasing duty cycle. In contrast, the peak drain-to-source voltage $v_{ds,\max}$ begins to increase once the duty cycle exceeds a certain value, indicating increased device voltage stress at higher duty cycles.\\
 Because the load is predominantly resistive, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ exhibit similar trends.
 In simulation, both quantities show a slight increase with increasing $D$, whereas in the experimental results they remain nearly unchanged over the same range. 
-This discrepancy arises from practical nonideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
+This discrepancy arises from practical non-ideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
 For duty cycles below the exact-ZVS condition, the GaN FET turns on after $v_{ds}$ has resonated to zero. The resulting small turn-on $v_{ds}$ leads to weakly duty-dependent switching loss, while the limited variation of the main $v_{ds}$ waveform causes only minor changes in the resonant-tank input voltage. 
 Consequently, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant.
 In contrast, for duty cycles exceeding the exact-ZVS condition, the MOSFET is turned on before $v_{ds}$ reaches zero. The resulting large and duty-dependent turn-on $v_{ds}$ leads to a significant increase in switching loss, while the substantial modification of the main $v_{ds}$ waveform causes pronounced variations in the resonant-tank input voltage and, consequently, in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$.
@@ -771,9 +773,9 @@ The efficiency remains approximately constant over this frequency range, which m
         
         \caption{\centering
             Measured drain--source voltages and gate-drive voltages of the GaN FETs at different load resistances.\\
-            (a)\; $R_\mathrm{load} = 50 \Omega$\quad
-            (b)\; $R_\mathrm{load} = 61.685 \Omega$\quad
-            (c)\; $R_\mathrm{load} = 75 \Omega$
+            (a)\; $R_\mathrm{load} = \qty{50}{\ohm}$\quad
+            (b)\; $R_\mathrm{load} = \qty{61.685}{\ohm}$\quad
+            (c)\; $R_\mathrm{load} = \qty{75}{\ohm}$
         }
         \label{fig:Rosweepwaveform}
     \end{minipage}
@@ -831,52 +833,63 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
 For results obtained from the spectrum analyzer, all signals were passed through an attenuation, a 10X passive scope probe (with \qty{1}{\mega\ohm} series resistor), a \qty{20}{\dB} LNA, a \texttt{Keysight N2791A} differential probe, or some combination of the former.
 Therefore, these results should be considered preliminary and powers relative to each other.
 While the reference level of the spectrum analyzer is potentially incorrect, a lack of equipment prevented any calibration of the reference level to confirm accuracy.
-These results should mainly be used to see the harmonics present at each point measured in the circuit.
+These results should mainly be used to see the harmonics present at each point measured in the circuit. The multiresonant point spectrum can be seen in \cref{fig:spectrum:mr}.
 The multiresonant point was found to have the highest spectral power at $\qty{13.5655}{\mega\hertz}$, which matches the expected value of $\qty{13.56}{\mega\hertz}$.
 The spectral power at $V_{D_{AB}}$ was measured and shows a significant reduction in power at the second harmonic, with relatively high power at the first and third harmonic.
+This spectrum is shown in \cref{fig:spectrum:VD}.
 
-\begin{figure}[!b]
+
+\begin{figure*}
     \centering
     \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_mr.eps}
-    \label{fig:spectrum_mr}
+    \label{fig:spectrum:mr}
     \caption{$P_{MR}$, with 10X passive scope probe, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Apparent attenuation of \qty{72.833}{\dB}, figure uncorrected.}
-\end{figure}
-\begin{figure}[!b]
+\end{figure*}
+\begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_ds.eps}
-    \label{fig:spectrum_VPRI}
+    \label{fig:spectrum:VD}
     \caption{$P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected.}.
 \end{figure}
-\FloatBarrier
+
 \subsubsection{Resonant Tank Results}
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
 The resonant frequency was found to align very closely, and the resonant tank was found to match the designed characteristic impedance of the system.
-%TODO Reference figures and explain them
-\begin{figure}[!b]
+The smith chart in \cref{fig:awr-S11} shows that there is little imaginary coefficient in the impedance of the resonant tank, and the impedance is close to \qty{50}{\ohm}, indicating a good RF match.
+The $\mathrm{\left|Z11\right|}$ measurement in \cref{fig:awr-Z11} shows that \qty{6.78}{\mega\hertz} is extremely close to our resonant frequency.
+The $\mathrm{S21}$ measurement in \cref{fig:awr-S21} shows that there is decent coupling around \qty{6.78}{\mega\hertz}, with relatively minimal losses.
+
+\begin{figure}[]
     \centering
     \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/S11-crop.eps}
     \caption{S11 and impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S11}
 \end{figure}
-\begin{figure}[!b]
+\begin{figure}[]
     \centering
-    \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_Z11-crop.eps}
+    \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/dB_Z11-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-Z11}
 \end{figure}
-\begin{figure}[!b]
+\begin{figure}[]
     \centering
-    \includegraphics[width=0.8\columnwidth]{figure/results/sims/awr/db_S21-crop.eps}
+    \includegraphics[width=0.7\columnwidth]{figure/results/sims/awr/db_S21-crop.eps}
     \caption{Magnitude (dB) and Phase of impedance measurement of simulated vs actual resonant tank}
     \label{fig:awr-S21}
 \end{figure}
 \section{Conclusion}
-This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer converter based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 35 W, and a peak efficiency of 91.2\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
+This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer converter based on a push--pull Class-$\Phi_2$ topology.
+The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies.
+Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends.
+Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress.
+The design has a potential for high power density if the board area utilized for measurement connections and component variations is removed, and the modules are condensed to a single board on each side of the coils.
+However, this is not useful when the intent is to create a test setup to explore and compare different implementations of a given technology.
+Overall, the system achieves wireless power transfer with an output power of up to 36 W, and a peak efficiency of \qty{91.2}{\percent} at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
 \subsection{Future Work}
 More data should be collected, and the long term reliability of the converter needs to be tested.
 While preliminary thermal results appeared to be okay, the late stage failures during testing are most likely related to thermal problems.
 Different cooling systems should be investigated to allow for additional data collection, particularly across a wider operating range.
-Using a scope with more channels to analyze more parameters simultaniously would also help troubleshooting, as it's possible that some component limits were being briefly exceeded.
+Using a scope with more channels to analyze more parameters simultaneously would also help troubleshooting, as it's possible that some component limits were being briefly exceeded.
 Active control over the enable pin (instead of turning the supply voltage on and off) would likely also reduce the chance of component failure.
 
 Additionally, the modular nature of the apparatus should be utilized in a future comparative study to test how different components effect the operation and efficiency of the converter, particularly with alternate semiconductor devices.
@@ -1017,52 +1030,53 @@ All links were last followed on January 8, 2026.
     \begin{verbbox}
         \footnotesize\verb|pushpullphi2_new.sp|
     \end{verbbox}
-    \lstinputlisting[language=spice,label=lst:maininc,caption={{\verbBox} SPICE Netlist for converter simulation}] {listing/pushpullphi2_new.sp}
+    \lstinputlisting[language=spice,label=lst:maininc,caption={{\verbBox} LTspice Netlist for converter simulation}] {listing/pushpullphi2_new.sp}
     %\section{Python Programs}
     %\lipsum[1]
     %\section{MATLAB Programs}
     %\lipsum[1]
+    \centering
     \section{Physical Schematics, Bills of Materials, PCB Layouts, \& Assembled Boards}
     \label{sec:appendix:pcb}
-    \begin{figure}[!h]
+    \begin{figure}[H]
         \centering
         \includestandalone[width=0.4\linewidth]{figure/tikz/PCB-Color-Map}
         \label{fig:pcb-color-map}
         \caption{Color code for PCB prints}
     \end{figure}
-    \centering
+    \newpage
     \subsection{Inverter}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[page=1,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
         \caption{Top level schematic of the inverter}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[page=2,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
         \caption{Gate Drivers for the inverter}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[page=3,width=0.78\linewidth]{figure/sch/inverter_sch.pdf}
         \caption{PPT converter implementation}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\linewidth]{figure/pcb_layout/inverter-pcb-crop.pdf}
         \caption{PCB Layout of the inverter}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\linewidth]{figure/photo/board/inverter.png}
         \caption{Assembled inverter PCB}
     \end{figure}
-    \begin{table}[!htb]
+    \begin{table}[H]
         \centering
         \input{table/bom/BOM-inverter}
         \caption{BOM of the inverter}
     \end{table}
-%    \FloatBarrier
+    \FloatBarrier
     \subsection{Coil Interface}
     \begin{figure}[H]
         \centering
@@ -1087,8 +1101,8 @@ All links were last followed on January 8, 2026.
         \caption{
             \centering
             Assembled coil interface:\quad
-            (a) RX
-            (b) TX
+            (a)\; RX\quad
+            (b)\; TX
         }
     \end{figure}
     \begin{table}[H]
@@ -1097,10 +1111,47 @@ All links were last followed on January 8, 2026.
         \caption{BOM for TX and RX configurations of the coil interface}
     \end{table}
     \FloatBarrier
+    
+    \subsection{Rectifier}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=1,width=0.78\linewidth]{figure/sch/Rectifier-SCH.pdf}
+        \caption{Rectifier, STPS360AF variant (used)}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[page=2,width=0.78\linewidth]{figure/sch/Rectifier-SCH.pdf}
+        \caption{Rectifier, RB058LAM100TFTR variant (not used)}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{figure/pcb_layout/Rectifier-PCB.pdf}
+        \caption{PCB Layout of the rectifier}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/rectifier.png}}
+        \hfil
+        \subfloat[]{\includegraphics[height=144pt]{figure/photo/board/rectifier2.png}}
+        \caption{
+            \centering
+            Assembled rectifier:\quad
+            (a)\; Rectifier, STPS360AF variant (used)\quad
+            (b)\; Rectifier, RB058LAM100TFTR variant (not used in final configuration)
+        }
+    \end{figure}
+    \begin{table}[H]
+        \centering
+        \input{table/bom/BOM-Rectifier.tex}
+        \caption{BOM for the rectifier}
+    \end{table}
+    \FloatBarrier
+    \newpage
     \subsection{Probe Capacitance Emulator}
     
     
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[trim=4.5in 3.75in 4in 3.5in, clip, width=0.5\linewidth]{figure/sch/capacitance-emulator-sch.pdf}    
         \caption{Schematic of probe capacitance emulator to emulate the effect of a \texttt{Keysight 10073D} passive probe, \texttt{Cal Test Electronics CT2708}, and a \texttt{Mini-Circuits SM-BF50+}}
@@ -1108,14 +1159,14 @@ All links were last followed on January 8, 2026.
     \end{figure}
     
     
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.4\linewidth]{figure/pcb_layout/capacitance-emulator-pcb.pdf}
         \caption{CAD drawing of PCB layout for the probe capacitance emulator}
         \label{fig:pcb:probe-capacitance-emulator}
     \end{figure}
     
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \subfloat[]{\includegraphics[width=0.4\linewidth]{figure/photo/board/IMG_0010_edit.PNG}\label{fig:board:probe-capacitance-emulator:front}}
         \hfil
@@ -1130,7 +1181,7 @@ All links were last followed on January 8, 2026.
         \label{fig:cap-em}
     \end{figure}
     
-    \begin{table}[!htb]
+    \begin{table}[H]
         \centering
         \csvreader[head to column names,tabular=cccc, table head=\toprule\bfseries Component Designator & \bfseries Value & \bfseries Manufacturer & \bfseries Part Number\\ \midrule,table foot=\bottomrule,]
         {table/bom/BOM-ProbeEmulator.csv}{}%
@@ -1143,19 +1194,19 @@ All links were last followed on January 8, 2026.
     \FloatBarrier
     \subsection{SMA to Wago}
     \label{sec:pcb:sma-wago}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[trim=5.in 4.25in 3.5in 3in, clip, width=0.5\linewidth]{figure/sch/sma_to_wago.pdf}
         \caption{Schematic drawing for the SMA to Wago adapter}
         \label{fig:sch:sma-wago}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.4\linewidth]{figure/pcb_layout/sma_to_wago_pcb.pdf}
         \caption{CAD drawing of PCB layout for the SMA to Wago adapter}
         \label{fig:pcb:sma-wago}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \subfloat[]{\includegraphics[height=80pt]{figure/photo/board/sma_wago_plug_edit.PNG}\label{fig:board:sma-wago-plug}}
         \hfil
@@ -1169,6 +1220,11 @@ All links were last followed on January 8, 2026.
         }
         \label{fig:board_sma-wago}
     \end{figure}
+    \begin{table}[H]
+        \centering
+        \input{table/bom/BOM-SMAtoWago.tex}
+        \caption{BOM for the SMA to Wago adapter}
+    \end{table}
     \FloatBarrier
     \section{Other Content}
     \raggedright
