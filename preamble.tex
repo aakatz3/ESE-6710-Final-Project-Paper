@@ -119,8 +119,8 @@
 %\usepackage[section]{placeins}
 %\usepackage{placeins}
 %\usepackage[section,above,below]{placeins}
-%\usepackage[section,above,below,verbose]{placeins}
-\newcommand{\FloatBarrier}[0][]{}
+\usepackage[section,above,below,verbose]{placeins}
+
 
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \ifLuaTeX
@@ -490,11 +490,11 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 % EN: Put footnotes below floats
 % DE: Fußnoten unter Gleitumgebungen ("floats") platzieren
 % Source: https://tex.stackexchange.com/a/32993/9075
-\usepackage{stfloats}
-\fnbelowfloat
+%\usepackage{stfloats}
+%\fnbelowfloat
 
 % Proper positioning of double column floats; incompatible with stfloats
-%\usepackage{dblfloatfix}
+\usepackage{dblfloatfix}
 
 % EN: Extended support for footnotes
 % DE: Fußnoten
