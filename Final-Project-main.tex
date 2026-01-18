@@ -11,7 +11,7 @@
 % -*- coding:utf-8 mod:LaTeX -*-
 %draft,onecolumn
 %nofonttune,9.5pt
-\documentclass[journal, 9pt,letterpaper,english,final]{IEEEtran}[2015/08/26]
+\documentclass[journal, 9pt,letterpaper,english,draft]{IEEEtran}[2015/08/26]
 \input{preamble}
 
 \begin{document}
@@ -841,20 +841,25 @@ The multiresonant point was found to have the highest spectral power at $\qty{13
 The spectral power at $V_{D_{AB}}$ was measured and shows a significant reduction in power at the second harmonic, with relatively high power at the first and third harmonic.
 This spectrum is shown in \cref{fig:spectrum:VD}.
 
-
+\begin{verbbox}
+    Spectrum of $P_{MR}$, with 10X passive scope probe, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Apparent attenuation of \qty{72.833}{\dB}, figure uncorrected
+\end{verbbox}
 \begin{figure}[!ht]
-    \begin{minipage}{\columnwidth}
+%    \begin{minipage}{\columnwidth}
         \centering
         \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_mr.eps}
         \label{fig:spectrum:mr}
-        \caption{Spectrum of $P_{MR}$, with 10X passive scope probe, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Apparent attenuation of \qty{72.833}{\dB}, figure uncorrected.}
-    \end{minipage}
+        \caption{\verbBox}
+%    \end{minipage}
 \end{figure}
+\begin{verbbox}
+    Spectrum of $P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected
+\end{verbbox}
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_ds.eps}
     \label{fig:spectrum:VD}
-    \caption{Spectrum of $P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected.}.
+    \caption{\verbBox}
 \end{figure}
 
 \subsubsection{Resonant Tank Results}
