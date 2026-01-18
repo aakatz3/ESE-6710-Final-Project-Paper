@@ -79,15 +79,14 @@ The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\un
 \IEEEpeerreviewmaketitle
 \section{Introduction}
 \label{sec:introduction}
-
 This final project presents the design and implementation of a \qty{6.78}{\mega\hertz} push--pull $\Phi_2$ wireless power transfer converter operating from a \qty{25}{\volt} dc input and delivering \qty{36}{\watt} to the load.
 The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
 The push--pull $\Phi_2$ topology is chosen for its suitability for \unit{\mega\hertz}-frequency operation. 
 The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at \qty{6.78}{\mega\hertz}.
-The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a \qty{25}{\volt} input. 
-Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations, simplifying the design and ensuring reliable \unit{\mega\hertz}-frequency operation.
+The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a \qty{25}{\volt} input \cite{9039741,9458037}.
+Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations \cite{10833657}, simplifying the design and ensuring reliable \unit{\mega\hertz}-frequency operation.
 In addition, the symmetric resonant operation helps achieve stable high-frequency performance, which is critical for efficient wireless power transfer.
-The disadvantages of the design are the physical size, circuit complexity, and higher cost compared to simpler designs such as Class D or Class E based WPT solutions.
+The disadvantages of the design are the physical size, circuit complexity, increased difficulty of tuning, and higher cost compared to simpler designs such as Class D or Class E based WPT solutions.
 Both simulation and hardware experimental results confirm that the implemented converter achieves efficient and reliable wireless power delivery under the specified operating conditions and demonstrate that the push–pull $\Phi_2$ topology is an effective solution for medium-power, \unit{\mega\hertz}-frequency wireless power transfer applications.
 The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
 \begin{figure*}[!b]
@@ -839,6 +838,7 @@ The multiresonant point was found to have the highest spectral power at $\qty{13
 The spectral power at $V_{D_{AB}}$ was measured and shows a significant reduction in power at the second harmonic, with relatively high power at the first and third harmonic.
 This spectrum is shown in \cref{fig:spectrum_VD}.
 
+
 \begin{figure}[]
     \centering
     \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_mr.eps}
@@ -851,7 +851,7 @@ This spectrum is shown in \cref{fig:spectrum_VD}.
     \label{fig:spectrum_VD}
     \caption{$P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected.}.
 \end{figure}
-\FloatBarrier
+
 \subsubsection{Resonant Tank Results}
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
 The resonant frequency was found to align very closely, and the resonant tank was found to match the designed characteristic impedance of the system.
@@ -878,12 +878,18 @@ The $\mathrm{S21}$ measurement in \cref{fig:awr-S21} shows that there is decent 
     \label{fig:awr-S21}
 \end{figure}
 \section{Conclusion}
-This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer converter based on a push--pull Class-$\Phi_2$ topology. The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies. Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends. Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress. Overall, the system achieves wireless power transfer with an output power of up to 35 W, and a peak efficiency of 91.2\% at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
+This project presented the design and experimental implementation of a 6.78-MHz wireless power transfer converter based on a push--pull Class-$\Phi_2$ topology.
+The circuit component parameters were designed to meet the specified operating requirements, enabling soft-switching operation and reduced device voltage stress at MHz frequencies.
+Based on practical constraints, the wireless coils and PCB were carefully designed and implemented, and both simulations and experiments show good agreement in waveform characteristics and performance trends.
+Parametric studies of input voltage, duty cycle, switching frequency, and load resistance were conducted to investigate their effects on output power, efficiency, ZVS conditions, and device voltage stress.
+The design has a potential for high power density if the board area utilized for measurement connections and component variations is removed, and the modules are condensed to a single board on each side of the coils.
+However, this is not useful when the intent is to create a test setup to explore and compare different implementations of a given technology.
+Overall, the system achieves wireless power transfer with an output power of up to 36 W, and a peak efficiency of \qty{91.2}{\percent} at the nominal operating point, demonstrating the effectiveness of the proposed design and implementation.
 \subsection{Future Work}
 More data should be collected, and the long term reliability of the converter needs to be tested.
 While preliminary thermal results appeared to be okay, the late stage failures during testing are most likely related to thermal problems.
 Different cooling systems should be investigated to allow for additional data collection, particularly across a wider operating range.
-Using a scope with more channels to analyze more parameters simultaniously would also help troubleshooting, as it's possible that some component limits were being briefly exceeded.
+Using a scope with more channels to analyze more parameters simultaneously would also help troubleshooting, as it's possible that some component limits were being briefly exceeded.
 Active control over the enable pin (instead of turning the supply voltage on and off) would likely also reduce the chance of component failure.
 
 Additionally, the modular nature of the apparatus should be utilized in a future comparative study to test how different components effect the operation and efficiency of the converter, particularly with alternate semiconductor devices.
