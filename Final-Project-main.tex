@@ -435,37 +435,7 @@ An example of one of the coils is shown in \cref{fig:single-coil}.
     \label{fig:single-coil}
 \end{figure}
 After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of \qty{1}{\inch}.
-\begin{figure*}[!b]
-    \centering
-    
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalvdsvg.png}
-        \caption{}
-        \label{fig:vds_operating_point}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominaltank.png}
-        \caption{}
-        \label{fig:resonant_operating_point}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[t]{0.32\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalripple.png}
-        \caption{}
-        \label{fig:ripple_operating_point}
-    \end{subfigure}
-    
-    \caption{\centering
-        Measured waveforms at the nominal operating point.\\
-        (a)\; Drain--source voltages $v_{ds1}(t)$, $v_{ds2}(t)$ and gate-drive voltages $v_{g1}(t)$, $v_{g2}(t)$ of the GaN FETs.\\
-        (b)\; Input and output voltages and currents of the resonant tank.\\
-        (c)\; Input and Output Voltage and Current Ripples}
-    \label{fig:waveforms_operating_point}
-\end{figure*}
+
 
 % TODO Figure out how to explain this given partial missing data. Maybe say what we did, and note these intermediate measurements were not recorded.
 Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance (as expected due to the designed distance being \qty{1.5}{\inch}), the distance was adjusted until the coupling factor matched the designed coupling factor $k=0.3$ (though later testing and optimization showed that adjusting to $k=0.285$ was a better fit for our purposes). 
@@ -497,11 +467,41 @@ Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 
 
 
-%\FloatBarrier
+\FloatBarrier
 \subsection{Results}
 \label{sec:results}
 \subsubsection{Nominal Operating Point}
-
+\begin{figure*}[!t]
+    \centering
+    
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalvdsvg.png}
+        \caption{}
+        \label{fig:vds_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominaltank.png}
+        \caption{}
+        \label{fig:resonant_operating_point}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.32\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{plottings/NOMINAL/nominalripple.png}
+        \caption{}
+        \label{fig:ripple_operating_point}
+    \end{subfigure}
+    
+    \caption{\centering
+        Measured waveforms at the nominal operating point.\\
+        (a)\; Drain--source voltages $v_{ds1}(t)$, $v_{ds2}(t)$ and gate-drive voltages $v_{g1}(t)$, $v_{g2}(t)$ of the GaN FETs.\\
+        (b)\; Input and output voltages and currents of the resonant tank.\\
+        (c)\; Input and Output Voltage and Current Ripples}
+    \label{fig:waveforms_operating_point}
+\end{figure*}
 Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
@@ -538,7 +538,7 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Vout.eps}
         \caption{}
-    \end{subfigure}\hfill
+    \end{subfigure}\hfil
     \begin{subfigure}[t]{0.24\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Pout.eps}
@@ -549,7 +549,7 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Eff.eps}
         \caption{}
-    \end{subfigure}\hfill
+    \end{subfigure}\hfil
     \begin{subfigure}[t]{0.24\linewidth}
         \centering
         \includegraphics[width=\linewidth]{plottings/Vin/figVIN_Vdsmax.eps}
@@ -584,13 +584,13 @@ Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increas
             \includegraphics[width=\linewidth]{plottings/DUTY/0.3_MSO7034B.png}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.32\linewidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/DUTY/0.32_MSO7034B.png}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.32\linewidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/DUTY/0.4000000000000001_MSO7034B.png}
@@ -642,7 +642,6 @@ Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increas
         \label{fig:Dsweepcomparison}
     \end{minipage}
 \end{figure*}
-%\clearpage
 \begin{figure*}[!t]
     \begin{minipage}{\linewidth}
         \begin{subfigure}[t]{0.32\textwidth}
@@ -650,13 +649,13 @@ Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increas
             \includegraphics[width=\linewidth]{plottings/freq/6700000.0Hz_MSO7034B.png}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.32\textwidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/freq/6780000.0Hz_MSO7034B.png}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.32\textwidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/freq/6900000.0Hz_MSO7034B.png}
@@ -678,19 +677,19 @@ Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increas
             \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vout.eps}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.24\columnwidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Pout.eps}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.24\columnwidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Eff.eps}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.24\columnwidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/freq/fig_fs_Vdsmax.eps}
@@ -737,13 +736,13 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
             \includegraphics[width=\linewidth]{plottings/Ro/50.0R_MSO7034B.png}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.32\textwidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/Ro/61.68502750680849R_MSO7034B.png}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.32\textwidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/Ro/75.0R_MSO7034B.png}
@@ -757,7 +756,7 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
             (c)\; $R_\mathrm{load} = \qty{75}{\ohm}$
         }
         \label{fig:Rosweepwaveform}
-    \end{minipage}
+    \end{minipage}\\
     \vspace{\floatsep}
     \begin{minipage}{\linewidth}
         \centering
@@ -766,19 +765,19 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
             \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vout.eps}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.24\linewidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Pout.eps}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.24\linewidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Eff.eps}
             \caption{}
         \end{subfigure}
-        \hfill
+        \hfil
         \begin{subfigure}[t]{0.24\linewidth}
             \centering
             \includegraphics[width=\linewidth]{plottings/Ro/fig_Ro_Vdsmax.eps}
