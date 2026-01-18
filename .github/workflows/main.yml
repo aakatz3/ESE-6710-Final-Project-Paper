@@ -17,11 +17,14 @@ jobs:
           filename: Final-Project-main.tex
           options: -shell-escape -bibtex -lualatex -verbose
     - name: Upload compile artifacts
-      if: always()
+      if: failure()
       uses: actions/upload-artifact@v6
       with:
-        name: Artifacts
-        path: |
-          Final-Project-main.pdf
-          Final-Project-main.log
+        name: LaTeX Log
+        path: Final-Project-main.log
+    - name: Upload PDF
+      uses: actions/upload-artifact@v6
+      with:
+        name: Compiled PDF
+        path: Final-Project-main.pdf
         
