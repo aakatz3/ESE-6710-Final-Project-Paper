@@ -642,28 +642,8 @@ Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increas
         \label{fig:Dsweepcomparison}
     \end{minipage}
 \end{figure*}
-The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_\mathrm{load}$ are fixed at their nominal values.
-The gate-drive signals and drain-to-source voltage waveforms of the GaN FETs for $D = 0.30$, $0.32$, and $0.40$ are shown in \cref{fig:Dsweepwaveform}. It can be observed that when $D$ exceeds the nominal value, the gate-drive signal begins to rise before $v_{ds}$ has fully resonated to zero, resulting in incomplete ZVS and increased switching losses. 
-Conversely, when $D$ is below the nominal value, $v_{ds}$ resonates to zero and subsequently oscillates upward, such that the device turns on with a nonzero drain-to-source voltage, again degrading the ZVS condition and increasing switching losses. 
-At nominal $D$, $v_{ds}$ is close to zero at the onset of device turn-on, resulting in near-optimal ZVS behavior and minimal switching loss.
-The simulated and experimental results are presented in \cref{fig:Dsweepcomparison}. 
-%The conversion efficiency reaches its maximum at approximately $D = 0.32$, corresponding to the nominal operating point, which is consistent with the switching-loss analysis.
-%Both the output power $P_{\mathrm{out}}$ and output voltage $V_{\mathrm{out}}$ exhibit a slight increase with increasing duty cycle. In contrast, the peak drain-to-source voltage $v_{ds,\max}$ begins to increase once the duty cycle exceeds a certain value, indicating increased device voltage stress at higher duty cycles.\\
-Because the load is predominantly resistive, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ exhibit similar trends.
-In simulation, both quantities show a slight increase with increasing $D$, whereas in the experimental results they remain nearly unchanged over the same range. 
-This discrepancy arises from practical non-ideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
-For duty cycles below the exact-ZVS condition, the GaN FET turns on after $v_{ds}$ has resonated to zero. The resulting small turn-on $v_{ds}$ leads to weakly duty-dependent switching loss, while the limited variation of the main $v_{ds}$ waveform causes only minor changes in the resonant-tank input voltage. 
-Consequently, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant.
-In contrast, for duty cycles exceeding the exact-ZVS condition, the MOSFET is turned on before $v_{ds}$ reaches zero. The resulting large and duty-dependent turn-on $v_{ds}$ leads to a significant increase in switching loss, while the substantial modification of the main $v_{ds}$ waveform causes pronounced variations in the resonant-tank input voltage and, consequently, in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$.
-In simulation, the exact-ZVS condition occurs at approximately $D = 0.34$. 
-Accordingly, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant for smaller duty cycles and increase as $D$ is further raised, while the switching loss is initially unchanged and then increases, leading to an efficiency that is first nearly constant and subsequently decreases. 
-In the experimental results, however, over the duty-cycle range of 0.3--0.4, the MOSFET consistently turns on after $v_{ds}$ has resonated to zero. As a result, $V_{\mathrm{out}}$, $P_{\mathrm{out}}$, switching loss, and efficiency exhibit minimal variation within this range. 
-The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36, which is not observed experimentally, can be attributed to the duty-cycle-dependent influence on the $v_{ds}$ waveform discussed above.
-
-
-
-\clearpage
-\begin{figure*}[p]
+%\clearpage
+\begin{figure*}[!p]
     \begin{minipage}{\linewidth}
         \begin{subfigure}[t]{0.32\textwidth}
             \centering
@@ -794,6 +774,27 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
     \end{minipage}
     \label{fig:bigpage}
 \end{figure*}
+The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_\mathrm{load}$ are fixed at their nominal values.
+The gate-drive signals and drain-to-source voltage waveforms of the GaN FETs for $D = 0.30$, $0.32$, and $0.40$ are shown in \cref{fig:Dsweepwaveform}. It can be observed that when $D$ exceeds the nominal value, the gate-drive signal begins to rise before $v_{ds}$ has fully resonated to zero, resulting in incomplete ZVS and increased switching losses. 
+Conversely, when $D$ is below the nominal value, $v_{ds}$ resonates to zero and subsequently oscillates upward, such that the device turns on with a nonzero drain-to-source voltage, again degrading the ZVS condition and increasing switching losses. 
+At nominal $D$, $v_{ds}$ is close to zero at the onset of device turn-on, resulting in near-optimal ZVS behavior and minimal switching loss.
+The simulated and experimental results are presented in \cref{fig:Dsweepcomparison}. 
+%The conversion efficiency reaches its maximum at approximately $D = 0.32$, corresponding to the nominal operating point, which is consistent with the switching-loss analysis.
+%Both the output power $P_{\mathrm{out}}$ and output voltage $V_{\mathrm{out}}$ exhibit a slight increase with increasing duty cycle. In contrast, the peak drain-to-source voltage $v_{ds,\max}$ begins to increase once the duty cycle exceeds a certain value, indicating increased device voltage stress at higher duty cycles.\\
+Because the load is predominantly resistive, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ exhibit similar trends.
+In simulation, both quantities show a slight increase with increasing $D$, whereas in the experimental results they remain nearly unchanged over the same range. 
+This discrepancy arises from practical non-ideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
+For duty cycles below the exact-ZVS condition, the GaN FET turns on after $v_{ds}$ has resonated to zero. The resulting small turn-on $v_{ds}$ leads to weakly duty-dependent switching loss, while the limited variation of the main $v_{ds}$ waveform causes only minor changes in the resonant-tank input voltage. 
+Consequently, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant.
+In contrast, for duty cycles exceeding the exact-ZVS condition, the MOSFET is turned on before $v_{ds}$ reaches zero. The resulting large and duty-dependent turn-on $v_{ds}$ leads to a significant increase in switching loss, while the substantial modification of the main $v_{ds}$ waveform causes pronounced variations in the resonant-tank input voltage and, consequently, in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$.
+In simulation, the exact-ZVS condition occurs at approximately $D = 0.34$. 
+Accordingly, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant for smaller duty cycles and increase as $D$ is further raised, while the switching loss is initially unchanged and then increases, leading to an efficiency that is first nearly constant and subsequently decreases. 
+In the experimental results, however, over the duty-cycle range of 0.3--0.4, the MOSFET consistently turns on after $v_{ds}$ has resonated to zero. As a result, $V_{\mathrm{out}}$, $P_{\mathrm{out}}$, switching loss, and efficiency exhibit minimal variation within this range. 
+The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36, which is not observed experimentally, can be attributed to the duty-cycle-dependent influence on the $v_{ds}$ waveform discussed above.
+
+
+
+
 
 
 
