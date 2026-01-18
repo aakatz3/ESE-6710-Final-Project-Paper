@@ -104,7 +104,7 @@ From the start of the design to the conclusion of the project, some of the requi
 In particular, the requirements for using devices with under a \qty{60}{\volt} rating (or alternatively, must not let the voltage go above \qty{60}{\volt} across a given device) and having an input voltage greater than \qty{20}{\volt} were removed.
 Originally, \qty{6}{\mega\hertz}--\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur.
 Coil separation distance was measured from coil plane to coil plane (center of wire to center of wire).
-Once set, the coil seperation was not varied, but it was bounded between 1--2\unit{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
+Once set, the coil separation was not varied, but it was bounded between 1--2\unit{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
 
 \begin{table}[H]
     \centering
@@ -265,7 +265,7 @@ The acrylic mounting plate is attached to the framing via four M5-\qty{0.8}{\mil
 Implementation schematics and printed circuit boards were drawn using the Altium Designer\textregistered~\cite{altium} software.
 A hierarchical approach was generally used for the design of each PCB, where different functional groups were placed on different schematic sheets.
 The primary design goal of the PCBs was to facilitate component variation for testing, to allow fast serviceability, and to allow for easy measurement of component and operating parameters.
-Outside of minimizing loop area, size was not a design constraing.
+Outside of minimizing loop area, size was not a design constraining.
 The schematics, board layouts, and bills of materials can be seen in \cref{sec:appendix:pcb}.
 Several utility boards were also designed, along with an alternative inverter using a silicon MOSFET.
 Different variants of the boards were assembled to allow for testing different component combinations, such as different rectifier diodes.
@@ -361,7 +361,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
     
     
     
-    \caption{Circuit parameter results from Femm}
+    \caption{Circuit parameter results from FEMM}
     \label{tab:femm-results}
 \end{table}
 
@@ -441,7 +441,7 @@ Once it was confirmed that a coupling coefficient exceeding the value required f
 Measurements were conducted to be able to calculate the required parameters for the model shown in \cref{fig:coilmodel}, and then the compensation capacitor values were calculated. 
 After the compensation capacitors were implemented in hardware, each individual set of compensation capacitors were measured and the values recorded once tuned to match the calculations.
 With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at \qty{6.78}{\mega\hertz}, indicating proper resonance.
-As the resonent tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
+As the resonant tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
 When the two coils have identical inductance values and a coupling coefficient $k$, connecting a \qty{50}{\ohm} RF load to the secondary results in an equivalent \qty{50}{\ohm} impedance measured from the primary side.
 This property was leveraged to adjust the coil separation distance by monitoring the primary-side impedance, allowing the operating point corresponding to matched self-inductance and coupling coefficient to be identified. The final implemented coils are shown in \cref{fig:both-coils}.
 
@@ -650,7 +650,7 @@ The simulated and experimental results are presented in \cref{fig:Dsweepcomparis
 %Both the output power $P_{\mathrm{out}}$ and output voltage $V_{\mathrm{out}}$ exhibit a slight increase with increasing duty cycle. In contrast, the peak drain-to-source voltage $v_{ds,\max}$ begins to increase once the duty cycle exceeds a certain value, indicating increased device voltage stress at higher duty cycles.\\
 Because the load is predominantly resistive, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ exhibit similar trends.
 In simulation, both quantities show a slight increase with increasing $D$, whereas in the experimental results they remain nearly unchanged over the same range. 
-This discrepancy arises from practical nonideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
+This discrepancy arises from practical non-ideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
 For duty cycles below the exact-ZVS condition, the GaN FET turns on after $v_{ds}$ has resonated to zero. The resulting small turn-on $v_{ds}$ leads to weakly duty-dependent switching loss, while the limited variation of the main $v_{ds}$ waveform causes only minor changes in the resonant-tank input voltage. 
 Consequently, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant.
 In contrast, for duty cycles exceeding the exact-ZVS condition, the MOSFET is turned on before $v_{ds}$ reaches zero. The resulting large and duty-dependent turn-on $v_{ds}$ leads to a significant increase in switching loss, while the substantial modification of the main $v_{ds}$ waveform causes pronounced variations in the resonant-tank input voltage and, consequently, in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$.
@@ -1116,12 +1116,12 @@ All links were last followed on January 8, 2026.
     \begin{figure}[H]
         \centering
         \includegraphics[page=1,width=0.78\linewidth]{figure/sch/Rectifier-SCH.pdf}
-        \caption{Rectifier, STPS360AF varient (used)}
+        \caption{Rectifier, STPS360AF variant (used)}
     \end{figure}
     \begin{figure}[H]
         \centering
         \includegraphics[page=2,width=0.78\linewidth]{figure/sch/Rectifier-SCH.pdf}
-        \caption{Rectifier, RB058LAM100TFTR varient (not used)}
+        \caption{Rectifier, RB058LAM100TFTR variant (not used)}
     \end{figure}
     \begin{figure}[H]
         \centering
@@ -1136,8 +1136,8 @@ All links were last followed on January 8, 2026.
         \caption{
             \centering
             Assembled rectifier:\quad
-            (a)\; Rectifier, STPS360AF varient (used)\quad
-            (b)\; Rectifier, RB058LAM100TFTR varient (not used in final configuration)
+            (a)\; Rectifier, STPS360AF variant (used)\quad
+            (b)\; Rectifier, RB058LAM100TFTR variant (not used in final configuration)
         }
     \end{figure}
     \begin{table}[H]
