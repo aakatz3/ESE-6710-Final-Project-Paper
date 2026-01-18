@@ -77,6 +77,12 @@ The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\un
 % For peerreview papers, this IEEEtran command inserts a page break and
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
+\begin{figure*}[!b]
+    \centering
+    \input[width=0.9\linewidth]{figure/tikz/overall_converter}
+    \caption{Theoretical circuit of the converter}
+    \label{fig:converter-overall-sch}
+\end{figure*}
 \section{Introduction}
 \label{sec:introduction}
 
@@ -90,12 +96,7 @@ In addition, the symmetric resonant operation helps achieve stable high-frequenc
 The disadvantages of the design are the physical size, circuit complexity, and higher cost compared to simpler designs such as Class D or Class E based WPT solutions.
 Both simulation and hardware experimental results confirm that the implemented converter achieves efficient and reliable wireless power delivery under the specified operating conditions and demonstrate that the push–pull $\Phi_2$ topology is an effective solution for medium-power, \unit{\mega\hertz}-frequency wireless power transfer applications.
 The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
-\begin{figure*}[!b]
-    \centering
-    \includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
-    \caption{Theoretical circuit of the converter}
-    \label{fig:converter-overall-sch}
-\end{figure*}
+
 
 
 \section{Specifications}
