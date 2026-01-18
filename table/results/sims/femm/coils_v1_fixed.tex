@@ -13,7 +13,7 @@
 \usepackage{unicode-math}
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
 \sisetup{propagate-math-font = true}
-
+\newcommand*{\thead}[1]{\multicolumn{1}{c}{\bfseries #1}}
 \begin{document}
 	\begin{lrbox}{\linewidth}
 	\begin{tabular}{@{}lccccccc@{}}
