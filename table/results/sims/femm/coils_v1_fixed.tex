@@ -9,7 +9,6 @@
 \usepackage{lualatex-math}
 \usepackage{xfrac}
 \usepackage{mdwmath}
-\usepackage{cases}
 \usepackage{bm}
 \usepackage{unicode-math}
 \usepackage[group-minimum-digits=4,per-mode=fraction]{siunitx}
@@ -17,7 +16,7 @@
 
 \begin{document}
 	\centering
-	\begin{tabular}{c|ccccccc}
+	\begin{tabular}{@{}lccccccc@{}}
 		\toprule
         \textbf{Coil} &  \textbf{Frequency} $\mathbf{\unit{\mega\hertz}}$ &  \textbf{Current} $\mathbf{\unit{\ampere}}$ &  \textbf{Voltage} $\mathbf{\unit{\volt}}$ &  \textbf{Flux Linkage} $\mathbf{\unit{\weber}}$ &  \textbf{Inductance} $\mathbf{\unit{\henry}}$ &  \textbf{Impedance Ω} &  \textbf{Power} $\mathbf{\unit{\watt}}$\\
         \midrule
