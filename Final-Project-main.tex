@@ -105,7 +105,7 @@ From the start of the design to the conclusion of the project, some of the requi
 In particular, the requirements for using devices with under a \qty{60}{\volt} rating (or alternatively, must not let the voltage go above \qty{60}{\volt} across a given device) and having an input voltage greater than \qty{20}{\volt} were removed.
 Originally, \qty{6}{\mega\hertz}--\qty{7}{\mega\hertz} was tested, but this was reduced after some component failures. However, this may not have been the cause of the failures as another failure did ultimately occur.
 Coil separation distance was measured from coil plane to coil plane (center of wire to center of wire).
-Once set, the coil separation was not varied, but it was bounded between 1--2\unit{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
+Once set, the coil separation was not varied, but it was bounded between \qtyrange{1}{2}{\inch} during the design process, with a target value of \qty{1.5}{\inch}.
 
 \begin{table}[H]
     \centering
@@ -412,7 +412,7 @@ Through hole components were manually soldered.
 The required mechanical parts were attached to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
 
 The scope, waveform generator, and spectrum analyzer (where applicable) were all supplied with the same 10MHz reference clock (generated with a \verb|Keysight 33521A|).
-After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary 0--5~V square-wave gate-drive signals with a 180\unit{\degree}$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
+After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary \qtyrange{0}{5}{\volt} square-wave gate-drive signals with a 180\unit{\degree}$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
 Circuit voltages and currents were monitored using \verb|Keysight 10073D| and \verb|N2809A| passive probes, \verb|Keysight 1147B| current probes, and a \verb|Keysight MSO7034B| oscilloscope. 
 Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions.
 This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer.
