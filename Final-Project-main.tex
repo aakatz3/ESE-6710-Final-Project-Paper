@@ -819,7 +819,13 @@ The efficiency remains approximately constant over this frequency range, which m
 %The trend of efficiency can be attributed to variations in soft-switching conditions and resonant-network impedance with switching frequency. 
 %At lower switching frequencies, the increased switching period improves the likelihood of achieving ZVS by better aligning the instant at which $v_{ds}$ resonates to zero with the turn-on transition of the GaN FETs, thereby reducing switching losses. 
 %Meanwhile, the effective impedance of the load network increases as the switching frequency decreases, which suppresses circulating current and reduces conduction losses associated with parasitic resistances in the resonant path.\\
-
+\begin{figure}[!hb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_ds.eps}
+    \label{fig:spectrum:VD}
+    %    \caption{\verbBox}
+    \caption{Spectrum of $P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and \qty{20}{\dB} LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected}
+\end{figure}
 
 \subsubsection{Parametric Sweep, $R_\mathrm{load}$}
 The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from \qty{50}{\ohm} to \qty{75}{\ohm} under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
@@ -834,13 +840,7 @@ Minor fluctuations in the measured data are attributed to measurement accuracy l
 %\begin{verbbox}
 %    Spectrum of $P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and 20dB LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected
 %\end{verbbox}
-\begin{figure}[!hb]
-    \centering
-    \includegraphics[width=0.8\linewidth]{plottings/spectrum/fig_f_p_ds.eps}
-    \label{fig:spectrum:VD}
-%    \caption{\verbBox}
-    \caption{Spectrum of $P_{D_{AB}}$, with \texttt{N2791A} differential probe at 10X attenuation, \qty{1}{\mega\ohm} series resistor, and \qty{20}{\dB} LNA. Assumed attenuation of \qty{72.833}{\dB}, figure uncorrected}
-\end{figure}
+
 
 %\subsubsection{Frequenc}
 %\cref{x1}
