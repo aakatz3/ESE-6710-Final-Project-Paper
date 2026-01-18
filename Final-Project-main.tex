@@ -856,7 +856,7 @@ This spectrum is shown in \cref{fig:spectrum_VD}.
 The VNA measurements were taken of the resonant tank and compared with an RF simulation of the resonant tank built from the SPICE model.
 The resonant frequency was found to align very closely, and the resonant tank was found to match the designed characteristic impedance of the system.
 The smith chart in \cref{fig:awr-S11} shows that there is little imaginary coefficient in the impedance of the resonant tank, and the impedance is close to \qty{50}{\ohm}, indicating a good RF match.
-The $\mathrm{\left\|Z11\right|}$ measurement in \cref{fig:awr-Z11} shows that \qty{6.78}{\mega\hertz} is extremely close to our resonant frequency.
+The $\mathrm{\left|Z11\right|}$ measurement in \cref{fig:awr-Z11} shows that \qty{6.78}{\mega\hertz} is extremely close to our resonant frequency.
 The $\mathrm{S21}$ measurement in \cref{fig:awr-S21} shows that there is decent coupling around \qty{6.78}{\mega\hertz}, with relatively minimal losses.
 
 \begin{figure}[]
@@ -1193,19 +1193,19 @@ All links were last followed on January 8, 2026.
     \FloatBarrier
     \subsection{SMA to Wago}
     \label{sec:pcb:sma-wago}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[trim=5.in 4.25in 3.5in 3in, clip, width=0.5\linewidth]{figure/sch/sma_to_wago.pdf}
         \caption{Schematic drawing for the SMA to Wago adapter}
         \label{fig:sch:sma-wago}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \includegraphics[width=0.4\linewidth]{figure/pcb_layout/sma_to_wago_pcb.pdf}
         \caption{CAD drawing of PCB layout for the SMA to Wago adapter}
         \label{fig:pcb:sma-wago}
     \end{figure}
-    \begin{figure}[!htb]
+    \begin{figure}[H]
         \centering
         \subfloat[]{\includegraphics[height=80pt]{figure/photo/board/sma_wago_plug_edit.PNG}\label{fig:board:sma-wago-plug}}
         \hfil
@@ -1219,6 +1219,11 @@ All links were last followed on January 8, 2026.
         }
         \label{fig:board_sma-wago}
     \end{figure}
+    \begin{table}[H]
+        \centering
+        \input{table/bom/BOM-SMAtoWago.tex}
+        \caption{BOM for the SMA to Wago adapter}
+    \end{table}
     \FloatBarrier
     \section{Other Content}
     \raggedright
