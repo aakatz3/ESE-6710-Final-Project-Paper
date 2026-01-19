@@ -43,7 +43,7 @@
 
 %% !! Include math libraries before unicode-math
 \usepackage{amsmath}
-\interdisplaylinepenalty=2500 
+\interdisplaylinepenalty=2500
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{lualatex-math}
@@ -704,6 +704,7 @@ emphstyle=[2]{\color{functionDeclarations}}
 \AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
 
 \ifoptionfinal{
+    \usepackage[norefs,nocites]{refcheck}
 }{
-\usepackage{refcheck}
+	\usepackage{refcheck}
 }
