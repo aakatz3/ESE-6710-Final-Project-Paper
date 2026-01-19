@@ -253,7 +253,7 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 
 \subsection{Electromagnetic Simulation}
 \label{sec:em-sim}
-2D cross-sections of the coils designed in \cref{sec:coils} were imported into FEMM \cite{femm} and simulated
+2D cross-sections of the coils designed in \cref{sec:coils} were imported into FEMM \cite{femm} and simulated.
 Windings were removed until a seemingly reasonable inductance was achieved.
 A 3D solver would be preferred, but was out of scope for this initial round of design.% and proved problematic when use was attempted.
 The graphical results of the simulation are shown in \cref{fig:femm-results}, while the numarical results are summarized in \cref{tab:femm-results}.
@@ -449,7 +449,7 @@ Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
     \hfil
     \begin{subfigure}[t]{0.22\linewidth}
         \centering
-        \includegraphics[width=\linewidth]{figure/results/scope/nominal/prisec.png}
+        \includegraphics[width=\linewidth,decodearray={1 0 1 0 1 0}]{figure/results/scope/nominal/prisec.png}
         \caption{}
         \label{fig:prisec_operating_point}
     \end{subfigure}
@@ -465,6 +465,7 @@ Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 \end{figure*}
 Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
+
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
 % TODO Talk about fig 13D
 \subsubsection{Parametric Sweep, $V_{IN}$}
