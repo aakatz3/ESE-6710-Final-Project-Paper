@@ -486,7 +486,9 @@ In \cref{fig:vgs_vds_rect_vmr}, we can see that the voltage into the rectifier i
 As shown in \cref{fig:prisec_operating_point,,fig:prisec_second_operating_point}, the resonant tank currents are fairly sinusoidal (especially on the secondary side), while the tank voltages are closer to triangle waves.
 Additionally, the voltages entering and exiting the resonant tanks have substantially lower peak-to-peak values compared to the voltages inside of the tanks.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
-% TODO Talk about fig 13D
+
+Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ $\left(\qtyrange{18}{28}{\volt}\right)$, $D$ $\left(\numrange{0.3}{0.4}\right)$, $f_s$ $\left(\qtyrange{6.7}{6.9}{\mega\hertz}\right)$, and $R_\mathrm{load}$ $\left(\qtyrange{50}{75}{\ohm}\right)$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = \qty{25}{\volt}$ are shown in \cref{fig:vinsweepwave}.
+
 \subsubsection{Parametric Sweep, $V_{IN}$}
 \begin{figure*}[!t]
 	\centering
@@ -548,7 +550,6 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
 	\label{fig:vinsweepcomparison}
 \end{figure*}
 
-Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ $\left(\qtyrange{18}{28}{\volt}\right)$, $D$ $\left(\numrange{0.3}{0.4}\right)$, $f_s$ $\left(\qtyrange{6.7}{6.9}{\mega\hertz}\right)$, and $R_\mathrm{load}$ $\left(\qtyrange{50}{75}{\ohm}\right)$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = \qty{25}{\volt}$ are shown in \cref{fig:vinsweepwave}.
 It is observed that variations in $V_{\mathrm{in}}$ primarily affect the amplitudes of $v_{ds1}$ and $v_{ds2}$, while their waveform shapes remain largely unchanged.
 As shown in \cref{fig:vinsweepcomparison}, the simulated and experimental results exhibit good agreement in overall trend; however, the simulated output voltage $V_{\mathrm{out}}$, output power $P_{\mathrm{out}}$, and conversion efficiency $\eta$ are consistently higher than the measured values, primarily due to practical losses and voltage drops that are not fully captured in the simulation.
 As $V_{\mathrm{in}}$ increases, the maximum GAN FET drain-to-source voltage $v_{ds,\max}$ increases monotonically in both simulation and experiment, indicating a corresponding increase in the voltage amplitude applied to the load network.
