@@ -272,11 +272,11 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 	\label{fig:femm-results}
 \end{figure}
 
-\begin{table}[!h]
+\begin{table*}%[!h]
 	\centering
 	%    \tiny
 
-	\includestandalone[width=0.95]{table/results/sims/femm/coils_v1_fixed}
+	\includestandalone[width=0.95\columnwidth]{table/results/sims/femm/coils_v1_fixed}
 
 	%    circuit,current,voltage,flux,inductance,impedance,power
 	%    \csvreader[head to column names,tabular=cccccccc, table head=\toprule\bfseries Coil & \bfseries Frequency \unit{\hertz} & \bfseries Current \unit{\ampere} & \bfseries Voltage \unit{\volt} & \bfseries Flux Linkage \unit{\weber} & \bfseries Inductance \unit{\henry} & \bfseries DC Resistance \unit{\ohm} & \bfseries Power \unit{\watt}\\ \midrule,table foot=\bottomrule,]
@@ -285,7 +285,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 
 	\caption{Circuit parameter results from FEMM}
 	\label{tab:femm-results}
-\end{table}
+\end{table*}
 
 \subsection{RF Simulations}
 %\textcolor{red5}{\lipsum[16-18]}
@@ -296,6 +296,9 @@ RF Simulations were conducted in Keysight ADS \cite{ads} and Cadence AWR Design 
 	\includegraphics[width=0.6\columnwidth]{figure/sch/ads-resonant-tank-sch-crop.pdf}
 	\caption{ADS Schematic of resonant tank simulation}
 	\label{fig:ads-tank-sch}
+\end{figure}
+\begin{figure}
+    
 \end{figure}
 \begin{figure}[]
 	\centering
