@@ -466,6 +466,7 @@ Input voltage ($V_{IN}$) was swept from \qty{18}{\volt} to \qty{28}{\volt}.
 Under a switching frequency of $f_s = \qty{6.78}{\mega\hertz}$, a duty cycle of $D = 0.32$, an input voltage of $V_{\mathrm{in}} = \qty{25}{\volt}$, and a load resistance of $R_\mathrm{load} = \qty{61.685}{\ohm}$, which are taken as the nominal operating conditions, the measured waveforms shown in \cref{fig:waveforms_operating_point} demonstrate good agreement with the simulation results.
 In particular, as shown in \cref{fig:vds_operating_point}, the waveforms of $v_{ds1}$ and $v_{ds2}$ exhibit both ZVS and ZDVS during the turn-on and turn-off transitions of the GaN FETs. The input--output characteristics of the resonant tank are shown in \cref{fig:resonant_operating_point}, where both the primary and secondary coil currents exhibit near-sinusoidal waveforms. The output voltage and current of the resonant tank correspond directly to the input voltage and current of the rectifier. Furthermore, the input and output voltage and current ripples are illustrated in \cref{fig:ripple_operating_point}, where $I_{\mathrm{in}}$ (red), $I_{\mathrm{out}}$ (green), $V_{\mathrm{in}}$ (yellow), and $V_{\mathrm{out}}$ (blue) all exhibit relatively small ripple magnitudes.
 An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point.
+% TODO Talk about fig 13D
 \subsubsection{Parametric Sweep, $V_{IN}$}
 \begin{figure*}[!t]
 	\centering
@@ -763,7 +764,7 @@ The measured and simulated results as functions of switching frequency are prese
 A close agreement between the experimental measurements and simulation results is observed over the entire frequency range.
 Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ decrease monotonically with increasing switching frequency, while the maximum drain--source voltage $V_{\mathrm{ds,max}}$ remains approximately constant.
 This behavior may be attributed to waveform distortion, whereby the RMS value of $v_{ds}$ decreases as the switching frequency increases, whereas its peak value is largely unaffected.
-The efficiency remains approximately constant over this frequency range, which may be attributed to the increase in switching losses as the switching frequency.\\
+The efficiency remains approximately constant over this frequency range, likely due to the narrow band of frequencies that is swept.\\
 %Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ increase with switching frequency up to an optimum point and then decrease as the frequency further increases. 
 %This behavior may be attributed to waveform distortion, while discrepancies between the measured and simulated $v_{ds}$ waveforms result in different frequencies for the maximum $P_{\mathrm{out}}$.
 %In contrast, the efficiency reaches its maximum at $f_s$ slightly below $6.78~\mathrm{MHz}$. In the experimental results, a slight recovery of efficiency is observed at low frequencies, which may be associated with increased waveform distortion.
