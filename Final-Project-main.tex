@@ -15,10 +15,6 @@
 
 \begin{document}
 
-% Enable following command if you need to typeset "IEEEpubid".
-% See https://bytefreaks.net/tag/ieeeoverridecommandlockouts for details.
-%\IEEEoverridecommandlockouts
-
 \title{Modular \qty{36}{\watt} Wireless Power Transfer Push--Pull Class $\Phi_2$ Converter}
 
 \author{%
@@ -51,12 +47,14 @@
 %  - https://tex.stackexchange.com/a/200330/9075 - for non-compsocc papers
 \iffalse
 	\IEEEoverridecommandlockouts
-	\IEEEpubid{\begin{minipage}{\textwidth}\ \\[12pt] \centering
+	\IEEEpubid{
+        \begin{minipage}{\textwidth}\ \\[12pt] \centering
 			1551-3203 \copyright 2015 IEEE.
 			Personal use is permitted, but republication/redistribution requires IEEE permission.
 			\\
 			See \url{https://www.ieee.org/publications_standards/publications/rights/index.html} for more information.
-		\end{minipage}}
+		\end{minipage}
+    }
 \fi
 \begin{abstract}
 	\pdfbookmark[1]{Abstract}{Abstract}
@@ -88,7 +86,9 @@ Both simulation and hardware experimental results confirm that the implemented c
 The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
 \begin{figure*}[!b]
 	\centering
-	\includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
+    \begin{minipage}{0.9\linewidth}
+        \include{figure/tikz/overall_converter}
+    \end{minipage}
 	\caption{Theoretical circuit of the converter}
 	\label{fig:converter-overall-sch}
 \end{figure*}
