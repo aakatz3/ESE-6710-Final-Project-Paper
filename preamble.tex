@@ -41,8 +41,6 @@
 %\g@addto@macro\UrlSpecials{\do\/{\Url@twoslashes}}
 %\makeatother
 
-
-
 %% !! Include math libraries before unicode-math
 \usepackage{amsmath}
 \interdisplaylinepenalty=2500 
@@ -54,7 +52,6 @@
 \usepackage{cases}
 \usepackage{bm}
 
-
 %% !!! If you change the font, be sure that words such as "workflow" can
 %% !!! still be copied from the PDF. If this is not the case, you have
 %% !!! to use glyphtounicode. See comment at cmap package.
@@ -64,85 +61,79 @@
 %%             whily copying.
 
 \ifluatex
-  \usepackage[no-math]{fontspec}
-  \defaultfontfeatures{Ligatures = TeX}
+	\usepackage[no-math]{fontspec}
+	\defaultfontfeatures{Ligatures = TeX}
 
-  \usepackage{unicode-math}
+	\usepackage{unicode-math}
 
-  % Enable proper ligatures
-  % For more information see https://ctan.org/pkg/selnolig
-  % language "english" or "ngerman" is passed to selnolig by the document class
-  \usepackage{selnolig}
-  
-  
+	% Enable proper ligatures
+	% For more information see https://ctan.org/pkg/selnolig
+	% language "english" or "ngerman" is passed to selnolig by the document class
+	\usepackage{selnolig}
 
-%  \setmainfont{Times New Roman}
-%  \setmathfont{Times New Roman}
-%  \setmainfont{TeX Gyre Termes}
-%  \setmathfont{TeX Gyre Termes}
-%  \setmainfont{Times}
-%  \setmathfont{Times}
-    
+	%  \setmainfont{Times New Roman}
+	%  \setmathfont{Times New Roman}
+	%  \setmainfont{TeX Gyre Termes}
+	%  \setmathfont{TeX Gyre Termes}
+	%  \setmainfont{Times}
+	%  \setmathfont{Times}
 
-  \setmainfont{StixTwoText}[]
-  \setmathfont{StixTwoMath}[Scale=1]
-%  \AtBeginDocument{\setlength{\baselineskip}{8pt}}
-%  \setmonofont[Scale=MatchAveragecase]{Courier}
-%  \setmonofont[Scale=MatchAveragecase]{Courier New}
-%  \setmonofont[Scale=MatchAveragecase]{Cascadia Mono}
-%  \setmonofont[Scale=0.89]{Cascadia Mono}
-%   \usepackage{plex-mono}
-  % Matches STIX/Times better
-  \setmonofont[scale=MatchAverageCase, ScaleAgain=0.9]{IBMPlexMono}
-%  \setsansfont[scale=MatchAveragecase]{Helvetica}
-%  \setsansfont[scale=MatchAveragecase]{Arial}
-  \setsansfont{Roboto}[scale=MatchAveragecase]
+	\setmainfont{StixTwoText}[]
+	\setmathfont{StixTwoMath}[Scale=1]
+	%  \AtBeginDocument{\setlength{\baselineskip}{8pt}}
+	%  \setmonofont[Scale=MatchAveragecase]{Courier}
+	%  \setmonofont[Scale=MatchAveragecase]{Courier New}
+	%  \setmonofont[Scale=MatchAveragecase]{Cascadia Mono}
+	%  \setmonofont[Scale=0.89]{Cascadia Mono}
+	%   \usepackage{plex-mono}
+	% Matches STIX/Times better
+	\setmonofont[scale=MatchAverageCase, ScaleAgain=0.9]{IBMPlexMono}
+	%  \setsansfont[scale=MatchAveragecase]{Helvetica}
+	%  \setsansfont[scale=MatchAveragecase]{Arial}
+	\setsansfont{Roboto}[scale=MatchAveragecase]
 \else
-  % Modern replacement for Times.sty that sets math fonts correctly and scales helvet properly
-  \usepackage{mathptmx}
-  \usepackage[scaled=.90]{helvet}
-  \usepackage{courier}
-  \defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
-  % use nicer font for code
-  \usepackage[zerostyle=b,scaled=.75]{newtxtt}
+	% Modern replacement for Times.sty that sets math fonts correctly and scales helvet properly
+	\usepackage{mathptmx}
+	\usepackage[scaled=.90]{helvet}
+	\usepackage{courier}
+	\defaultfontfeatures{Ligatures = TeX, Mapping = tex-text}
+	% use nicer font for code
+	\usepackage[zerostyle=b,scaled=.75]{newtxtt}
 
-  % Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
-  \usepackage[T1]{fontenc}
+	% Has to be loaded AFTER any font packages. See https://tex.stackexchange.com/a/2869/9075.
+	\usepackage[T1]{fontenc}
 \fi
 
 \usepackage{ninecolors}
 
 % Character protrusion and font expansion. See http://www.ctan.org/tex-archive/macros/latex/contrib/microtype/
 
-
 %\usepackage[section]{placeins}
 \usepackage{placeins}
 %\usepackage[section,above,below]{placeins}
 %\usepackage[section,above,below,verbose]{placeins}
 
-
 % \texttt{test -- test} keeps the "--" as "--" (and does not convert it to an en dash)
 \ifLuaTeX
-\usepackage[
-babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
-expansion=alltext,
-protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
-% In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
-final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
-]{microtype}
-\DisableLigatures{encoding = T1, family = tt* }
+	\usepackage[
+		babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
+		expansion=alltext,
+		protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
+		% In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
+		final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
+	]{microtype}
+	\DisableLigatures{encoding = T1, family = tt* }
 \else\ifPDFTeX
-\usepackage[
-babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
-expansion=alltext,
-protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
-% In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
-final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
-]{microtype}
-\DisableLigatures{encoding = T1, family = tt* }
+		\usepackage[
+			babel=true, % Enable language-specific kerning. Take language-settings from the languge of the current document (see Section 6 of microtype.pdf)
+			expansion=alltext,
+			protrusion=alltext-nott, % Ensure that at listings, there is no change at the margin of the listing
+			% In the standard configuration, this template is always in the final mode, so this option only makes a difference if "pros" use the draft mode
+			final % Always enable microtype, even if in draft mode. This helps finding bad boxes quickly.
+		]{microtype}
+		\DisableLigatures{encoding = T1, family = tt* }
+	\fi
 \fi
-\fi
-
 
 %\DeclareMicrotypeSet*[tracking]{my}{ font = */*/*/sc/* }%
 %\SetTracking{ encoding = *, shape = sc }{ 45 }
@@ -156,8 +147,8 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \usepackage{diagbox}
 
 \ifluatex
-  \usepackage{spelling}
-  \spellingoutput{off}
+	\usepackage{spelling}
+	\spellingoutput{off}
 \fi
 
 \usepackage[dvipsnames, table]{xcolor}
@@ -174,7 +165,6 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 \definecolor{main-color}{rgb}{0.6627, 0.7176, 0.7764}
 
-
 % SPICE definition
 % CUSTOM
 \lstdefinelanguage{spice}{
@@ -185,241 +175,234 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 	stringstyle=\textrm\color{eclipseKeywords}, % style
 	string=[s]{"}{"},
 	numberstyle=\tiny\ttfamily\color{black},
-%	showspaces=true,
-%	showtabs=true,
+	%	showspaces=true,
+	%	showtabs=true,
 	stepnumber=1,
 	breaklines=true,
 	breakatwhitespace=true,
 	columns=fixed,
 	numbersep=8pt,
-%	showstringspaces=true,
+	%	showstringspaces=true,
 	breaklines=true,
-%	frame=lines,
+	%	frame=lines,
 	backgroundcolor=\color{back-color},
 	sensitive=false,
 	comment=[l]{\;},
-%	morecomment=[l]{*},
+	%	morecomment=[l]{*},
 	moredelim=[l][\color{spiceContinuationText}]{+},
-%	moredelim=[l][\color{spiceDotCommand}]{.},
-    moredelim=[l][\color{spiceDotCommand}]{.meas},
-    moredelim=[l][\color{spiceDotCommand}]{.op},
-    moredelim=[l][\color{spiceDotCommand}]{.tra},
-    moredelim=[l][\color{spiceDotCommand}]{.par},
-    moredelim=[l][\color{spiceDotCommand}]{.lib},
-    moredelim=[l][\color{spiceDotCommand}]{.end},
-    moredelim=[l][\color{spiceDotCommand}]{.OPT},
+	%	moredelim=[l][\color{spiceDotCommand}]{.},
+	moredelim=[l][\color{spiceDotCommand}]{.meas},
+	moredelim=[l][\color{spiceDotCommand}]{.op},
+	moredelim=[l][\color{spiceDotCommand}]{.tra},
+	moredelim=[l][\color{spiceDotCommand}]{.par},
+	moredelim=[l][\color{spiceDotCommand}]{.lib},
+	moredelim=[l][\color{spiceDotCommand}]{.end},
+	moredelim=[l][\color{spiceDotCommand}]{.OPT},
 }
-
 
 % JSON definition
 % Source: https://tex.stackexchange.com/a/433961/9075
 
 \lstdefinelanguage{json}{
-  basicstyle=\normalfont\footnotesize\ttfamily,
-  commentstyle=\color{eclipseStrings}, % style of comment
-  stringstyle=\color{eclipseKeywords}, % style of strings
-  numbers=left,
-  numberstyle=\scriptsize,
-  stepnumber=1,
-  numbersep=8pt,
-  showstringspaces=false,
-  breaklines=true,
-  frame=lines,
-%  backgroundcolor=\color{gray}, %only if you like
-  string=[s]{"}{"},
-  comment=[l]{:\ "},
-  morecomment=[l]{:"},
-  literate=
-    *{0}{{{\color{numb}0}}}{1}
-    {1}{{{\color{numb}1}}}{1}
-    {2}{{{\color{numb}2}}}{1}
-    {3}{{{\color{numb}3}}}{1}
-    {4}{{{\color{numb}4}}}{1}
-    {5}{{{\color{numb}5}}}{1}
-    {6}{{{\color{numb}6}}}{1}
-    {7}{{{\color{numb}7}}}{1}
-    {8}{{{\color{numb}8}}}{1}
-    {9}{{{\color{numb}9}}}{1}
+	basicstyle=\normalfont\footnotesize\ttfamily,
+	commentstyle=\color{eclipseStrings}, % style of comment
+	stringstyle=\color{eclipseKeywords}, % style of strings
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=lines,
+	%  backgroundcolor=\color{gray}, %only if you like
+	string=[s]{"}{"},
+	comment=[l]{:\ "},
+	morecomment=[l]{:"},
+	literate=
+		*{0}{{{\color{numb}0}}}{1}
+		{1}{{{\color{numb}1}}}{1}
+		{2}{{{\color{numb}2}}}{1}
+		{3}{{{\color{numb}3}}}{1}
+		{4}{{{\color{numb}4}}}{1}
+		{5}{{{\color{numb}5}}}{1}
+		{6}{{{\color{numb}6}}}{1}
+		{7}{{{\color{numb}7}}}{1}
+		{8}{{{\color{numb}8}}}{1}
+		{9}{{{\color{numb}9}}}{1}
 }
-
-
 
 \lstset{
-  showstringspaces=false,
-  extendedchars=true,
-  basicstyle=\footnotesize\ttfamily,
-  commentstyle=\slshape
-  numberstyle=\tiny\ttfamily\color{black},
-  stepnumber=1,
-  breaklines=true,
-  breakatwhitespace=true,
-  columns=fixed,
-  numbersep=8pt,
-  breaklines=true,
-  frame=lines,
-  tabsize=2,                  % Groesse von Tabs
-  numbers=left,
-  basewidth=.5em,
-  xleftmargin=.5cm,
-  % aboveskip=0mm,
-  % belowskip=0mm,
-  captionpos=b
+	showstringspaces=false,
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	commentstyle=\slshape
+	numberstyle=\tiny\ttfamily\color{black},
+	stepnumber=1,
+	breaklines=true,
+	breakatwhitespace=true,
+	columns=fixed,
+	numbersep=8pt,
+	breaklines=true,
+	frame=lines,
+	tabsize=2,                  % Groesse von Tabs
+	numbers=left,
+	basewidth=.5em,
+	xleftmargin=.5cm,
+	% aboveskip=0mm,
+	% belowskip=0mm,
+	captionpos=b
 }
-
 
 \lstloadlanguages{% Check dokumentation for further languages...
-  %[Visual]Basic
-  %Pascal
-  %C
-  %C++
-  %XML
-  %HTML
-  Python,
-  Octave
+	%[Visual]Basic
+	%Pascal
+	%C
+	%C++
+	%XML
+	%HTML
+	Python,
+	Octave
 }
 
-
-
 \input{util/vs-colors}
-
 
 \newcommand\digitstyle{\color{numberLiteral}}
 \makeatletter
 \newcommand{\ProcessDigit}[1]
 {%
-    \ifnum\lst@mode=\lst@Pmode\relax%
-    {\digitstyle #1}%
-    \else
-    #1%
-    \fi
+	\ifnum\lst@mode=\lst@Pmode\relax%
+		{\digitstyle #1}%
+	\else
+		#1%
+	\fi
 }
 
 \lstdefinestyle{mystyle}
 {
-	% everything between (* *) is a latex command
-	escapeinside={\#(*}{*)},
-	language = Python,
-	basicstyle = {\normalfont\scriptsize\ttfamily\color{variableAndParameterName}},
-	commentstyle=\color{comment},
-	backgroundcolor = {\color{back-color}},
-	numberstyle=\tiny\ttfamily\color{black},
-	stringstyle = {\color{stringLiteral}},
-	keywordstyle = {\color{controlFlowSpecialKeywords}},
-    keywordstyle = [5]{\color{functionDeclarations}},
-    keywordstyle = [2]{\color{functionDeclarations}},
-	keywordstyle = [6]{\color{black}},
-	keywordstyle = [3]{\color{constantLanguage}},
-	keywordstyle = [4]{\color{typesDeclarationAndReferences}}, % Imports
-	morekeywords = [6]{.},
-	morekeywords = [3]{True, False},
-	morekeywords = [4]{
-        numpy,
-        np,
-        os,
-        pathlib,
-        pl,
-        enum,
-        Enum,
-        DataType,
-        pyvisa,
-        visa,
-        time,
-        pandas,
-        matplotlib,
-        pyplot,
-        plt,
-        pandas,
-        pd,
-        shutil,
-        I\_IN,
-        I\_OUT,
-        V\_C,
-        V\_OUT,
-        I\_IN\_AVG,
-        I\_OUT\_AVG,
-        V\_OUT\_AVG,
-        TIME,
-        SCREENSHOT\_ALL,
-        PLOT,
-        SHOW\_PLOT,
-        CLEAR\_PREVIOUS,
-        NUMPY\_FORMAT,
-        },% packages
-	morekeywords = [5]{
-        exists
-        remove
-        geomspace,
-        astype,
-        linspace,
-        write,
-        unique,
-        savetxt,
-        Path,
-        unlink,
-        open\_resource,
-        makedirs,
-        query\_ascii\_values,
-        append,
-        len,
-        \_append,
-        open,
-        figure,
-        to\_csv,
-        show,
-        savefig,
-        range,
-        insert,
-        DataFrame,
-        sleep,
-        close,
-        exit,
-        query\_binary\_values,
-        split,
-        plot,
-        geomspace,
-        sort,
-        query,
-        path,
-        isdir,
-        gmtime,
-        strftime,
-        printz
-        },% functions
-	literate=
-		{0}{{{\ProcessDigit{0}}}}1
-        {1}{{{\ProcessDigit{1}}}}1
-        {2}{{{\ProcessDigit{2}}}}1
-        {3}{{{\ProcessDigit{3}}}}1
-        {4}{{{\ProcessDigit{4}}}}1
-        {5}{{{\ProcessDigit{5}}}}1
-        {6}{{{\ProcessDigit{6}}}}1
-        {7}{{{\ProcessDigit{7}}}}1
-        {8}{{{\ProcessDigit{8}}}}1
-        {9}{{{\ProcessDigit{9}}}}1
-        {e0}{{{\ProcessDigit{e0}}}}2
-        {e1}{{{\ProcessDigit{e1}}}}2
-        {e2}{{{\ProcessDigit{e2}}}}2
-        {e3}{{{\ProcessDigit{e3}}}}2
-        {e4}{{{\ProcessDigit{e4}}}}2
-        {e5}{{{\ProcessDigit{e5}}}}2
-        {e6}{{{\ProcessDigit{e6}}}}2
-        {e7}{{{\ProcessDigit{e7}}}}2
-        {e8}{{{\ProcessDigit{e8}}}}2
-        {e9}{{{\ProcessDigit{e9}}}}2
-        {.0}{{{\ProcessDigit{.0}}}}2
-        {.1}{{{\ProcessDigit{.1}}}}2
-        {.2}{{{\ProcessDigit{.2}}}}2
-        {.3}{{{\ProcessDigit{.3}}}}2
-        {.4}{{{\ProcessDigit{.4}}}}2
-        {.5}{{{\ProcessDigit{.5}}}}2
-        {.6}{{{\ProcessDigit{.6}}}}2
-        {.7}{{{\ProcessDigit{.7}}}}2
-        {.8}{{{\ProcessDigit{.8}}}}2
-        {.9}{{{\ProcessDigit{.9}}}}2,
-	emph={dir,format},          % Custom highlighting
-	emphstyle=\color{variableAndParameterName},
-    emph = [2]{print},
-    emphstyle=[2]{\color{functionDeclarations}}
+% everything between (* *) is a latex command
+escapeinside={\#(*}{*)},
+language = Python,
+basicstyle = {\normalfont\scriptsize\ttfamily\color{variableAndParameterName}},
+commentstyle=\color{comment},
+backgroundcolor = {\color{back-color}},
+numberstyle=\tiny\ttfamily\color{black},
+stringstyle = {\color{stringLiteral}},
+keywordstyle = {\color{controlFlowSpecialKeywords}},
+keywordstyle = [5]{\color{functionDeclarations}},
+keywordstyle = [2]{\color{functionDeclarations}},
+keywordstyle = [6]{\color{black}},
+keywordstyle = [3]{\color{constantLanguage}},
+keywordstyle = [4]{\color{typesDeclarationAndReferences}}, % Imports
+morekeywords = [6]{.},
+morekeywords = [3]{True, False},
+morekeywords = [4]{
+		numpy,
+		np,
+		os,
+		pathlib,
+		pl,
+		enum,
+		Enum,
+		DataType,
+		pyvisa,
+		visa,
+		time,
+		pandas,
+		matplotlib,
+		pyplot,
+		plt,
+		pandas,
+		pd,
+		shutil,
+		I\_IN,
+		I\_OUT,
+		V\_C,
+		V\_OUT,
+		I\_IN\_AVG,
+		I\_OUT\_AVG,
+		V\_OUT\_AVG,
+		TIME,
+		SCREENSHOT\_ALL,
+		PLOT,
+		SHOW\_PLOT,
+		CLEAR\_PREVIOUS,
+		NUMPY\_FORMAT,
+	},% packages
+morekeywords = [5]{
+		exists
+		remove
+		geomspace,
+		astype,
+		linspace,
+		write,
+		unique,
+		savetxt,
+		Path,
+		unlink,
+		open\_resource,
+		makedirs,
+		query\_ascii\_values,
+		append,
+		len,
+		\_append,
+		open,
+		figure,
+		to\_csv,
+		show,
+		savefig,
+		range,
+		insert,
+		DataFrame,
+		sleep,
+		close,
+		exit,
+		query\_binary\_values,
+		split,
+		plot,
+		geomspace,
+		sort,
+		query,
+		path,
+		isdir,
+		gmtime,
+		strftime,
+		printz
+	},% functions
+literate=
+	{0}{{{\ProcessDigit{0}}}}1
+{1}{{{\ProcessDigit{1}}}}1
+{2}{{{\ProcessDigit{2}}}}1
+{3}{{{\ProcessDigit{3}}}}1
+{4}{{{\ProcessDigit{4}}}}1
+{5}{{{\ProcessDigit{5}}}}1
+{6}{{{\ProcessDigit{6}}}}1
+{7}{{{\ProcessDigit{7}}}}1
+{8}{{{\ProcessDigit{8}}}}1
+{9}{{{\ProcessDigit{9}}}}1
+{e0}{{{\ProcessDigit{e0}}}}2
+{e1}{{{\ProcessDigit{e1}}}}2
+{e2}{{{\ProcessDigit{e2}}}}2
+{e3}{{{\ProcessDigit{e3}}}}2
+{e4}{{{\ProcessDigit{e4}}}}2
+{e5}{{{\ProcessDigit{e5}}}}2
+{e6}{{{\ProcessDigit{e6}}}}2
+{e7}{{{\ProcessDigit{e7}}}}2
+{e8}{{{\ProcessDigit{e8}}}}2
+{e9}{{{\ProcessDigit{e9}}}}2
+{.0}{{{\ProcessDigit{.0}}}}2
+{.1}{{{\ProcessDigit{.1}}}}2
+{.2}{{{\ProcessDigit{.2}}}}2
+{.3}{{{\ProcessDigit{.3}}}}2
+{.4}{{{\ProcessDigit{.4}}}}2
+{.5}{{{\ProcessDigit{.5}}}}2
+{.6}{{{\ProcessDigit{.6}}}}2
+{.7}{{{\ProcessDigit{.7}}}}2
+{.8}{{{\ProcessDigit{.8}}}}2
+{.9}{{{\ProcessDigit{.9}}}}2,
+emph={dir,format},          % Custom highlighting
+emphstyle=\color{variableAndParameterName},
+emph = [2]{print},
+emphstyle=[2]{\color{functionDeclarations}}
 }
 
 \usepackage{float}
@@ -451,11 +434,11 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 % Doc: http://texdoc.net/natbib
 \usepackage[%
-  square,        % for square brackets
-  comma,         % use commas as separators
-  numbers,       % for numerical citations;
-  %sort           % orders multiple citations into the sequence in which they appear in the list of references;
-  sort&compress  % as sort but in addition multiple numerical citations are compressed if possible (as 3-6, 15);
+	square,        % for square brackets
+	comma,         % use commas as separators
+	numbers,       % for numerical citations;
+	%sort           % orders multiple citations into the sequence in which they appear in the list of references;
+	sort&compress  % as sort but in addition multiple numerical citations are compressed if possible (as 3-6, 15);
 ]{natbib}
 
 % Same fontsize as without natbib
@@ -518,7 +501,6 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 %\makeFNbelow
 %\makeFNbottom
 
-
 %
 % - \todo (from todo, easy-todo, todonotes) / \TODO (from fixmetodonotes) - for "normal" TODOs
 % - \todofix - "important" TODOs
@@ -571,7 +553,7 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \newcommand{\modified}[1]{{\color{blue!60!black} #1}\xspace}
 
 \usepackage[group-minimum-digits=5,per-mode=fraction]{siunitx}
-\sisetup{propagate-math-font = true}
+\sisetup{propagate-math-font = true, output-complex-root=\mathrm{j}}
 
 % Enable that parameters of \cref{}, \ref{}, \cite{}, ... are linked so that a reader can click on the number an jump to the target in the document
 
@@ -581,26 +563,25 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 % Enable hyperref without colors and without bookmarks
 \ifoptionfinal{
-    \hypersetup{
-        final,
-        colorlinks=true,       % Links erhalten Farben statt Kaeten
-        raiselinks=true,       % calculate real height of the link
-         allcolors=black,
-        pdfstartview=Fit,
-        breaklinks=true,       % Links ueberstehen Zeilenumbruch
-        hypertexnames=false,   % Fix jumping to algorithm line - http://tex.stackexchange.com/a/156404/9075
-    }
+	\hypersetup{
+		final,
+		colorlinks=true,       % Links erhalten Farben statt Kaeten
+		raiselinks=true,       % calculate real height of the link
+		allcolors=black,
+		pdfstartview=Fit,
+		breaklinks=true,       % Links ueberstehen Zeilenumbruch
+		hypertexnames=false,   % Fix jumping to algorithm line - http://tex.stackexchange.com/a/156404/9075
+	}
 }{
-    \hypersetup{
-        hidelinks,
-        colorlinks=true,       % Links erhalten Farben statt Kaeten
-        raiselinks=true,       % calculate real height of the link
-        pdfstartview=Fit,
-        breaklinks=true,       % Links ueberstehen Zeilenumbruch
-        hypertexnames=false,   % Fix jumping to algorithm line - http://tex.stackexchange.com/a/156404/9075
-    }
+	\hypersetup{
+		hidelinks,
+		colorlinks=true,       % Links erhalten Farben statt Kaeten
+		raiselinks=true,       % calculate real height of the link
+		pdfstartview=Fit,
+		breaklinks=true,       % Links ueberstehen Zeilenumbruch
+		hypertexnames=false,   % Fix jumping to algorithm line - http://tex.stackexchange.com/a/156404/9075
+	}
 }
-
 
 % Enable correct jumping to figures when referencing
 \usepackage[all]{hypcap}
@@ -626,7 +607,6 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 \Crefname{listing}{Listing}{Listings}
 \crefname{lstlisting}{Listing}{Listings}
 \Crefname{lstlisting}{Listing}{Listings}
-
 
 %
 %% For demonstration purposes only
@@ -661,43 +641,38 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 % correct bad hyphenation here
 \hyphenation{
-  op-tical net-works semi-conduc-tor
-  % May not be hypphenated
-  AROMA TOSCA BPMN OASIS OMG DMTF IT DevOps
+	op-tical net-works semi-conduc-tor
+	% May not be hypphenated
+	AROMA TOSCA BPMN OASIS OMG DMTF IT DevOps
 }
 
 \input{commands}
 
 \ifpdftex
-  % Enable copy and paste of text from the PDF
-  % Only required for pdflatex. It "just works" in the case of lualatex.
-  % Alternative: cmap or mmap package
-  % mmap enables mathematical symbols, but does not work with the newtx font set
-  % See: https://tex.stackexchange.com/a/64457/9075
-  % Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
-  % Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
-  %
-  % According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
-  \input{glyphtounicode}
-  \pdfgentounicode=1
+	% Enable copy and paste of text from the PDF
+	% Only required for pdflatex. It "just works" in the case of lualatex.
+	% Alternative: cmap or mmap package
+	% mmap enables mathematical symbols, but does not work with the newtx font set
+	% See: https://tex.stackexchange.com/a/64457/9075
+	% Other solutions outlined at http://goemonx.blogspot.de/2012/01/pdflatex-ligaturen-und-copynpaste.html and http://tex.stackexchange.com/questions/4397/make-ligatures-in-linux-libertine-copyable-and-searchable
+	% Trouble shooting outlined at https://tex.stackexchange.com/a/100618/9075
+	%
+	% According to https://tex.stackexchange.com/q/451235/9075 this is the way to go
+	\input{glyphtounicode}
+	\pdfgentounicode=1
 \fi
 
-
 \ifoptionfinal{
-    \newcommand{\lipsum}[1][]{}
+	\newcommand{\lipsum}[1][]{}
 }{
-    \usepackage{mwe}
-    \usepackage{lipsum}
+	\usepackage{mwe}
+	\usepackage{lipsum}
 }
-
-
 
 \usepackage{circuitikz}
 \usepackage{nicematrix}
 %\usepackage{svg} - Disabled due to font problems
 \usepackage{enumitem}
-
-
 
 \usepackage{float}
 \usepackage{aliascnt}
@@ -718,14 +693,14 @@ final % Always enable microtype, even if in draft mode. This helps finding bad b
 
 \renewcommand{\thetable}{\arabic{table}}
 
-
 \DeclareCaptionFormat{custom}
 {%
-    \footnotesize{#1#2#3}%\textbf{#1#2}\textit{\small #3}
+	\footnotesize{#1#2#3}%\textbf{#1#2}\textit{\small #3}
 }
 \captionsetup{format=custom}
 
 \usepackage{standalone}
 \usepackage{multicol}
 \AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
-\newenvironment{appendices}{}{}
+
+\ifoptionfinal{}{\usepackage{refcheck}}
