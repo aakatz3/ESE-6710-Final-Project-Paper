@@ -89,7 +89,7 @@ Once set, the coil separation was not varied, but it was bounded between \qtyran
 \end{table}
 
 \section {Design Process}
-%\label{sec:design}
+\label{sec:design}
 The converter is designed in multiple separate modules to facilitate bring-up and testing, and  to allow for easy variation of components and sub-systems.
 Accordingly, the converter is organized into four main functional modules, as shown in \cref{fig:converter-block}: a push–pull $\Phi_2$ inverter, the WPT coils, the resonant capacitors, and a rectifier.
 Each module is physically implemented as an independent hardware unit.
@@ -256,6 +256,7 @@ In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicati
 2D cross-sections of the coils designed in \cref{sec:coils} were imported into FEMM \cite{femm} and simulated.
 Windings were removed until a seemingly reasonable inductance was achieved.
 A 3D solver would be preferred, but was out of scope for this initial round of design.% and proved problematic when use was attempted.
+The graphical results of the simulation are shown in \cref{fig:femm-results}, while the numarical results are summarized in \cref{tab:femm-results}.
 % Disable as not useful
 %\begin{figure}
 %    \centering
