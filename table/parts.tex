@@ -1,0 +1,65 @@
+% !TeX program = luatex
+\documentclass{standalone}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\interdisplaylinepenalty=2500 
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{lualatex-math}
+\usepackage{xfrac}
+\usepackage{mdwmath}
+\usepackage{bm}
+\usepackage{makecell}
+\usepackage{cleveref}
+\usepackage{unicode-math}
+\usepackage[group-minimum-digits=5,per-mode=fraction]{siunitx}
+\sisetup{propagate-math-font = true, output-complex-root=\mathrm{j}}
+\input{../commands.tex}
+\begin{document}
+\centering
+\renewcommand{\arraystretch}{1.125}
+\footnotesize
+\begin{tabular}{p{0.2\linewidth} l}
+	\hline
+	\textbf{Devices}      & \textbf{Component Description}                            \\
+	\hline
+	\multicolumn{2}{l}{\textbf{(a) Inverter}}                                         \\
+
+	$S_{1,2}$             & 
+	Infineon IGB110S101XTMA1, 100~V GaN FET                                           \\
+	$S^\prime_{1,2}$      & ROHM RB168LAM100TF, \qty{100}{\volt} Schottky Diode       \\
+
+	Gate driver           & 
+	Texas Instruments LM5114                                                          \\
+
+	$L_{F_1},\,L_{F_2}$   & 
+	\makecell[lt]{\qty{2.75}{\micro\henry}, TDK RM6 K1 ferrite core (B65807N0040A001) \\ $s=\qty{1}{\milli\meter}$, $N=8$, \qty{18}{\awg} (18HNS)}\\
+
+	$C_{MR}$              & \qty{250}{\pico\farad}, C0G, parallel array               \\
+
+	$L_{MR_1},\,L_{MR_2}$ & 
+	\makecell[lt]{\qty{551}{\nano\henry}, Micrometals non-magnetic core (T106--0)     \\ $N=12$, \qty{18}{\awg} (18HNS)}\\
+	%            0.551~$\mu$H, AWG 18, 12 turns \\
+
+	$C_{P_1},\,C_{P_2}$   & 
+	$C_{\mathrm{oss}}(S) + C_j(S^\prime) + \qty{273}{\pico\farad}$                    \\
+	\hline
+	\multicolumn{2}{l}{\textbf{(b) Rectifier}}                                        \\
+
+	$D_{1-4}$             & 
+	STPS360AF, \qty{60}{\volt} Schottky Diode                                         \\
+
+	$L_{\mathrm{LP}}$     & 
+	\makecell[l]{\qty{2.43}{\micro\henry}, Micrometals T130--0 non-magnetic core      \\ $N=32$, \qty{18}{\awg} (18HNS)}\\
+	%            2.43~$\mu$H, AWG 18, 32 turns \\
+	\hline
+	\multicolumn{2}{l}{\textbf{(c) Resonant Tank}}                                    \\
+
+	$L_1,\,L_2$           & 
+	\makecell[lt]{\qty{4.15}{\micro\henry}, Planar WPT Coils                          \\$N=5$, \qty{14}{\awg} (14H240); See \cref{sec:coils}}  \\
+
+	$C_1,\,C_2$           & \qty{264}{\pico\farad}, C0G, parallel array               \\
+	$C_3,\,C_4$           & \qty{267}{\pico\farad}, C0G, parallel array               \\
+	\hline
+\end{tabular}
+\end{document}
