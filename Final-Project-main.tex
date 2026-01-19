@@ -36,10 +36,9 @@
 % make the title area
 \maketitle
 
-
 \begin{abstract}
 	\pdfbookmark[1]{Abstract}{Abstract}
-	This project implements a $\mathbf{\qty{6.78}{\mega\hertz}}$ wireless power transfer converter based on a push--pull $\symbf{\Phi_2}$ topology. 
+	This project implements a $\mathbf{\qty{6.78}{\mega\hertz}}$ wireless power transfer converter based on a push--pull $\symbf{\Phi_2}$ topology.
 	The converter operates from a $\mathbf{\qty{25}{\volt}}$ DC input and delivers $\mathbf{\qty{36}{\watt}}$ output power with high efficiency.
 	The push--pull $\symbf{\Phi_2}$ structure enables soft switching at $\mathbf{\unit{\mega\hertz}}$ frequencies, reduces switch voltage stress, and improves power handling capability, making it well suited for efficient wireless power transfer applications.
 \end{abstract}
@@ -57,7 +56,7 @@
 \label{sec:introduction}
 This final project presents the design and implementation of a \qty{6.78}{\mega\hertz} push--pull $\Phi_2$ wireless power transfer converter operating from a \qty{25}{\volt} dc input and delivering \qty{36}{\watt} to the load.
 The project encompasses the complete development process, including component parameter calculation, simulation verification, PCB design, wireless charging coil design, and experimental hardware implementation.
-The push--pull $\Phi_2$ topology is chosen for its suitability for \unit{\mega\hertz}-frequency operation. 
+The push--pull $\Phi_2$ topology is chosen for its suitability for \unit{\mega\hertz}-frequency operation.
 The resonant network between the switching nodes enables soft-switching behavior, significantly reducing switching losses at \qty{6.78}{\mega\hertz}.
 The push--pull structure distributes the input voltage across two switches, reducing device voltage stress and improving power handling capability under a \qty{25}{\volt} input \cite{9039741,9458037}.
 Furthermore, the $\Phi_2$ topology allows component values to be calculated using closed-form equations \cite{10833657}, simplifying the design and ensuring reliable \unit{\mega\hertz}-frequency operation.
@@ -67,7 +66,7 @@ Both simulation and hardware experimental results confirm that the implemented c
 The schematic of the proposed converter is shown in \cref{fig:converter-overall-sch}.
 \begin{figure*}[!b]
 	\centering
-    \includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
+	\includestandalone[width=0.9\linewidth]{figure/tikz/overall_converter}
 	\caption{Theoretical circuit of the converter}
 	\label{fig:converter-overall-sch}
 \end{figure*}
@@ -119,8 +118,8 @@ which showed that the electromagnetic simulations (\cref{sec:em-sim}) were in th
 The distance was tweaked and the inductance was measured using a \vna{} vector network analyzer.
 More details about this procedure are in \cref{sec:exp}.\\
 \subsection{Circuit Topology}
-In the inverter module, a push--pull $\Phi_2$ topology is employed, in which an auxiliary branch presents an approximate short circuit to the second harmonic, thereby effectively suppressing the second-harmonic component of the drain--source voltage and significantly reducing MOSFET voltage stress. 
-The combined action of the resonant components allows the drain--source voltage to naturally resonate to zero, achieving zero-voltage switching and zero-derivative voltage switching. 
+In the inverter module, a push--pull $\Phi_2$ topology is employed, in which an auxiliary branch presents an approximate short circuit to the second harmonic, thereby effectively suppressing the second-harmonic component of the drain--source voltage and significantly reducing MOSFET voltage stress.
+The combined action of the resonant components allows the drain--source voltage to naturally resonate to zero, achieving zero-voltage switching and zero-derivative voltage switching.
 Based on the closed-form design methodology of the push--pull $\Phi_2$ topology presented in~\cite{9039741}, the key resonant component values can be directly calculated as
 \begin{subequations}
 	\begin{align}
@@ -153,7 +152,7 @@ Following the design process outlined above, the component values employed in th
 \subsection{Coil Compensation}
 Wireless energy transfer is achieved through a pair of magnetically coupled inductors with identical self-inductance values, which are modeled as illustrated in \cref{fig:coilmodel}.
 In this model, $L_1$ and $L_2$ denote the self-inductance of the primary and secondary coils, respectively, while $k$ represents the magnetic coupling coefficient between the two coils.
-A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link, with two identical series-connected capacitors placed at the two terminals of each coil to ensure symmetry, as shown in \cref{fig:converter-overall-sch}. 
+A voltage-mode converter and rectifier are employed; therefore, series--series (SS) compensation is adopted for the wireless power transfer link, with two identical series-connected capacitors placed at the two terminals of each coil to ensure symmetry, as shown in \cref{fig:converter-overall-sch}.
 The compensation capacitors $C_1$ and $C_2$ associated with $L_1$, and $C_3$ and $C_4$ associated with $L_2$, are designed to maximize efficiency using the expressions given in \cite{10833657}:
 \begin{equation}
 	C_{1,2} = \frac{2}{\omega_s^2 L_1} \qquad
@@ -168,10 +167,10 @@ For SS compensation, the inductance required to achieve minimum loss is related 
 where $k$ denotes the magnetic coupling coefficient between the transmitter and receiver coils.
 The values of the implemented compensation capacitors are summarized in \cref{tab:bom}.
 
-Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice. 
-Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of \qty{1}{\inch} must be greater than the target value $k$. 
+Accordingly, the coupling coefficient $k$ and the corresponding coil geometry must be carefully designed to ensure that the required coupling condition can be achieved in practice.
+Since the design specifies a minimum coil separation exceeding 1~inch, the coupling coefficient at a distance of \qty{1}{\inch} must be greater than the target value $k$.
 This design margin allows the effective coupling coefficient to be adjusted during experimental tuning by varying the coil spacing, such that the resulting inductance satisfies (\ref{eq:L2_coupled}), thereby minimizing conduction and resonant losses in the wireless power transfer system.
-In the practical implementation, two identical coupled inductors with an inductance of \qty{4.15}{\micro\henry} were fabricated and used as the transmitting and receiving coils. 
+In the practical implementation, two identical coupled inductors with an inductance of \qty{4.15}{\micro\henry} were fabricated and used as the transmitting and receiving coils.
 For this inductance value, the minimum-loss condition corresponds to a coupling coefficient of approximately $k = 0.285$, which was experimentally observed to be achievable when the separation distance between the coils exceeds \qty{1}{\inch}.
 %\textcolor{red5}{\lipsum[9-10]}
 
@@ -203,7 +202,7 @@ LTspice simulations were conducted to validate the circuit design, with the comp
 With the gate-drive duty cycle selected as $D = 0.32$, the simulation results shown in \cref{fig:sim_waveforms} indicate that $v_{ds1}(t)$ and $v_{ds2}(t)$ naturally resonate to zero prior to turn-on, achieving both ZVS and ZDVS.
 \par
 Moreover, due to the suppression of the second-harmonic component, the voltage peak is limited to approximately $2V_{\mathrm{in}}$, which alleviates the voltage stress on the GaN FETs and reduces switching losses.
-From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component. 
+From the waveforms of $V_s$ and $I_s$, it can be observed that the input voltage of the resonant tank is approximately composed of the fundamental component and a third-harmonic component.
 After frequency-selective filtering by the load network, the resulting current $I_s$ becomes nearly sinusoidal.
 In addition, $V_r$ and $I_r$ are observed to be approximately in phase, indicating that, with compensation provided by $L_{\mathrm{LP}}$, the rectifier can be effectively modeled as a resistive load, thereby mitigating the impact of its capacitive behavior on the resonant operation.
 \begin{figure}[]
@@ -292,7 +291,7 @@ A 3D solver would be preferred, but was out of scope for this initial round of d
 RF Simulations were conducted in Keysight ADS \cite{ads} and Cadence AWR Design Environment \cite{awr} using the measured transformer parameters to construct the resonant circuit. These simulations were later used to compare with the experimental results of the resonant tank characterization.
 The simulations were also used to adjust the impedance of the resonant tank so that it would match the designed reference impedance of $Z_0=\qty{50}{\ohm}$.
 The schematics of the simulations are shown in \cref{fig:ads-tank-sch} and \cref{fig:awr-tank-sch}.
-The results of the ADS simulation are shown in \cref{fig:ads-tank-results}, indicating a proper \qty{50}{\ohm} match 
+The results of the ADS simulation are shown in \cref{fig:ads-tank-results}, indicating a proper \qty{50}{\ohm} match
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.8\columnwidth]{figure/sch/ads-resonant-tank-sch-crop.pdf}
@@ -300,14 +299,14 @@ The results of the ADS simulation are shown in \cref{fig:ads-tank-results}, indi
 	\label{fig:ads-tank-sch}
 \end{figure}
 \begin{figure}
-    \centering
-    \includegraphics[width=0.8\columnwidth]{figure/sch/awr-resonant-tank-sch-crop.pdf}
-    \caption{AWR Schematic of resonant tank simulation}
-    \label{fig:awr-tank-sch}
+	\centering
+	\includegraphics[width=0.8\columnwidth]{figure/sch/awr-resonant-tank-sch-crop.pdf}
+	\caption{AWR Schematic of resonant tank simulation}
+	\label{fig:awr-tank-sch}
 \end{figure}
 \begin{figure}[]
 	\centering
-    % TODO replace with subfigs for proper style
+	% TODO replace with subfigs for proper style
 	\includegraphics[width=0.6\columnwidth]{figure/results/sims/ads/resonant-tank-only-s2p-crop.pdf}
 	\caption{ADS results of resonant tank simulation}
 	\label{fig:ads-tank-results}
@@ -341,8 +340,8 @@ Through hole components were manually soldered.
 The required mechanical parts were attached to the PCBs, and the PCB--mounting-plate sub-assemblies were mounted to the framing after being individually tested for shorts and being brought through basic testing to confirm general functionality.
 
 The scope, waveform generator, and spectrum analyzer (where applicable) were all supplied with the same 10MHz reference clock (generated with a \verb|Keysight 33521A|).
-After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary \qtyrange{0}{5}{\volt} square-wave gate-drive signals with a 180\unit{\degree}$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator. 
-Circuit voltages and currents were monitored using \verb|Keysight 10073D| and \verb|N2809A| passive probes, \verb|Keysight 1147B| current probes, and a \verb|Keysight MSO7034B| oscilloscope. 
+After the front-end push--pull $\Phi_2$ converter was constructed, it was first tested under a no-load condition. Two complementary \qtyrange{0}{5}{\volt} square-wave gate-drive signals with a 180\unit{\degree}$^\circ$ phase shift were generated using a \verb|Keysight 33510B| waveform generator.
+Circuit voltages and currents were monitored using \verb|Keysight 10073D| and \verb|N2809A| passive probes, \verb|Keysight 1147B| current probes, and a \verb|Keysight MSO7034B| oscilloscope.
 Tunable capacitors were employed in $C_{pa}$, $C_{pb}$, and $C_{\mathrm{MR}}$, allowing fine tuning of the circuit. Since the $L_{\mathrm{MR}}$--$C_{\mathrm{MR}}$ branch is designed to present an approximate short circuit to the second-harmonic component for voltage waveform shaping, the voltage across $C_{\mathrm{MR}}$ is expected to exhibit a dominant frequency at twice the switching frequency under ideal conditions.
 This was verified using a \verb|Rohde & Schwarz FPC1000| spectrum analyzer.
 Accordingly, tuning of $C_{\mathrm{MR}}$ was performed by monitoring the frequency content across the $C_{\mathrm{MR}}$, while $C_{pa}$ and $C_{pb}$ were adjusted by observing whether ZVS was achieved for $v_{ds1}$ and $v_{ds2}$.
@@ -366,8 +365,8 @@ An example of one of the coils is shown in \cref{fig:single-coil}.
 After the coil self-inductances were determined, open-circuit and short-circuit impedance measurements were performed from the primary side to extract the coupling coefficient $k$ at a separation distance of \qty{1}{\inch}.
 
 % TODO Figure out how to explain this given partial missing data. Maybe say what we did, and note these intermediate measurements were not recorded.
-Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance (as expected due to the designed distance being \qty{1.5}{\inch}), the distance was adjusted until the coupling factor matched the designed coupling factor $k=0.3$ (though later testing and optimization showed that adjusting to $k=0.285$ was a better fit for our purposes). 
-Measurements were conducted to be able to calculate the required parameters for the model shown in \cref{fig:coilmodel}, and then the compensation capacitor values were calculated. 
+Once it was confirmed that a coupling coefficient exceeding the value required for self-inductance matching could be obtained at this distance (as expected due to the designed distance being \qty{1.5}{\inch}), the distance was adjusted until the coupling factor matched the designed coupling factor $k=0.3$ (though later testing and optimization showed that adjusting to $k=0.285$ was a better fit for our purposes).
+Measurements were conducted to be able to calculate the required parameters for the model shown in \cref{fig:coilmodel}, and then the compensation capacitor values were calculated.
 After the compensation capacitors were implemented in hardware, each individual set of compensation capacitors were measured and the values recorded once tuned to match the calculations.
 With the compensation capacitors in place, impedance measurements were repeated with the opposite side open, and the measured impedance was observed to approach zero at \qty{6.78}{\mega\hertz}, indicating proper resonance.
 As the resonant tank was designed for a \qty{50}{\ohm} source and load, an additional 2 port VNA measurement was taken to capture the resonant tank for comparison to the simulation.
@@ -491,10 +490,10 @@ An efficiency of \qty{91.2}{\percent} is achieved at the nominal operating point
 	\label{fig:vinsweepcomparison}
 \end{figure*}
 
-Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ ($18$--$28~\mathrm{V}$), $D$, $f_s$, and $R_\mathrm{load}$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = 25~\mathrm{V}$ are shown in \cref{fig:vinsweepwave}. 
+Parametric studies were performed to assess the converter performance under variations in $V_{\mathrm{in}}$ ($18$--$28~\mathrm{V}$), $D$, $f_s$, and $R_\mathrm{load}$. The drain-to-source voltage waveforms corresponding to different input-voltage operating conditions relative to the nominal value of $V_{\mathrm{in}} = 25~\mathrm{V}$ are shown in \cref{fig:vinsweepwave}.
 It is observed that variations in $V_{\mathrm{in}}$ primarily affect the amplitudes of $v_{ds1}$ and $v_{ds2}$, while their waveform shapes remain largely unchanged.
 As shown in \cref{fig:vinsweepcomparison}, the simulated and experimental results exhibit good agreement in overall trend; however, the simulated output voltage $V_{\mathrm{out}}$, output power $P_{\mathrm{out}}$, and conversion efficiency $\eta$ are consistently higher than the measured values, primarily due to practical losses and voltage drops that are not fully captured in the simulation.
-As $V_{\mathrm{in}}$ increases, the maximum GAN FET drain-to-source voltage $v_{ds,\max}$ increases monotonically in both simulation and experiment, indicating a corresponding increase in the voltage amplitude applied to the load network. 
+As $V_{\mathrm{in}}$ increases, the maximum GAN FET drain-to-source voltage $v_{ds,\max}$ increases monotonically in both simulation and experiment, indicating a corresponding increase in the voltage amplitude applied to the load network.
 Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $V_{\mathrm{in}}$.
 %\FloatBarrier
 
@@ -632,21 +631,21 @@ Consequently, $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increas
 \end{figure*}
 
 The sensitivity of the converter performance to duty cycle $D$ is evaluated by varying $D$ from 0.3 to 0.4, while $V_{\mathrm{in}}$, $f_s$, and $R_\mathrm{load}$ are fixed at their nominal values.
-The gate-drive signals and drain-to-source voltage waveforms of the GaN FETs for $D = 0.30$, $0.32$, and $0.40$ are shown in \cref{fig:Dsweepwaveform}. It can be observed that when $D$ exceeds the nominal value, the gate-drive signal begins to rise before $v_{ds}$ has fully resonated to zero, resulting in incomplete ZVS and increased switching losses. 
-Conversely, when $D$ is below the nominal value, $v_{ds}$ resonates to zero and subsequently oscillates upward, such that the device turns on with a nonzero drain-to-source voltage, again degrading the ZVS condition and increasing switching losses. 
+The gate-drive signals and drain-to-source voltage waveforms of the GaN FETs for $D = 0.30$, $0.32$, and $0.40$ are shown in \cref{fig:Dsweepwaveform}. It can be observed that when $D$ exceeds the nominal value, the gate-drive signal begins to rise before $v_{ds}$ has fully resonated to zero, resulting in incomplete ZVS and increased switching losses.
+Conversely, when $D$ is below the nominal value, $v_{ds}$ resonates to zero and subsequently oscillates upward, such that the device turns on with a nonzero drain-to-source voltage, again degrading the ZVS condition and increasing switching losses.
 At nominal $D$, $v_{ds}$ is close to zero at the onset of device turn-on, resulting in near-optimal ZVS behavior and minimal switching loss.
-The simulated and experimental results are presented in \cref{fig:Dsweepcomparison}. 
+The simulated and experimental results are presented in \cref{fig:Dsweepcomparison}.
 %The conversion efficiency reaches its maximum at approximately $D = 0.32$, corresponding to the nominal operating point, which is consistent with the switching-loss analysis.
 %Both the output power $P_{\mathrm{out}}$ and output voltage $V_{\mathrm{out}}$ exhibit a slight increase with increasing duty cycle. In contrast, the peak drain-to-source voltage $v_{ds,\max}$ begins to increase once the duty cycle exceeds a certain value, indicating increased device voltage stress at higher duty cycles.\\
 Because the load is predominantly resistive, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ exhibit similar trends.
-In simulation, both quantities show a slight increase with increasing $D$, whereas in the experimental results they remain nearly unchanged over the same range. 
+In simulation, both quantities show a slight increase with increasing $D$, whereas in the experimental results they remain nearly unchanged over the same range.
 This discrepancy arises from practical non-ideal effects, which modify the duration of the interval in which $v_{ds}$ rises from zero and resonates back to zero, thereby shifting the duty cycle corresponding to exact ZVS operation.
-For duty cycles below the exact-ZVS condition, the GaN FET turns on after $v_{ds}$ has resonated to zero. The resulting small turn-on $v_{ds}$ leads to weakly duty-dependent switching loss, while the limited variation of the main $v_{ds}$ waveform causes only minor changes in the resonant-tank input voltage. 
+For duty cycles below the exact-ZVS condition, the GaN FET turns on after $v_{ds}$ has resonated to zero. The resulting small turn-on $v_{ds}$ leads to weakly duty-dependent switching loss, while the limited variation of the main $v_{ds}$ waveform causes only minor changes in the resonant-tank input voltage.
 Consequently, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant.
 In contrast, for duty cycles exceeding the exact-ZVS condition, the MOSFET is turned on before $v_{ds}$ reaches zero. The resulting large and duty-dependent turn-on $v_{ds}$ leads to a significant increase in switching loss, while the substantial modification of the main $v_{ds}$ waveform causes pronounced variations in the resonant-tank input voltage and, consequently, in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$.
-In simulation, the exact-ZVS condition occurs at approximately $D = 0.34$. 
-Accordingly, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant for smaller duty cycles and increase as $D$ is further raised, while the switching loss is initially unchanged and then increases, leading to an efficiency that is first nearly constant and subsequently decreases. 
-In the experimental results, however, over the duty-cycle range of \numrange{0.3}{0.4}, the MOSFET consistently turns on after $v_{ds}$ has resonated to zero. As a result, $V_{\mathrm{out}}$, $P_{\mathrm{out}}$, switching loss, and efficiency exhibit minimal variation within this range. 
+In simulation, the exact-ZVS condition occurs at approximately $D = 0.34$.
+Accordingly, $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ remain nearly constant for smaller duty cycles and increase as $D$ is further raised, while the switching loss is initially unchanged and then increases, leading to an efficiency that is first nearly constant and subsequently decreases.
+In the experimental results, however, over the duty-cycle range of \numrange{0.3}{0.4}, the MOSFET consistently turns on after $v_{ds}$ has resonated to zero. As a result, $V_{\mathrm{out}}$, $P_{\mathrm{out}}$, switching loss, and efficiency exhibit minimal variation within this range.
 The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36, which is not observed experimentally, can be attributed to the duty-cycle-dependent influence on the $v_{ds}$ waveform discussed above.
 
 \begin{figure*}[t!]
@@ -721,10 +720,10 @@ The increase in simulated $V_{\mathrm{ds,max}}$ for $D$ above approximately 0.36
 \subsubsection{Parametric Sweep, $f_s$}
 
 Switching frequency variation is investigated by sweeping $f_s$ from \qty{6.7}{\mega\hertz} to \qty{6.9}{\mega\hertz}, including the nominal operating frequency, while $V_{\mathrm{in}}$, $D$, and $R_\mathrm{load}$ are held constant.
-The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of \qty{6.7}{\mega\hertz}, \qty{6.8}{\mega\hertz}, and \qty{6.9}{\mega\hertz} are shown in \cref{fig:frequencysweepwave}. 
+The drain-to-source voltage waveforms of the GaN FETs at switching frequencies of \qty{6.7}{\mega\hertz}, \qty{6.8}{\mega\hertz}, and \qty{6.9}{\mega\hertz} are shown in \cref{fig:frequencysweepwave}.
 As $f_s$ deviates from the nominal operating point, the $v_{ds}$ waveforms become increasingly distorted.
-The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}. 
-A close agreement between the experimental measurements and simulation results is observed over the entire frequency range. 
+The measured and simulated results as functions of switching frequency are presented in \cref{fig:frequencysweepcomparison}.
+A close agreement between the experimental measurements and simulation results is observed over the entire frequency range.
 Both $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ decrease monotonically with increasing switching frequency, while the maximum drain--source voltage $V_{\mathrm{ds,max}}$ remains approximately constant.
 This behavior may be attributed to waveform distortion, whereby the RMS value of $v_{ds}$ decreases as the switching frequency increases, whereas its peak value is largely unaffected.
 The efficiency remains approximately constant over this frequency range, which may be attributed to the increase in switching losses as the switching frequency.\\
@@ -738,13 +737,13 @@ The efficiency remains approximately constant over this frequency range, which m
 
 \subsubsection{Parametric Sweep, $R_\mathrm{load}$}
 The effect of load resistance variation on converter performance is studied by sweeping the load resistance $R_\mathrm{load}$ from \qty{50}{\ohm} to \qty{75}{\ohm} under fixed $V_{\mathrm{in}}$, $D$, and $f_s$.
-The drain-to-source voltage waveforms for $R_\mathrm{load} = \qty{50}{\ohm}$, $\qty{61.685}{\ohm}$, and $\qty{75}{\ohm}$ are shown in \cref{fig:Rosweepwaveform}. 
+The drain-to-source voltage waveforms for $R_\mathrm{load} = \qty{50}{\ohm}$, $\qty{61.685}{\ohm}$, and $\qty{75}{\ohm}$ are shown in \cref{fig:Rosweepwaveform}.
 The $V_{DS}$ waveforms are generally similar, with minor differences in the ZVS condition.
-The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend. 
-It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$. 
-The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current. 
+The simulated and experimental results are presented in \cref{fig:Rosweepcomparison}, showing good agreement in overall trend.
+It can be observed that $P_{\mathrm{out}}$, $V_{\mathrm{out}}$, and efficiency all increase with increasing $R_\mathrm{load}$.
+The increase in $V_{\mathrm{out}}$ and $P_{\mathrm{out}}$ is attributed to the fact that a larger $R_\mathrm{load}$ results in a reduced equivalent resistance reflected to the primary side, thereby decreasing the effective impedance of the resonant tank and increasing the input current.
 The modest efficiency increase may result from reduced switching losses under improved ZVS conditions and a faster increase in output power than total losses; however, at the highest switching frequencies, the experimental efficiency decreases as switching losses increase more rapidly than $P_o$.
-Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range. 
+Meanwhile, the peak drain-to-source voltage $v_{ds,\max}$ remains approximately constant over the examined load range.
 Minor fluctuations in the measured data are attributed to measurement accuracy limitations.
 
 \subsubsection{Frequency Domain Results}
@@ -940,12 +939,11 @@ The physical construction may also prove to be a useful foundation for more expe
 %
 \noindent
 All links were last followed on January 8, 2026.
-\ifoptionfinal{
 	\newpage
 	\onecolumn
 	\begin{appendices}
 		\section{SPICE Netlists}
-		
+
 		\begin{verbbox}
 			\footnotesize\verb|pushpullphi2_new.sp|
 		\end{verbbox}
@@ -1175,6 +1173,4 @@ All links were last followed on January 8, 2026.
 			\item \href{https://www.l-com.com/bandpass-filter-rf-splitter-0-6-ghz-type-n-male-terminator-50-ohm}{L-com 0-6 GHz Type N Male Terminator 50 Ohm}
 		\end{itemize}
 	\end{appendices}
-}{}
-
 \end{document}
