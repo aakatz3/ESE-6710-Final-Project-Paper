@@ -703,4 +703,7 @@ emphstyle=[2]{\color{functionDeclarations}}
 \usepackage{multicol}
 \AtBeginEnvironment{appendices}{\crefalias{section}{appendix}}
 
-%\ifoptionfinal{}{\usepackage{refcheck}}
+\ifoptionfinal{
+}{
+\usepackage{refcheck}
+}
